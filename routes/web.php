@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalirController;
 use App\Http\Controllers\Admin\PerfilController;
+use App\Http\Controllers\Admin\PersonalController;
 use App\Http\Controllers\Admin\UserController;
 
 /*
@@ -47,6 +48,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/usuarios/index', 'Index')->name('usuarios.index');
         Route::get('/usuarios/create', 'Create')->name('usuarios.create');
         Route::post('/usuarios/store', 'Store')->name('usuarios.store');
+
+    });
+
+    Route::controller(PersonalController::class)->group(function() {
+        Route::get('/personal_policial/index', 'Index')->name('personal_policial.index');
+        Route::get('/personal/create', 'Create')->name('personal_policial.create');
+        Route::post('/personal/store', 'Store')->name('personal_policial.store');
 
     });
 
