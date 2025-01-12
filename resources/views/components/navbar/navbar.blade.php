@@ -79,7 +79,7 @@
                   <div class="collapse" id="sidebarLayouts">
                       <ul class="nav nav-collapse">
                           <li>
-                              <a href="">
+                              <a href="{{ route('personal_policial.index') }}">
                                   <span class="sub-item">Mostrar</span>
                               </a>
                           </li>
