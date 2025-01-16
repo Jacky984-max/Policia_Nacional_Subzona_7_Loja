@@ -3,7 +3,6 @@
 @push('css')
 <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
 @endpush
 
 @section('admin')
@@ -17,7 +16,7 @@
 
             </div>
             <div class="ms-md-auto py-2 py-md-0">
-                <a href="{{ route('dependencia.create') }}" class="btn btn-primary btn-round ms-auto me-2"><i
+                <a href="" class="btn btn-primary btn-round ms-auto me-2"><i
                         class="fa fa-plus"></i>
                     Agregar
                 </a>
@@ -30,7 +29,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Listar Dependencias</h4>
+                            <h4 class="card-title">Listar Flota Vehicular</h4>
 
                         </div>
                     </div>
@@ -65,33 +64,29 @@
 
                                     @php $i=1; @endphp
 
-                                    @foreach ($depe1 as $dp)
-
+                                  
                                         <tr>
                                             <td>{{ $i++ }}</td>
                                             <td>
-                                                {{ $dp->provincia }}
+                                                
                                             </td>
                                             <td>
-                                                {{ $dp->numero_distrito }}
+
                                             </td>
                                             <td>
-                                                {{ $dp->parroquia }}
+
                                             </td>
-                                          
                                             <td>
-                                                {{ $dp->cod_distrito }}
+
                                             </td>
-                                          
                                             <td>
-                                                {{ $dp->nombre_distrito }}
+
+                                            </td>
+                                            <td>
+
                                             </td>
 
-                                            <td>
-                                                {{ $dp->numero_distrito }}
-                                            </td>
-                                          
-                                          
+
                                             <td>
                                                 <div class="form-button-action">
                                                     <button type="button" data-bs-toggle="tooltip" title=""
@@ -106,7 +101,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -136,6 +131,5 @@
         },
     });
 </script>
-
 
 @endsection

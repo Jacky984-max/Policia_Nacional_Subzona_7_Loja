@@ -123,7 +123,7 @@
                   <div class="collapse" id="tables">
                       <ul class="nav nav-collapse">
                           <li>
-                              <a href="tables/tables.html">
+                              <a href="{{ route('flota_vehicular.index') }}">
                                   <span class="sub-item">Mostrar</span>
                               </a>
                           </li>

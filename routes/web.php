@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DependenciaController;
+use App\Http\Controllers\Admin\FlotaVehicularController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalirController;
@@ -65,6 +66,18 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/dependencia/store', 'Store')->name('dependencia.store');
 
     });
+
+    Route::controller(FlotaVehicularController::class)->group(function () {
+        Route::get('/flota_vehicular/index', 'Index')->name('flota_vehicular.index');
+        Route::get('/flota_vehicular/create', 'Create')->name('flota_vehicular.create');
+        Route::post('/flota_vehicular/store', 'Store')->name('flota_vehicular.store');
+
+    });
+
+    
+
+
+
 
 
 
