@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Dependencia;
 use Illuminate\Http\Request;
 
-class DependenciaController extends Controller
+class FlotaVehicularController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,9 @@ class DependenciaController extends Controller
     public function index()
     {
         //
-        $depe1 = Dependencia::all();
+        return view('admin.flota_vehicular.index');
 
-        return view('admin.dependencias.index', compact('depe1'));
+        
     }
 
     /**
@@ -25,7 +24,6 @@ class DependenciaController extends Controller
     public function create()
     {
         //
-        return view('admin.dependencias.create');
     }
 
     /**
@@ -34,11 +32,6 @@ class DependenciaController extends Controller
     public function store(Request $request)
     {
         //
-        $dependencias = new Dependencia($request->input());
-
-        $dependencias->saveOrFail();
-
-        return redirect()->route('dependencia.index')->with('success', 'dependencia registrada con éxito');
     }
 
     /**
