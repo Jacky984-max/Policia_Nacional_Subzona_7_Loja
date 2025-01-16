@@ -72,19 +72,20 @@
                                                 {{ $item->provincia }}
                                             </td>
                                             <td>
-
+                                                {{ $item->numero_distrito }}
                                             </td>
                                             <td>
-
+                                                {{ $item->parroquia }}
                                             </td>
                                             <td>
-
+                                                {{ $item->cod_distrito }}  
                                             </td>
                                             <td>
-
+                                                {{ $item->nombre_distrito }}  
+                                               
                                             </td>
                                             <td>
-
+                                                {{ $item->numero_distrito }}  
                                             </td>
 
 
