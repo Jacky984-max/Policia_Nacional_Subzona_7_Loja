@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreFlotaVehicularRequest;
+use App\Models\FlotaVehicular;
 use Illuminate\Http\Request;
 
 class FlotaVehicularController extends Controller
@@ -13,7 +15,9 @@ class FlotaVehicularController extends Controller
     public function index()
     {
         //
-        return view('admin.flota_vehicular.index');
+        $flota = FlotaVehicular::all();
+
+        return view('admin.flota_vehicular.index', compact('flota'));
 
         
     }
@@ -24,14 +28,36 @@ class FlotaVehicularController extends Controller
     public function create()
     {
         //
+        return view('admin.flota_vehicular.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFlotaVehicularRequest $request)
     {
         //
+        $vehicular = FlotaVehicular::create($request->validated() + [
+
+            'tipo_vehiculo'=> $request->tipo_vehiculo, 
+            'marca' => $request->marca, 
+            'kilometraje' => $request->kilometraje,
+            'capacidad_pasajeros'=> $request->capacidad_pasajeros, 
+            'placa'=> $request->placa, 
+            'modelo'=> $request->modelo, 
+            'cilindraje'=> $request->cilindraje, 
+            'chasis'=> $request->chasis, 
+            'motor'=> $request->motor, 
+            'capacidad_carga'=> $request->capacidad_carga,
+
+        ]);
+
+        $vehicular ->saveOrFail();
+
+        return redirect()->route('flota_vehicular.index')->with('success', 'flota vehicular registrada');
+
+
+
     }
 
     /**
