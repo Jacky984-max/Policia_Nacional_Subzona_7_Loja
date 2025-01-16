@@ -16,7 +16,7 @@
 
             </div>
             <div class="ms-md-auto py-2 py-md-0">
-                <a href="" class="btn btn-primary btn-round ms-auto me-2"><i
+                <a href="{{ route('flota_vehicular.create') }}" class="btn btn-primary btn-round ms-auto me-2"><i
                         class="fa fa-plus"></i>
                     Agregar
                 </a>
@@ -50,12 +50,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Provincia</th>
-                                        <th>Número de Distrito</th>
-                                        <th>Parroquia</th>
-                                        <th>Código de Distrito</th>
-                                        <th>Nombre de Distrito</th>
-                                        <th>Número de Distrito</th>
+                                        <th>Tipo de Vehiculo</th>
+                                        <th>Placa</th>
+                                        <th>Chasis </th>
+                                        <th>Marca</th>
+                                        <th>Modelo</th>
+                                        <th>Motor</th>
                                         <th style="width: 10%">Acciones</th>
                                     </tr>
                                 </thead>
@@ -64,26 +64,28 @@
 
                                     @php $i=1; @endphp
 
-                                  
+                                    @foreach ($flota as $item)
                                         <tr>
                                             <td>{{ $i++ }}</td>
+
                                             <td>
-                                                
+                                                {{ $item->tipo_vehiculo }}
+                                            </td>
+
+                                            <td>
+                                                {{ $item->placa }}
                                             </td>
                                             <td>
-
+                                                {{ $item->chasis }}
                                             </td>
                                             <td>
-
+                                                {{ $item->marca }}
                                             </td>
                                             <td>
-
+                                                {{ $item->modelo }}
                                             </td>
                                             <td>
-
-                                            </td>
-                                            <td>
-
+                                                {{ $item->motor }}
                                             </td>
 
 
@@ -101,7 +103,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
