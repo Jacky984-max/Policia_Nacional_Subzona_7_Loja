@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DependenciaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalirController;
@@ -55,6 +56,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/personal_policial/index', 'Index')->name('personal_policial.index');
         Route::get('/personal/create', 'Create')->name('personal_policial.create');
         Route::post('/personal/store', 'Store')->name('personal_policial.store');
+
+    });
+
+    Route::controller(DependenciaController::class)->group(function () {
+        Route::get('/dependencia/index', 'Index')->name('dependencia.index');
+        Route::get('/dependencia/create', 'Create')->name('dependencia.create');
+        Route::post('/dependencia/store', 'Store')->name('dependencia.store');
 
     });
 
