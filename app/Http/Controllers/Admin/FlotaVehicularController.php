@@ -111,8 +111,11 @@ class FlotaVehicularController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
+        FlotaVehicular::findOrFail($id)->delete();
+
+        return redirect()->route('flota_vehicular.index')->with('eliminar', 'flota vehicular eliminada');
     }
 }
