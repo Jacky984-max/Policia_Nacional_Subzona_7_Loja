@@ -50,6 +50,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/usuarios/index', 'Index')->name('usuarios.index');
         Route::get('/usuarios/create', 'Create')->name('usuarios.create');
         Route::post('/usuarios/store', 'Store')->name('usuarios.store');
+        Route::get('/usuarios/edit/{id}', 'Edit')->name('usuarios.edit');
+        Route::post('/usuarios/update', 'Update')->name('usuarios.update');
+        Route::get('/usuarios/delete/{id}', 'Destroy')->name('usuarios.delete');
+
 
     });
 
