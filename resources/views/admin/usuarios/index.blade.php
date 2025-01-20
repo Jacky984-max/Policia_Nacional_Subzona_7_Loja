@@ -90,6 +90,45 @@
                                                 </div>
                                             </td>
                                         </tr>
+
+                                          <!--MODAL PARA ELIMINAR UN USUARIO-->
+                                          <div class="modal fade" id="createAKIKeyModal-{{ $item->id }}"
+                                            tabindex="-1" aria-labelledby="createAKIKeyModalLabel" role="dialog"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <!-- Header -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="createAKIKeyModalLabel">Mensaje de
+                                                            confirmación</h4>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <!-- End Header -->
+
+                                                    <!-- Body -->
+                                                    <div class="modal-body">
+                                                        <!-- Form -->
+                                                        ¿Seguro que quieres eliminar este Usuario?
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cerrar</button>
+                                                        <form action="{{ route('usuarios.delete', $item->id) }}"
+                                                            method="get">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit"
+                                                                class="btn btn-danger">Confirmar</button>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                     @endforeach
 
 
