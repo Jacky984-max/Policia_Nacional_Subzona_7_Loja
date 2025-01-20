@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SalirController;
 use App\Http\Controllers\Admin\PerfilController;
 use App\Http\Controllers\Admin\PersonalController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ReclamoSugerenciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -97,5 +98,11 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+//RUTA PARA USUARIO FINAL SIN AUTENTICACION//
+
+Route::get('/reclamos-sugerencias', [ReclamoSugerenciaController::class, 'Index'])->name('reclamos-sugerencias.index');
+Route::get('/reclamos-sugerencias/create', [ReclamoSugerenciaController::class, 'Create'])->name('reclamos-sugerencias.create');
+
+Route::post('/reclamos-sugerencias/store', [ReclamoSugerenciaController::class, 'Store'])->name('reclamos-sugerencias.store');
 
 require __DIR__.'/auth.php';
