@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFlotaVehicularRequest;
+use App\Http\Requests\UpdateFlotaRequest;
 use App\Models\FlotaVehicular;
+use App\Models\Personal_policial;
 use Illuminate\Http\Request;
 
 class FlotaVehicularController extends Controller
@@ -28,7 +30,9 @@ class FlotaVehicularController extends Controller
     public function create()
     {
         //
-        return view('admin.flota_vehicular.create');
+        $personal = Personal_policial::all();
+
+        return view('admin.flota_vehicular.create', compact('personal'));
     }
 
     /**
@@ -49,6 +53,7 @@ class FlotaVehicularController extends Controller
             'chasis'=> $request->chasis, 
             'motor'=> $request->motor, 
             'capacidad_carga'=> $request->capacidad_carga,
+            'personal_id' => $request->personal_id,
 
         ]);
 
@@ -71,17 +76,36 @@ class FlotaVehicularController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
+        $flove = FlotaVehicular::findOrFail($id);
+
+        return view('admin.flota_vehicular.edit', compact('flove'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update (UpdateFlotaRequest $request, FlotaVehicular $vehi_flo)
     {
         //
+        $vehi_flo = FlotaVehicular::find($request->hidden_id);
+
+        
+        $vehi_flo->tipo_vehiculo = $request->tipo_vehiculo;
+        $vehi_flo->marca = $request->marca;
+        $vehi_flo->kilometraje = $request->kilometraje;
+        $vehi_flo->capacidad_pasajeros = $request->capacidad_pasajeros;
+        $vehi_flo->placa = $request->placa;
+        $vehi_flo->modelo = $request->modelo;
+        $vehi_flo->cilindraje = $request->cilindraje;
+        $vehi_flo->chasis = $request->chasis;
+        $vehi_flo->motor = $request->motor;
+        $vehi_flo->capacidad_carga = $request->capacidad_carga;
+        $vehi_flo->save();
+
+        return redirect()->route('flota_vehicular.index')->with('success', 'Flota Policial Actualizada');
     }
 
     /**
