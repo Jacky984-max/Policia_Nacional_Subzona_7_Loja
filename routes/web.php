@@ -71,6 +71,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dependencia/index', 'Index')->name('dependencia.index');
         Route::get('/dependencia/create', 'Create')->name('dependencia.create');
         Route::post('/dependencia/store', 'Store')->name('dependencia.store');
+        Route::get('/dependencia/edit/{id}', 'Edit')->name('dependencia.edit');
+        Route::post('/dependencia/update', 'Update')->name('dependencia.update');
+        Route::get('/dependencia/delete/{id}', 'Destroy')->name('dependencia.delete');
 
     });
 
