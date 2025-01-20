@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateDependenciaRequest;
 use App\Models\Dependencia;
 use Illuminate\Http\Request;
 
+
 class DependenciaController extends Controller
 {
     /**
@@ -89,8 +90,12 @@ class DependenciaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
+        Dependencia::findOrFail($id)->delete();
+
+        return redirect()->route('dependencia.index')->with('eliminar', 'dependencia eliminada');
+
     }
 }

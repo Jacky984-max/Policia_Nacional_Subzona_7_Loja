@@ -23,7 +23,7 @@ class UpdateDependenciaRequest extends FormRequest
     {
         return [
             //
-            
+
             'provincia' => 'required' ,
             'cod_distrito' => 'required',
             'cod_circuito' => 'required',
@@ -35,6 +35,7 @@ class UpdateDependenciaRequest extends FormRequest
             'parroquia' => 'required',
             'numero_circuito' => 'required',
             'numero_sub_circuito' => 'required',
+            
         ];
     }
 }
