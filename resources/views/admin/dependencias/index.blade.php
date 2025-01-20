@@ -101,13 +101,54 @@
                                                         <i class="fa fa-edit"></i>
                                                     </a>
 
-                                                    <button type="button" data-bs-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-danger" data-original-title="Remove">
+                                                    <a data-bs-toggle="modal" title="Eliminar" data-bs-target="#createAKIKeyModal-{{ $dp->id }}" class="btn btn-link btn-danger" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
-                                                    </button>
+                                                    </a>
+
+                                                   
                                                 </div>
                                             </td>
                                         </tr>
+
+                                          <!--MODAL PARA ELIMINAR DEPENDENCIAS--->
+
+                                          <div class="modal fade" id="createAKIKeyModal-{{ $dp->id }}"
+                                            tabindex="-1" aria-labelledby="createAKIKeyModalLabel" role="dialog"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <!-- Header -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="createAKIKeyModalLabel">Mensaje de
+                                                            confirmación</h4>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <!-- End Header -->
+
+                                                    <!-- Body -->
+                                                    <div class="modal-body">
+                                                        <!-- Form -->
+                                                        ¿Seguro que quieres eliminar esta dependencia?
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cerrar</button>
+                                                        <form action="{{ route('dependencia.delete', $dp->id) }}"
+                                                            method="get">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit"
+                                                                class="btn btn-danger">Confirmar</button>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     @endforeach
                                 </tbody>
                             </table>
@@ -139,5 +180,16 @@
     });
 </script>
 
+@if (session('eliminar') == 'dependencia eliminada')
+
+<script>
+    Swal.fire(
+        'Eliminado!',
+        'Dependencia Eliminada con Éxito',
+        'success'
+    )
+</script>
+
+@endif
 
 @endsection
