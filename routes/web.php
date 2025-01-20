@@ -81,6 +81,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/flota_vehicular/index', 'Index')->name('flota_vehicular.index');
         Route::get('/flota_vehicular/create', 'Create')->name('flota_vehicular.create');
         Route::post('/flota_vehicular/store', 'Store')->name('flota_vehicular.store');
+        Route::get('/flota_vehicular/edit/{id}', 'Edit')->name('flota_vehicular.edit');
+        Route::post('/flota_vehicular/update', 'Update')->name('flota_vehicular.update');
+        Route::get('/flota_vehicular/delete/{id}', 'Destroy')->name('flota_vehicular.delete');
 
     });
 

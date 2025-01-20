@@ -4,12 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreFlotaVehicularRequest extends FormRequest
+class UpdateFlotaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -33,7 +33,6 @@ class StoreFlotaVehicularRequest extends FormRequest
             'chasis' => 'required',
             'motor' => 'required',
             'capacidad_carga' => 'required',
-            'personal_id' => 'required|exists:personal_policials,id',
         ];
     }
 }

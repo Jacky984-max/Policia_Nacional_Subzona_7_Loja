@@ -15,16 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('tipo_vehiculo');
             $table->string('marca');
-            $table->integer('kilometraje');
+            $table->decimal('kilometraje',8,2);
             $table->integer('capacidad_pasajeros');
             $table->string('placa');
             $table->string('modelo');
-            $table->integer('cilindraje');
+            $table->decimal('cilindraje', 8,2);
             $table->string('chasis');
             $table->string('motor');
-            $table->integer('capacidad_carga');
-
-       
+            $table->float('capacidad_carga');
+            $table->foreignId('personal_id')->nullable()->constrained('personal_policials')->onDelete('set null');
             $table->timestamps();
         });
     }

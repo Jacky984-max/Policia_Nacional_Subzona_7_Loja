@@ -9,5 +9,15 @@ class FlotaVehicular extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tipo_vehiculo', 'marca', 'kilometraje', 'capacidad_pasajeros', 'placa', 'modelo', 'cilindraje', 'chasis', 'motor', 'capacidad_carga'];
+    protected  $guarded = [
+        'id',
+        
+       
+    ];
+
+    public function personal()
+    {
+        return $this->belongsTo(Personal_policial::class);
+    }
+
 }

@@ -3,6 +3,7 @@
 
 @section('admin')
 
+
 <div class="container">
     <div class="page-inner">
         <div class="page-header">
@@ -32,7 +33,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Añadir Flota Vehicular</div>
+                        <div class="card-title">Editar Flota Vehicular</div>
                     </div>
 
                     <div class="card-body">
@@ -48,7 +49,7 @@
                         @endif
 
                         <!---INICIO DEL FORMULARIO--->
-                        <form method="post" action="{{ route('flota_vehicular.store') }}">
+                        <form method="post" action="{{ route('flota_vehicular.update', ['flota_vehicular' => $flove->id]) }}">
                             @csrf
 
                             <div class="row">
@@ -60,9 +61,9 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="tipo_vehiculo" id="tipo_vehiculo"
-                                                placeholder="Digita el tipo de vehículo" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                            <input type="text" class="form-control" name="tipo_vehiculo"
+                                                id="tipo_vehiculo" 
+                                                aria-label="Username" aria-describedby="basic-addon1" value="{{ old('tipo_vehiculo', $flove->tipo_vehiculo) }}" />
                                         </div>
                                     </div>
 
@@ -71,19 +72,19 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-envelope"></i></span>
-                                            <input type="text" class="form-control" name="marca"
-                                                id="marca" placeholder="Digita la marca del vehículo"
-                                                aria-label="Email" required />
+                                            <input type="text" class="form-control" name="marca" id="marca"
+                                                 aria-label="Email" value="{{ old('marca', $flove->marca) }}" />
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label for="email2">{{ __('Kilometraje') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="kilometraje" id="kilometraje"
-                                                placeholder="Digita el kilometraje" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                            <input type="text" class="form-control" name="kilometraje"
+                                                id="kilometraje" 
+                                                aria-label="Username" aria-describedby="basic-addon1" value="{{ old('kilometraje', $flove->kilometraje) }}" />
                                         </div>
                                     </div>
 
@@ -93,8 +94,8 @@
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="capacidad_pasajeros"
-                                                id="capacidad_pasajeros" placeholder="Digita la capacidad de pasajeros"
-                                                aria-label="Username" aria-describedby="basic-addon1" required />
+                                                id="capacidad_pasajeros" 
+                                                aria-label="Username" aria-describedby="basic-addon1" value="{{ old('capacidad_pasajeros', $flove->capacidad_pasajeros) }}" />
                                         </div>
                                     </div>
 
@@ -109,8 +110,8 @@
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="placa" id="placa"
-                                                placeholder="Digita la placa" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                                 aria-label="Username"
+                                                aria-describedby="basic-addon1" value="{{ old('placa', $flove->placa) }}" />
                                         </div>
                                     </div>
 
@@ -119,9 +120,8 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-unlock"></i></span>
-                                            <input type="text" class="form-control" name="modelo"
-                                                id="modelo" placeholder="Digita el modelo del vehículo"
-                                                required />
+                                            <input type="text" class="form-control" name="modelo" id="modelo"
+                                            value="{{ old('modelo', $flove->modelo) }}" />
                                         </div>
 
                                     </div>
@@ -131,33 +131,13 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="cilindraje" id="cilindraje"
-                                                placeholder="Digita el cilindraje" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                            <input type="text" class="form-control" name="cilindraje"
+                                                id="cilindraje" 
+                                                aria-label="Username" aria-describedby="basic-addon1" value="{{ old('cilindraje', $flove->cilindraje) }}"  />
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="defaultSelect">{{ __('Responsable del Vehículo') }}</label>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" id="basic-addon1"><i
-                                                    class="fas fa-user-cog"></i></span>
-                                            <select class="form-select form-control" name="personal_id" id="personal_id">
-
-                                                <option value="" selected disabled>Selecciona:</option>
-
-                                                @foreach ($personal as $item)
-                                            
-                                                    <option value="{{$item->id}}">{{$item->nombres}} {{$item->apellidos}}</option>
-                                                @endforeach
-
-                                            </select>
-
-                                            @error('personal_id')
-                                                <small class="text-danger">{{ '*' . $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                   
 
 
                                 </div>
@@ -169,9 +149,9 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name=" chasis"
-                                                id="chasis" placeholder="Digita el Chasis"
-                                                aria-label="Username" aria-describedby="basic-addon1" required />
+                                            <input type="text" class="form-control" name="chasis" id="chasis"
+                                                 aria-label="Username"
+                                                aria-describedby="basic-addon1" value="{{ old('chasis', $flove->chasis) }}" />
                                         </div>
                                     </div>
 
@@ -180,9 +160,9 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name=" motor"
-                                                id=" motor" placeholder="Digita el motor del vehículo"
-                                                aria-label="Username" aria-describedby="basic-addon1" required />
+                                            <input type="text" class="form-control" name="motor" id="motor"
+                                                 aria-label="Username"
+                                                aria-describedby="basic-addon1" value="{{ old('motor', $flove->motor) }}" />
                                         </div>
                                     </div>
 
@@ -192,28 +172,24 @@
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="capacidad_carga"
-                                                id="capacidad_carga" placeholder="Digita la capacidad de carga"
-                                                aria-label="Username" aria-describedby="basic-addon1" required />
+                                                id="capacidad_carga" 
+                                                aria-label="Username" aria-describedby="basic-addon1" value="{{ old('capacidad_carga', $flove->capacidad_carga) }}"  />
                                         </div>
                                     </div>
-
-                                  
-
 
 
                                 </div>
 
                                 <div class="card-action">
-                                    <button type="submit" class="btn btn-secondary">Guardar</button>
+                                    <input type="hidden" name="hidden_id" value="{{ $flove->id }}">
+                                    <button type="submit" class="btn btn-secondary">Actualizar Flota Vehicular</button>
                                 </div>
 
                             </div>
+
                         </form>
 
                     </div>
-
-
-
 
 
                 </div>
