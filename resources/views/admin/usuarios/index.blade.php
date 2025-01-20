@@ -82,11 +82,11 @@
                                                         data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    
-                                                    <button type="button" data-bs-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-danger" data-original-title="Remove">
+
+                                                    <a data-bs-toggle="modal" title="Eliminar" data-bs-target="#createAKIKeyModal-{{ $item->id }}" class="btn btn-link btn-danger" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
-                                                    </button>
+                                                    </a>
+                                                    
                                                 </div>
                                             </td>
                                         </tr>
@@ -122,5 +122,16 @@
         },
     });
 </script>
+
+
+@if (session('eliminar') == 'usuario eliminado')
+<script>
+    Swal.fire(
+        'Eliminado!',
+        'Usuario Eliminado con Éxito',
+        'success'
+    )
+</script>
+@endif
 
 @endsection
