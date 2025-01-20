@@ -16,10 +16,12 @@ return new class extends Migration
             $table->integer('cedula');
             $table->string('nombres');
             $table->string('apellidos');
+            $table->date('fecha_nacimiento');
             $table->string('tipo_sangre');
             $table->string('ciudad_nacimiento');
             $table->char('celular', '10');
             $table->string('rango');
+            $table->foreignId('dependencia_id')->constrained('dependencias')->onDelete('cascade');
             $table->timestamps();
         });
     }

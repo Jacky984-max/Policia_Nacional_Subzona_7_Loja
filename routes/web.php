@@ -61,6 +61,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/personal_policial/index', 'Index')->name('personal_policial.index');
         Route::get('/personal/create', 'Create')->name('personal_policial.create');
         Route::post('/personal/store', 'Store')->name('personal_policial.store');
+        Route::get('/personal/edit/{id}', 'Edit')->name('personal_policial.edit');
+        Route::post('/personal/update', 'Update')->name('personal_policial.update');
+        Route::get('/personal/eliminar/{id}', 'Destroy')->name('personal_policial.eliminar');
 
     });
 
