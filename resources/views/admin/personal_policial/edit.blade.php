@@ -1,6 +1,8 @@
 @extends('admin.sistema')
 
 @section('admin')
+
+
 <div class="container">
     <div class="page-inner">
         <div class="page-header">
@@ -46,7 +48,8 @@
                         @endif
 
                         <!---INICIO DEL FORMULARIO--->
-                        <form method="post" action="{{ route('personal_policial.store') }}">
+                        <form method="post"
+                            action="{{ route('personal_policial.update', ['personal' => $personal_pro->id]) }}">
                             @csrf
 
                             <div class="row">
@@ -62,7 +65,7 @@
                                                 maxlength="10" placeholder="Digita tu cédula" aria-label="Username"
                                                 aria-describedby="basic-addon1"
                                                 onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
-                                                required />
+                                                value="{{ old('cedula', $personal_pro->cedula) }}" />
                                         </div>
                                     </div>
 
@@ -71,10 +74,13 @@
 
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
-                                                class="fa fa-user"></i></span>
-                                            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
+                                                    class="fa fa-user"></i></span>
+                                            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento"
+                                                class="form-control"
+                                                value="{{ old('fecha_nacimiento', $personal_pro->fecha_nacimiento) }}">
                                         </div>
-                                      
+
+
                                     </div>
 
                                     <div class="form-group">
@@ -84,7 +90,9 @@
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="celular" id="celular"
                                                 placeholder="Digita tu celular" maxlength="10" aria-label="Username"
-                                                aria-describedby="basic-addon1" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required />
+                                                aria-describedby="basic-addon1"
+                                                onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+                                                value="{{ old('celular', $personal_pro->celular) }}" />
                                         </div>
                                     </div>
 
@@ -100,7 +108,8 @@
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="nombres" id="nombres"
                                                 placeholder="Digita tu nombre" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                                aria-describedby="basic-addon1"
+                                                value="{{ old('nombres', $personal_pro->nombres) }}" />
                                         </div>
                                     </div>
 
@@ -109,8 +118,10 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-envelope"></i></span>
-                                            <input type="text" class="form-control" name="tipo_sangre" id="tipo_sangre"
-                                                placeholder="Digita tu Tipo de Sangre" aria-label="Email" required />
+                                            <input type="text" class="form-control" name="tipo_sangre"
+                                                id="tipo_sangre" placeholder="Digita tu Tipo de Sangre"
+                                                aria-label="Email"
+                                                value="{{ old('tipo_sangre', $personal_pro->tipo_sangre) }}" />
                                         </div>
                                     </div>
 
@@ -121,10 +132,10 @@
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="rango" id="rango"
                                                 placeholder="Digita tu Rango o Grado" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                                aria-describedby="basic-addon1"
+                                                value="{{ old('rango', $personal_pro->rango) }}" />
                                         </div>
                                     </div>
-
 
                                 </div>
 
@@ -135,9 +146,10 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="apellidos" id="apellidos"
-                                                placeholder="Digita tus Apellidos" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                            <input type="text" class="form-control" name="apellidos"
+                                                id="apellidos" placeholder="Digita tus Apellidos"
+                                                aria-label="Username" aria-describedby="basic-addon1"
+                                                value="{{ old('apellidos', $personal_pro->apellidos) }}" />
                                         </div>
                                     </div>
 
@@ -146,27 +158,9 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-unlock"></i></span>
-                                            <input type="text" class="form-control" name="ciudad_nacimiento" id="ciudad_nacimiento"
-                                                placeholder="Digita tu Ciudad de Nacimiento" required />
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="defaultSelect">{{ __('Dependencia') }}</label>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" id="basic-addon1"><i
-                                                    class="fas fa-user-cog"></i></span>
-                                            <select class="form-select form-control" name="dependencia_id"
-                                                id="dependencias">
-
-                                                <option value="" selected disabled>Selecciona:</option>
-
-                                                @foreach ($dependencias as $id => $item)
-                                                    <option value="{{ $id }}">{{ $item }}</option>
-                                                @endforeach
-
-                                            </select>
+                                            <input type="text" class="form-control" name="ciudad_nacimiento"
+                                                id="ciudad_nacimiento" placeholder="Digita tu Ciudad de Nacimiento"
+                                                value="{{ old('ciudad_nacimiento', $personal_pro->ciudad_nacimiento) }}" />
                                         </div>
                                     </div>
 
@@ -174,17 +168,14 @@
                                 </div>
 
                                 <div class="card-action">
-                                    <button type="submit" class="btn btn-secondary">Guardar</button>
+                                    <input type="hidden" name="hidden_id" value="{{ $personal_pro->id }}">
+                                    <button type="submit" class="btn btn-secondary">Actualizar Personal</button>
                                 </div>
 
                             </div>
                         </form>
 
                     </div>
-
-
-
-
 
                 </div>
             </div>
@@ -213,5 +204,6 @@
         },
     });
 </script>
+
 
 @endsection
