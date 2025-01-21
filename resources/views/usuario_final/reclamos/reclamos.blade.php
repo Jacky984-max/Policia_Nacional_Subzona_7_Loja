@@ -25,10 +25,8 @@
   
     <div id="app">
 
-      
-
         <section class="section">
-           
+
             <div class="container mt-5">
 
                 <!---->
@@ -68,7 +66,7 @@
 
                                         <div class="col-md-6 col-lg-4">
 
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label>{{ __('Circuito') }}</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -78,6 +76,32 @@
                                                     </div>
                                                     <input type="text" class="form-control" id="circuito"
                                                         name="circuito" placeholder="Digita el Circuito" required>
+                                                </div>
+                                            </div>-->
+
+                                            <div class="form-group">
+                                                <label for="defaultSelect">{{ __('Circuito') }}</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i
+                                                            class="fas fa-user-cog"></i></span>
+                                                    <select class="form-select form-control" name="circuito" id="circuito">
+                                                   
+                                                        <option value="" selected disabled>Selecciona:</option>
+                                                       
+                                                        <option value="yangana">Yangana</option>
+                                                        <option value="chontacruz">Chontacruz</option>
+                                                        <option value="el tambo">El Tambo</option>
+                                                        <option value="celi roman">CELI ROMAN</option>
+                                                        <option value="taquil">TAQUIL</option>
+                                                        <option value="tebaida">TEBAIDA</option>
+                                                        <option value="zamora huayco">ZAMORA HUAYCO</option>
+                                                        <option value="iv centenerio">IV CENTENARIO</option>
+                                                        <option value="san pedro de la bendita">SAN PEDRO DE LA BENDITA</option>
+                                                      
+                                                       
+                                                    </select>
+
+                                                   
                                                 </div>
                                             </div>
 
@@ -97,7 +121,7 @@
                                         </div>
 
                                         <div class="col-md-6 col-lg-4">
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label>{{ __('Subcircuito') }}</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -108,6 +132,33 @@
                                                     <input type="text" class="form-control" id="sub_circuito"
                                                         name="sub_circuito" placeholder="Digita el Subcircuito"
                                                         required>
+                                                </div>
+                                            </div>-->
+
+                                            <div class="form-group">
+                                                <label for="defaultSelect">{{ __('Subcircuito') }}</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i
+                                                            class="fas fa-user-cog"></i></span>
+                                                    <select class="form-select form-control" name="sub_circuito"
+                                                        id="sub_circuito">
+
+                                                        <option value="" selected disabled>Selecciona:</option>
+                                                      
+                                                            <option value="yangana 1">Yangana 1</option>
+                                                            <option value="chontacruz 1">Chontacruz 1</option>
+                                                            <option value="el tambo 1">El Tambo 1</option>
+                                                            <option value="celi roman 1">CELI ROMAN 1</option>
+                                                            <option value="taquil 1">TAQUIL 1</option>
+                                                            <option value="tebaida 1">TEBAIDA 1</option>
+                                                            <option value="zamora huayco 1">ZAMORA HUAYCO 1</option>
+                                                            <option value="iv centenerio 1">IV CENTENARIO 1</option>
+                                                            <option value="san pedro de la bendita 1">SAN PEDRO DE LA BENDITA 1</option>
+
+                                                    </select>
+
+
+                                                    
                                                 </div>
                                             </div>
 
@@ -145,7 +196,7 @@
 
                                         <div class="col-md-6 col-lg-4">
 
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label>{{ __('Tipo:') }}</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -156,6 +207,26 @@
                                                     <input type="text" class="form-control" id="tipo"
                                                         name="tipo" placeholder="Digita si es reclamo o sugerencia"
                                                         required>
+                                                </div>
+                                            </div>-->
+
+                                            <div class="form-group">
+                                                <label for="defaultSelect">{{ __('Tipo') }}</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i
+                                                            class="fas fa-user-cog"></i></span>
+                                                    <select class="form-select form-control" name="tipo"
+                                                        id="tipo">
+
+                                                        <option value="" selected disabled>Selecciona:</option>
+                                                      
+                                                            <option value="reclamo">Reclamo</option>
+                                                            <option value="sugerencia">Sugerencia</option>
+                                                           
+                                                    </select>
+
+
+                                                    
                                                 </div>
                                             </div>
 
@@ -216,6 +287,8 @@
             </div>
 
         </section>
+
+      
 
     </div>
 

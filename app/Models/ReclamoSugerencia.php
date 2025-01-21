@@ -9,6 +9,7 @@ class ReclamoSugerencia extends Model
 {
     use HasFactory;
 
+   
     protected $fillable = [
 
         'circuito',
