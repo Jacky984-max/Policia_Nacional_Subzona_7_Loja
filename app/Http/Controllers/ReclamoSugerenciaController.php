@@ -31,12 +31,14 @@ class ReclamoSugerenciaController extends Controller
     public function store(Request $request)
     {
         //
-
         $reclamos = new ReclamoSugerencia($request->input());
 
         $reclamos->saveOrFail();
 
         return redirect()->route('welcome')->with('success', 'Reclamo Enviado con Éxito');
+
+
+        
     }
 
     /**
