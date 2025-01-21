@@ -180,6 +180,25 @@
                   </div>
               </li>
 
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#submenu">
+                    <i class="fas fa-bars"></i>
+                    <p>Reclamos o Sugerencias</p>
+                    <span class="caret"></span>
+                </a>
+                <div class="collapse" id="submenu">
+                    <ul class="nav nav-collapse">
+                        
+                        <li>
+                            <a href="{{ route('ver_reclamos.index')}}">
+                                <span class="sub-item">Mostrar Reclamos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
           </ul>
       </div>
   </div>
