@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalirController;
 use App\Http\Controllers\Admin\PerfilController;
 use App\Http\Controllers\Admin\PersonalController;
+use App\Http\Controllers\Admin\ReclamoController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ReclamoSugerenciaController;
 
@@ -85,6 +86,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/flota_vehicular/edit/{id}', 'Edit')->name('flota_vehicular.edit');
         Route::post('/flota_vehicular/update', 'Update')->name('flota_vehicular.update');
         Route::get('/flota_vehicular/delete/{id}', 'Destroy')->name('flota_vehicular.delete');
+
+    });
+
+    Route::controller(ReclamoController::class)->group(function() {
+        Route::get('/ver_reclamos/index', 'Index')->name('ver_reclamos.index');
+        Route::get('/reclamos/descargar_reporte/{id}', 'descargar_reportePDF')->name('reclamos.decargar');
+
 
     });
 
