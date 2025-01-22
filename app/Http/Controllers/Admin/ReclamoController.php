@@ -69,16 +69,13 @@ class ReclamoController extends Controller
         //
     }
 
-    public function descargar_reportePDF($id)
+    public function descargar_reportePDF()
     {
 
-        $repo = ReclamoSugerencia::findOrFail($id);
+        $reclamo = ReclamoSugerencia::all();
 
-       
-        $pdf = PDF::loadView('admin.reclamo_sugerencia.reporte_reclamo', compact('repo'));
-
-        return $pdf->download('reporte-' . $repo->id . '.pdf');
-
-       
+        $pdf = PDF::loadView('admin.reclamo_sugerencia.reporte_reclamo', compact('reclamo'));
+        
+        return $pdf->download('reporte_reclamos.pdf');
     }
 }

@@ -68,16 +68,8 @@
             <p>Sub-Zona 7 Loja</p>
         </div>
 
-        <!--<div class="header">
-            <h1>Detalle del Pedido #</h1>
-        </div>-->
-
         <div class="content">
-            <!--<p><strong>Número de Pedido:</strong> </p>
-            <p><strong>Fecha:</strong></p>
-            <p><strong>Cliente:</strong> </p>
-            <p><strong>Creado Por:</strong> </p>
-            <h2>Productos</h2>-->
+        
             <table>
                 <thead>
                     <tr>
@@ -91,18 +83,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($repo as $item)
-                        <tr>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-
-                        </tr>
-                   
-                      
-                   @endforeach
+                    @foreach ($reclamo as $item)
+                    <tr>
+                        <td>{{ $item->created_at->format('d-m-Y') }}</td>
+                        <td>{{ $item->updated_at->format('d-m-Y') }}</td>
+                        <td>{{ $item->tipo }}</td>
+                        <td>{{ $item->circuito }}</td>
+                        <td>{{ $item->sub_circuito }}</td>
+                    </tr>
+                @endforeach
 
                 </tbody>
             </table>
