@@ -1,0 +1,41 @@
+@startuml
+!define RECTANGLE class
+!define LINE_STYLE dashed
+
+RECTANGLE InterfazDeUsuario {
+  + Interfaz de usuario
+}
+
+RECTANGLE Rutas {
+  + Rutas
+}
+
+RECTANGLE Controladores {
+  + Controladores
+}
+
+RECTANGLE Modelos {
+  + UsuarioModel
+  + PersonalModel
+  + VehículoModel
+  + DependenciaModel
+  + FlotaModel
+  + MantenimientoModel
+  + ReportesModel
+
+}
+
+RECTANGLE BaseDeDatos {
+  + Base de Datos
+}
+
+RECTANGLE ServiciosExternos {
+  + Servicios Externos
+}
+
+InterfazDeUsuario --> Rutas
+Rutas --> Controladores
+Controladores --> Modelos
+Modelos --> BaseDeDatos
+Controladores --> ServiciosExternos
+@enduml
