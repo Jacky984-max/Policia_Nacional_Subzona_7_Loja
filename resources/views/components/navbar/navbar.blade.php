@@ -145,12 +145,12 @@
                   <div class="collapse" id="maps">
                       <ul class="nav nav-collapse">
                           <li>
-                              <a href="maps/googlemaps.html">
+                              <a href="{{ route('mantenimiento-vehicular.index')}}">
                                   <span class="sub-item">Mostrar</span>
                               </a>
                           </li>
                           <li>
-                              <a href="maps/jsvectormap.html">
+                              <a href="">
                                   <span class="sub-item">Añadir</span>
                               </a>
                           </li>

@@ -18,7 +18,7 @@
             <div class="ms-md-auto py-2 py-md-0">
                 <a href="{{ route('solicitud-mantenimiento.create')}}" class="btn btn-primary btn-round ms-auto me-2"><i
                         class="fa fa-plus"></i>
-                    Agregar
+                    Añadir Solicitud
                 </a>
             </div>
         </div>
