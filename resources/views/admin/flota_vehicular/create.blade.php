@@ -60,7 +60,7 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="tipo_vehiculo" id="tipo_vehiculo"
+                                            <input oninput="this.value = this.value.toUpperCase();" type="text" class="form-control" name="tipo_vehiculo" id="tipo_vehiculo"
                                                 placeholder="Digita el tipo de vehículo" aria-label="Username"
                                                 aria-describedby="basic-addon1" required />
                                         </div>
@@ -71,7 +71,7 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-envelope"></i></span>
-                                            <input type="text" class="form-control" name="marca"
+                                            <input oninput="this.value = this.value.toUpperCase();" type="text" class="form-control" name="marca"
                                                 id="marca" placeholder="Digita la marca del vehículo"
                                                 aria-label="Email" required />
                                         </div>

@@ -100,7 +100,7 @@
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="nombres" id="nombres"
                                                 placeholder="Digita tu nombre" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                                aria-describedby="basic-addon1" oninput="this.value = this.value.toUpperCase();" required />
                                         </div>
                                     </div>
 
@@ -109,7 +109,7 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-envelope"></i></span>
-                                            <input type="text" class="form-control" name="tipo_sangre" id="tipo_sangre"
+                                            <input type="text" class="form-control" oninput="this.value = this.value.toUpperCase();" name="tipo_sangre" id="tipo_sangre"
                                                 placeholder="Digita tu Tipo de Sangre" aria-label="Email" required />
                                         </div>
                                     </div>
@@ -119,7 +119,7 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="rango" id="rango"
+                                            <input type="text" class="form-control" oninput="this.value = this.value.toUpperCase();" name="rango" id="rango"
                                                 placeholder="Digita tu Rango o Grado" aria-label="Username"
                                                 aria-describedby="basic-addon1" required />
                                         </div>
@@ -135,7 +135,7 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="apellidos" id="apellidos"
+                                            <input type="text" class="form-control" oninput="this.value = this.value.toUpperCase();" name="apellidos" id="apellidos"
                                                 placeholder="Digita tus Apellidos" aria-label="Username"
                                                 aria-describedby="basic-addon1" required />
                                         </div>
@@ -146,7 +146,7 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-unlock"></i></span>
-                                            <input type="text" class="form-control" name="ciudad_nacimiento" id="ciudad_nacimiento"
+                                            <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control" name="ciudad_nacimiento" id="ciudad_nacimiento"
                                                 placeholder="Digita tu Ciudad de Nacimiento" required />
                                         </div>
 
