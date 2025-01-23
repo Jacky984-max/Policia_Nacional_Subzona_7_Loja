@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DependenciaController;
 use App\Http\Controllers\Admin\FlotaVehicularController;
+use App\Http\Controllers\Admin\MantenimientoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalirController;
@@ -93,6 +94,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/ver_reclamos/index', 'Index')->name('ver_reclamos.index');
         Route::get('/reclamos/descargar_reporte/{id}', 'descargar_reportePDF')->name('reclamos.decargar');
 
+
+    });
+
+    Route::controller(MantenimientoController::class)->group(function(){
+        Route::get('/mantenimiento-vehicular', 'Index')->name('mantenimiento-vehicular.index');            
+        Route::get('/solicitud-mantenimiento', 'Create')->name('solicitud-mantenimiento.create');
+        Route::post('/solicitud-mantenimiento/store', 'Store')->name('solicitud-mantenimiento.store');
+        Route::get('/solicitud-mantenimiento/edit/{id}', 'Edit')->name('solicitud-mantenimiento.edit');
+        Route::post('/solicitud-mantenimiento/update', 'Update')->name('solicitud-mantenimiento.update');
+        Route::get('/solicitud-mantenimiento/delete/{id}', 'Destroy')->name('solicitud-mantenimiento.delete');
 
     });
 
