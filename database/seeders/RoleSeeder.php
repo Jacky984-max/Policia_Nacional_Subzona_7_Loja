@@ -25,6 +25,36 @@ class RoleSeeder extends Seeder
 
       Permission::create(['name' => 'dashboard'])->syncRoles([$admin, $gerencia, $tecnico1, $tecnico2, $policia]);
       
+      Permission::create(['name' => 'usuarios.index'])->syncRoles([$admin, $gerencia]);
+      Permission::create(['name' => 'usuarios.create'])->syncRoles([$admin, $gerencia]);
+      Permission::create(['name' => 'usuarios.store'])->syncRoles([$admin, $gerencia]);
+
+      Permission::create(['name' => 'personal_policial.index'])->syncRoles([$admin, $gerencia, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'personal_policial.create'])->syncRoles([$admin,$gerencia, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'personal_policial.store'])->syncRoles([$admin, $gerencia, $tecnico1, $tecnico2]);
+      
+      Permission::create(['name' => 'dependencia.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'dependencia.create'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'dependencia.store'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+
+      Permission::create(['name' => 'flota-vehicular.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'flota-vehicular.create'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'flota-vehicular.store'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+
+      Permission::create(['name' => 'ver_reclamos.index'])->syncRoles([$admin, $gerencia]);
+      Permission::create(['name' => 'reclamos.descargar'])->syncRoles([$admin, $gerencia]);
+
+      Permission::create(['name' => 'mantenimiento-vehicular.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'solicitud-mantenimiento.create'])->syncRoles([$admin, $policia]);
+      Permission::create(['name' => 'solicitud-mantenimiento.store'])->syncRoles([$admin, $policia]);
+
+      Permission::create(['name' => 'asignacion.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'asignar-vehiculo.create'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'asignar-vehiculo.store'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+
+      Permission::create(['name' => 'vincular_personal.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'vincular_personal.create'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'vincular_personal.store'])->syncRoles([$admin, $tecnico1, $tecnico2]);
 
       
     }
