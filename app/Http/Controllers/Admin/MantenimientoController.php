@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMantenimientoRequest;
 use App\Models\FlotaVehicular;
 use App\Models\Mantenimiento;
+use App\Models\Personal_policial;
+use App\Models\Vehiculo;
 use Illuminate\Http\Request;
 
 class MantenimientoController extends Controller
@@ -16,9 +18,12 @@ class MantenimientoController extends Controller
     public function index()
     {
         //
-        $mantenimiento = Mantenimiento::select('mantenimientos.id', 'tipo_mantenimiento', 'descripcion', 'solicitante', 'fecha_hora', 'observacion', 'flotavehicular_id', 'placa', 'estado')
+        $mantenimiento = Mantenimiento::all();
 
-        ->join('flota_vehiculars', 'flota_vehiculars.id', '=', 'mantenimientos.flotavehicular_id')
+        $mantenimiento = Mantenimiento::select('mantenimientos.id', 'tipo_mantenimiento', 'descripcion', 'fecha_hora', 'observacion', 'flotavehicular_id', 'placa', 'estado', 'solicitante_id', 'nombres')
+
+        ->join('vehiculos', 'vehiculos.id', '=', 'mantenimientos.flotavehicular_id')
+        ->join('personal_policials', 'personal_policials.id', '=', 'mantenimientos.solicitante_id')
 
         ->get();
 
@@ -31,8 +36,10 @@ class MantenimientoController extends Controller
     public function create()
     {
         //
-        $solicitud = FlotaVehicular::all();
-        return view('admin.mantenimiento_vehicular.create', compact('solicitud'));
+        $solicitud = Vehiculo::all();
+        $personal = Personal_policial::all();
+
+        return view('admin.mantenimiento_vehicular.create', compact('solicitud', 'personal'));
     }
 
     /**
@@ -45,13 +52,12 @@ class MantenimientoController extends Controller
             
             'tipo_mantenimiento' => $request->tipo_mantenimiento,
             'descripcion' => $request->descripcion,
-            'solicitante' => $request->solicitante,
             'fecha_hora' => $request->fecha_hora,
             'kilometraje' => $request->kilometraje,
             'observacion' => $request->observacion,
             'flotavehicular_id' => $request->flotavehicular_id,
-            //'estado' => $request->estado,
-
+            'solicitante_id' => $request->solicitante_id,
+            
         ]);
 
         $mante_vehicular->saveOrFail();
