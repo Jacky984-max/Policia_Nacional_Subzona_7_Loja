@@ -15,8 +15,8 @@ class Mantenimiento extends Model
         
     ];
 
-    public function flota()
+    public function personal()
     {
-        return $this->belongsTo(FlotaVehicular::class);
+        return $this->belongsTo(Personal_policial::class, 'solicitante_id');
     }
 }
