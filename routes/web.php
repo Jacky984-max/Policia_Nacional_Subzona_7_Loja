@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AsignacionVehiculoController;
 use App\Http\Controllers\Admin\DependenciaController;
 use App\Http\Controllers\Admin\FlotaVehicularController;
 use App\Http\Controllers\Admin\MantenimientoController;
@@ -117,6 +118,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/vincular_personal/eliminar/{id}', 'Destroy')->name('vincular_personal.eliminar');
 
     });
+
+    Route::controller(AsignacionVehiculoController::class)->group(function(){
+        Route::get('/asignacion', 'Index')->name('asignacion.index');
+        Route::get('/asignar-vehiculo/create', 'Create')->name('asignar-vehiculo.create');
+        Route::post('/asignar-vehiculo/store', 'Store')->name('asignar-vehiculo.store');
+        Route::get('/asignar-vehiculo/edit/{id}', 'Edit')->name('asignar-vehiculo.edit');
+        Route::post('/asignar-vehiculo/update', 'Update')->name('asignar-vehiculo.update');
+        Route::get('/asignar-vehiculo/delete/{id}', 'Destroy')->name('asignar-vehiculo.delete');
+    });
+
+
 
 
 
