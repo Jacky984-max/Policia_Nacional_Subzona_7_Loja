@@ -198,7 +198,7 @@
                           </li>
                           @can('solicitud-mantenimiento.create')
                                  <li>
-                              <a href="">
+                              <a href="{{ route('solicitud-mantenimiento.create')}}">
                                   <span class="sub-item">Registrar Solicitud</span>
                               </a>
                           </li>

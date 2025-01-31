@@ -19,17 +19,17 @@ class StoreMantenimientoRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             //
             'tipo_mantenimiento' => 'required',
             'descripcion' => 'required',
-            'solicitante' => 'required',
             'fecha_hora' => 'required',
             'kilometraje' => 'required',
             'observacion' => 'required',
-            'flotavehicular_id' => 'required|exists:flota_vehiculars,id',
+            'flotavehicular_id' => 'required|exists:vehiculos,id',
+            'solicitante' => 'required',
         ];
     }
 }

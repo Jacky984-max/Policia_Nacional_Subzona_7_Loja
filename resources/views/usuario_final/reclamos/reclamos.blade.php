@@ -114,7 +114,7 @@
                                                         </div>
                                                     </div>
                                                     <input type="text" class="form-control" id="nombres"
-                                                        name="nombres" placeholder="Digita tus nombres" required>
+                                                        name="nombres" oninput="this.value = this.value.toUpperCase();" placeholder="Digita tus nombres" required>
                                                 </div>
                                             </div>
 
@@ -171,7 +171,7 @@
                                                         </div>
                                                     </div>
                                                     <input type="text" id="apellidos" name="apellidos"
-                                                        class="form-control" placeholder="Digita tus apellidos"
+                                                        class="form-control" oninput="this.value = this.value.toUpperCase();" placeholder="Digita tus apellidos"
                                                         required>
                                                 </div>
                                             </div>
@@ -261,7 +261,7 @@
                                                     <i class="fas fa-envelope"></i>
                                                 </div>
                                             </div>
-                                            <textarea class="form-control" id="detalle" name="detalle" required></textarea>
+                                            <textarea oninput="this.value = this.value.toUpperCase();" class="form-control" id="detalle" name="detalle" required></textarea>
 
                                         </div>
                                     </div>

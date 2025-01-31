@@ -16,10 +16,14 @@
 
             </div>
             <div class="ms-md-auto py-2 py-md-0">
-                <a href="{{ route('solicitud-mantenimiento.create')}}" class="btn btn-primary btn-round ms-auto me-2"><i
+                
+                @can('solicitud-mantenimiento.create')
+                      <a href="{{ route('solicitud-mantenimiento.create')}}" class="btn btn-primary btn-round ms-auto me-2"><i
                         class="fa fa-plus"></i>
                     Añadir Solicitud
                 </a>
+                @endcan
+              
             </div>
         </div>
 
@@ -53,8 +57,10 @@
                                         <th>Vehículo</th>
                                         <th>Tipo de Mantenimiento</th>
                                         <th>Descripción del Problema</th>
+                                        <th>Kilometraje</th>
                                         <th>Fecha y Hora de Solicitud</th>
                                         <th>Solicitante</th>
+                                        <th>Observaciones</th>
                                         <th>Estado</th>
                                         <th style="width: 10%">Acciones</th>
                                     </tr>
@@ -69,7 +75,7 @@
                                             <td>{{ $i++ }}</td>
 
                                             <td>
-                                                {{ $mante->placa }}
+                                               {{ $mante->flota->placa}}
                                             </td>
                                             <td>
                                                 {{ $mante->tipo_mantenimiento }}
@@ -78,15 +84,24 @@
                                                 {{ $mante->descripcion }}
                                             </td>
                                             <td>
+                                                {{ $mante->kilometraje}}
+                                            </td>
+                                            <td>
                                                 
                                                 <p class="fw-semibold mb-1"><span class="m-1"><i class="fas fa-calendar-alt"></i></span>{{\Carbon\Carbon::parse($mante->fecha_hora)->format('d-m-Y')}}</p>
                                                 <p class="fw-semibold mb-0"><span class="m-1"><i class="far fa-clock"></i></span>{{\Carbon\Carbon::parse($mante->fecha_hora)->format('H:i')}}</p>
                                             </td>
                                             <td>
-                                                {{ $mante->nombre }}
+                                                {{ $mante->solicitante }}
                                             </td>
                                             <td>
+                                                {{ $mante->observacion}}
+                                            </td>
+                                            <td>
+                                                <div class="badge badge-shadow"
+                                                style="background-color: {{ $mante->estado === 'Pendiente' ? '#28a745' : '#dc3545' }}; color: white;">
                                                 {{ $mante->estado }}
+                                            </div>
                                             </td>
 
                                         

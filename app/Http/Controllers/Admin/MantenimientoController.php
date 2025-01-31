@@ -20,13 +20,6 @@ class MantenimientoController extends Controller
         //
         $mantenimiento = Mantenimiento::all();
 
-        $mantenimiento = Mantenimiento::select('mantenimientos.id', 'tipo_mantenimiento', 'descripcion', 'fecha_hora', 'observacion', 'flotavehicular_id', 'placa', 'estado', 'solicitante_id', 'nombres')
-
-        ->join('vehiculos', 'vehiculos.id', '=', 'mantenimientos.flotavehicular_id')
-        ->join('personal_policials', 'personal_policials.id', '=', 'mantenimientos.solicitante_id')
-
-        ->get();
-
         return view('admin.mantenimiento_vehicular.index', compact('mantenimiento'));
     }
 
@@ -37,6 +30,7 @@ class MantenimientoController extends Controller
     {
         //
         $solicitud = Vehiculo::all();
+
         $personal = Personal_policial::all();
 
         return view('admin.mantenimiento_vehicular.create', compact('solicitud', 'personal'));
@@ -56,7 +50,7 @@ class MantenimientoController extends Controller
             'kilometraje' => $request->kilometraje,
             'observacion' => $request->observacion,
             'flotavehicular_id' => $request->flotavehicular_id,
-            'solicitante_id' => $request->solicitante_id,
+            'solicitante' => $request->solicitante,
             
         ]);
 
