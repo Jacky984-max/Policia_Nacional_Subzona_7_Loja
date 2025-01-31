@@ -31,11 +31,13 @@
                   </a>
                   <div class="collapse" id="dashboard">
                       <ul class="nav nav-collapse">
+                        @can('dashboard')
                           <li>
                               <a href="{{ route('dashboard') }}">
                                   <span class="sub-item">Panel</span>
                               </a>
                           </li>
+                          @endcan
                       </ul>
                   </div>
               </li>
@@ -46,6 +48,7 @@
                   <h4 class="text-section">Páginas</h4>
               </li>
 
+              @if (auth()->user()->hasRole('admin'))
               <li class="nav-item">
                   <a data-bs-toggle="collapse" href="#base">
                       <i class="fas fa-layer-group"></i>
@@ -69,30 +72,39 @@
                       </ul>
                   </div>
               </li>
+              @endif
 
+              @can('personal_policial.index')
               <li class="nav-item">
-                  <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                      <i class="fas fa-th-list"></i>
-                      <p>Gestionar Personal</p>
-                      <span class="caret"></span>
-                  </a>
-                  <div class="collapse" id="sidebarLayouts">
-                      <ul class="nav nav-collapse">
-                          <li>
-                              <a href="{{ route('personal_policial.index') }}">
-                                  <span class="sub-item">Mostrar</span>
-                              </a>
-                          </li>
-                          <li>
-                              <a href="icon-menu.html">
-                                  <span class="sub-item">Añadir</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-              </li>
+                <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                    <i class="fas fa-th-list"></i>
+                    <p>Gestionar Personal</p>
+                    <span class="caret"></span>
+                </a>
+                <div class="collapse" id="sidebarLayouts">
+                    <ul class="nav nav-collapse">
 
-              <li class="nav-item">
+                        <li>
+                            <a href="{{ route('personal_policial.index') }}">
+                                <span class="sub-item">Listar Personal</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="">
+                                <span class="sub-item">Mostrar Personal Asignado</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+              @endcan
+
+          
+
+              @can('dependencia.index')
+                    <li class="nav-item">
                   <a data-bs-toggle="collapse" href="#forms">
                       <i class="fas fa-pen-square"></i>
                       <p>Gestionar Dependencias </p>
@@ -114,27 +126,62 @@
                   </div>
               </li>
 
-              <li class="nav-item">
-                  <a data-bs-toggle="collapse" href="#tables">
-                      <i class="fas fa-table"></i>
-                      <p>Gestionar Flota Vehicular</p>
-                      <span class="caret"></span>
-                  </a>
-                  <div class="collapse" id="tables">
-                      <ul class="nav nav-collapse">
-                          <li>
-                              <a href="{{ route('flota_vehicular.index') }}">
-                                  <span class="sub-item">Mostrar</span>
-                              </a>
-                          </li>
-                          <li>
-                              <a href="tables/datatables.html">
-                                  <span class="sub-item">Añadir</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-              </li>
+              @endcan
+
+             @can('flota-vehicular.index')
+             <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#submenu">
+                    <i class="fas fa-bars"></i>
+                    <p>Gestionar Flota Vehicular</p>
+                    <span class="caret"></span>
+                </a>
+                <div class="collapse" id="submenu">
+                    <ul class="nav nav-collapse">
+
+
+                        <li>
+                            <a href="{{ route('flota_vehicular.index') }}">
+                                <span class="sub-item">Listar Vehículos</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="">
+                                <span class="sub-item">Vehículos asignados a un subcircuito</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="sub-item">Consultar asignaciones existentes</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+             @endcan
+
+             @can('ver_reclamos.index')
+                   <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                    <i class="fas fa-bars"></i>
+                    <p>Reclamos o Sugerencias</p>
+                    <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                    <ul class="nav nav-collapse">
+                        
+                        <li>
+                            <a href="{{ route('ver_reclamos.index')}}">
+                                <span class="sub-item">Mostrar Reclamos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            
+             @endcan
+          
 
               <li class="nav-item">
                   <a data-bs-toggle="collapse" href="#maps">
@@ -149,54 +196,40 @@
                                   <span class="sub-item">Mostrar</span>
                               </a>
                           </li>
-                          <li>
+                          @can('solicitud-mantenimiento.create')
+                                 <li>
                               <a href="">
-                                  <span class="sub-item">Añadir</span>
+                                  <span class="sub-item">Registrar Solicitud</span>
                               </a>
                           </li>
+                          @endcan
+                       
                       </ul>
                   </div>
               </li>
 
+              @if (auth()->user()->hasRole('gerencia'))
               <li class="nav-item">
-                  <a data-bs-toggle="collapse" href="#charts">
-                      <i class="far fa-chart-bar"></i>
-                      <p>Documentos y Reportes</p>
-                      <span class="caret"></span>
-                  </a>
-                  <div class="collapse" id="charts">
-                      <ul class="nav nav-collapse">
-                          <li>
-                              <a href="charts/charts.html">
-                                  <span class="sub-item">Mostrar</span>
-                              </a>
-                          </li>
-                          <li>
-                              <a href="charts/sparkline.html">
-                                  <span class="sub-item">Añadir</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-              </li>
-
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#submenu">
-                    <i class="fas fa-bars"></i>
-                    <p>Reclamos o Sugerencias</p>
+                <a data-bs-toggle="collapse" href="#dev">
+                    <i class="fas fa-table"></i>
+                    <p>Gestionar Reportes</p>
                     <span class="caret"></span>
                 </a>
-                <div class="collapse" id="submenu">
+                <div class="collapse" id="dev">
                     <ul class="nav nav-collapse">
-                        
                         <li>
-                            <a href="{{ route('ver_reclamos.index')}}">
-                                <span class="sub-item">Mostrar Reclamos</span>
+                            <a href="">
+                                <span class="sub-item">Reportes del Personal</span>
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </li>
+            @endif
+
+            
+              
 
 
           </ul>

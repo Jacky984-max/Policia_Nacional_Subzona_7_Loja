@@ -7,6 +7,7 @@ use App\Http\Requests\StoreFlotaVehicularRequest;
 use App\Http\Requests\UpdateFlotaRequest;
 use App\Models\FlotaVehicular;
 use App\Models\Personal_policial;
+use App\Models\Vehiculo;
 use Illuminate\Http\Request;
 
 class FlotaVehicularController extends Controller
@@ -17,11 +18,9 @@ class FlotaVehicularController extends Controller
     public function index()
     {
         //
-        $flota = FlotaVehicular::all();
+        $flota = Vehiculo::all();
 
         return view('admin.flota_vehicular.index', compact('flota'));
-
-        
     }
 
     /**
@@ -41,28 +40,25 @@ class FlotaVehicularController extends Controller
     public function store(StoreFlotaVehicularRequest $request)
     {
         //
-        $vehicular = FlotaVehicular::create($request->validated() + [
+        $vehicular = Vehiculo::create($request->validated() + [
 
-            'tipo_vehiculo'=> $request->tipo_vehiculo, 
-            'marca' => $request->marca, 
+            'placa' => $request->placa,
+            'tipo_vehiculo' => $request->tipo_vehiculo,
+            'marca' => $request->marca,
+            'modelo' => $request->modelo,
+            'chasis' => $request->chasis,
+            'motor' => $request->motor,
             'kilometraje' => $request->kilometraje,
-            'capacidad_pasajeros'=> $request->capacidad_pasajeros, 
-            'placa'=> $request->placa, 
-            'modelo'=> $request->modelo, 
-            'cilindraje'=> $request->cilindraje, 
-            'chasis'=> $request->chasis, 
-            'motor'=> $request->motor, 
-            'capacidad_carga'=> $request->capacidad_carga,
+            'cilindraje' => $request->cilindraje,
+            'capacidad_carga' => $request->capacidad_carga,
+            'capacidad_pasajeros' => $request->capacidad_pasajeros,
             'personal_id' => $request->personal_id,
 
         ]);
 
-        $vehicular ->saveOrFail();
+        $vehicular->saveOrFail();
 
         return redirect()->route('flota_vehicular.index')->with('success', 'flota vehicular registrada');
-
-
-
     }
 
     /**
@@ -79,7 +75,7 @@ class FlotaVehicularController extends Controller
     public function edit($id)
     {
         //
-        $flove = FlotaVehicular::findOrFail($id);
+        $flove = Vehiculo::findOrFail($id);
 
         return view('admin.flota_vehicular.edit', compact('flove'));
     }
@@ -87,12 +83,12 @@ class FlotaVehicularController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update (UpdateFlotaRequest $request, FlotaVehicular $vehi_flo)
+    public function update(UpdateFlotaRequest $request, Vehiculo $vehi_flo)
     {
         //
-        $vehi_flo = FlotaVehicular::find($request->hidden_id);
+        $vehi_flo = Vehiculo::find($request->hidden_id);
 
-        
+
         $vehi_flo->tipo_vehiculo = $request->tipo_vehiculo;
         $vehi_flo->marca = $request->marca;
         $vehi_flo->kilometraje = $request->kilometraje;
@@ -114,7 +110,7 @@ class FlotaVehicularController extends Controller
     public function destroy($id)
     {
         //
-        FlotaVehicular::findOrFail($id)->delete();
+        Vehiculo::findOrFail($id)->delete();
 
         return redirect()->route('flota_vehicular.index')->with('eliminar', 'flota vehicular eliminada');
     }

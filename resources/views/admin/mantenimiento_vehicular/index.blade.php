@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Listar Mantenimiento Vehicular</h4>
+                            <h4 class="card-title">Lista de Solicitudes de Mantenimiento Vehicular</h4>
 
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                                                 <p class="fw-semibold mb-0"><span class="m-1"><i class="far fa-clock"></i></span>{{\Carbon\Carbon::parse($mante->fecha_hora)->format('H:i')}}</p>
                                             </td>
                                             <td>
-                                                {{ $mante->solicitante }}
+                                                {{ $mante->nombre }}
                                             </td>
                                             <td>
                                                 {{ $mante->estado }}
