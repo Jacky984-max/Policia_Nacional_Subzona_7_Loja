@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('ciudad_nacimiento');
             $table->char('celular', '10');
             $table->string('rango');
+            $table->enum('estado_asignacion', ['Asignado', 'No Asignado'])->default('No Asignado'); 
             $table->foreignId('dependencia_id')->constrained('dependencias')->onDelete('cascade');
             $table->timestamps();
         });

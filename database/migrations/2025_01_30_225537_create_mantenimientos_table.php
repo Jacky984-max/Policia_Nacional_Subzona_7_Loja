@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('tipo_mantenimiento');
             $table->string('descripcion',255)->nullable();
-            $table->string('solicitante');
             $table->dateTime('fecha_hora');
             $table->integer('kilometraje');
             $table->string('observacion',255)->nullable();
-            $table->foreignId('flotavehicular_id')->nullable()->constrained('flota_vehiculars')->onDelete('set null');
             $table->enum('estado', ['PENDIENTE', 'EN PROCESO', 'COMPLETADO'])->default('PENDIENTE');
+            $table->foreignId('flotavehicular_id')->constrained('vehiculos')->onDelete('cascade');
+            $table->foreignId('solicitante_id')->constrained('personal_policials')->onDelete('cascade');
             $table->timestamps();
         });
     }
