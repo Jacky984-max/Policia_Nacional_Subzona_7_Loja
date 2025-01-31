@@ -18,7 +18,7 @@ class PersonalController extends Controller
     {
         //
 
-        $personal=Personal_policial::all();
+        $personal = Personal_policial::all();
        
         return view('admin.personal_policial.index', compact('personal'));
     }
@@ -29,7 +29,7 @@ class PersonalController extends Controller
     public function create()
     {
         //
-        $dependencias = Dependencia::all()->pluck('nombre_distrito', 'id');
+        $dependencias = Dependencia::all();
 
         return view('admin.personal_policial.create', compact('dependencias'));
     }

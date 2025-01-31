@@ -158,13 +158,13 @@
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-user-cog"></i></span>
                                             <select class="form-select form-control" name="dependencia_id"
-                                                id="dependencias">
+                                                id="dependencia_id">
 
                                                 <option value="" selected disabled>Selecciona:</option>
 
-                                                @foreach ($dependencias as $id => $item)
-                                                    <option value="{{ $id }}">{{ $item }}</option>
-                                                @endforeach
+                                            @foreach ($dependencias as $item)
+                                                <option value="{{$item->id}}">{{$item->provincia}} - {{$item->nombre_distrito}} - {{$item->parroquia}} </option>
+                                            @endforeach
 
                                             </select>
                                         </div>
