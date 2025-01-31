@@ -32,7 +32,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Añadir Flota Vehicular</div>
+                        <div class="card-title">Añadir Vehículos</div>
                     </div>
 
                     <div class="card-body">
@@ -56,34 +56,35 @@
                                 <div class="col-md-6 col-lg-4">
 
                                     <div class="form-group">
-                                        <label for="email2">{{ __('Tipo de Vehículo') }}</label>
+                                        <label for="email2">{{ __('Placa') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input oninput="this.value = this.value.toUpperCase();" type="text" class="form-control" name="tipo_vehiculo" id="tipo_vehiculo"
-                                                placeholder="Digita el tipo de vehículo" aria-label="Username"
+                                            <input oninput="this.value = this.value.toUpperCase();" type="text" class="form-control" name="placa" id="placa"
+                                                placeholder="Digita la placa" aria-label="Username"
                                                 aria-describedby="basic-addon1" required />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="email2">{{ __('Marca') }}</label>
+                                        <label for="password">{{ __('Modelo') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
-                                                    class="fas fa-envelope"></i></span>
-                                            <input oninput="this.value = this.value.toUpperCase();" type="text" class="form-control" name="marca"
-                                                id="marca" placeholder="Digita la marca del vehículo"
-                                                aria-label="Email" required />
+                                                    class="fas fa-unlock"></i></span>
+                                            <input oninput="this.value = this.value.toUpperCase();" type="text" class="form-control" name="modelo" id="modelo"
+                                                placeholder="Digita el modelo del vehículo" required />
                                         </div>
+
                                     </div>
+
                                     <div class="form-group">
                                         <label for="email2">{{ __('Kilometraje') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="kilometraje" id="kilometraje"
-                                                placeholder="Digita el kilometraje" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                            <input type="text" class="form-control" name="kilometraje"
+                                                id="kilometraje" placeholder="Digita el kilometraje"
+                                                aria-label="Username" aria-describedby="basic-addon1" required />
                                         </div>
                                     </div>
 
@@ -102,28 +103,26 @@
 
                                 <div class="col-md-6 col-lg-4">
 
-
                                     <div class="form-group">
-                                        <label for="email2">{{ __('Placa') }}</label>
+                                        <label for="email2">{{ __('Tipo de Vehículo') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="placa" id="placa"
-                                                placeholder="Digita la placa" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                            <input oninput="this.value = this.value.toUpperCase();" type="text" class="form-control" name="tipo_vehiculo"
+                                                id="tipo_vehiculo" placeholder="Digita el tipo de vehículo"
+                                                aria-label="Username" aria-describedby="basic-addon1" required />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="password">{{ __('Modelo') }}</label>
+                                        <label for="email2">{{ __('Chasis') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
-                                                    class="fas fa-unlock"></i></span>
-                                            <input type="text" class="form-control" name="modelo"
-                                                id="modelo" placeholder="Digita el modelo del vehículo"
-                                                required />
+                                                    class="fa fa-user"></i></span>
+                                            <input oninput="this.value = this.value.toUpperCase();" type="text" class="form-control" name="chasis" id="chasis"
+                                                placeholder="Digita el Chasis" aria-label="Username"
+                                                aria-describedby="basic-addon1" required />
                                         </div>
-
                                     </div>
 
                                     <div class="form-group">
@@ -131,9 +130,9 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="cilindraje" id="cilindraje"
-                                                placeholder="Digita el cilindraje" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                            <input type="text" class="form-control" name="cilindraje"
+                                                id="cilindraje" placeholder="Digita el cilindraje"
+                                                aria-label="Username" aria-describedby="basic-addon1" required />
                                         </div>
                                     </div>
 
@@ -164,14 +163,15 @@
 
                                 <div class="col-md-6 col-lg-4">
 
+
                                     <div class="form-group">
-                                        <label for="email2">{{ __('Chasis') }}</label>
+                                        <label for="email2">{{ __('Marca') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
-                                                    class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name=" chasis"
-                                                id="chasis" placeholder="Digita el Chasis"
-                                                aria-label="Username" aria-describedby="basic-addon1" required />
+                                                    class="fas fa-envelope"></i></span>
+                                            <input oninput="this.value = this.value.toUpperCase();" type="text" class="form-control" name="marca" id="marca"
+                                                placeholder="Digita la marca del vehículo" aria-label="Email"
+                                                required />
                                         </div>
                                     </div>
 
@@ -180,9 +180,9 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name=" motor"
-                                                id=" motor" placeholder="Digita el motor del vehículo"
-                                                aria-label="Username" aria-describedby="basic-addon1" required />
+                                            <input oninput="this.value = this.value.toUpperCase();" type="text" class="form-control" name="motor" id="motor"
+                                                placeholder="Digita el motor del vehículo" aria-label="Username"
+                                                aria-describedby="basic-addon1" required />
                                         </div>
                                     </div>
 
@@ -197,7 +197,7 @@
                                         </div>
                                     </div>
 
-                                  
+
 
 
 

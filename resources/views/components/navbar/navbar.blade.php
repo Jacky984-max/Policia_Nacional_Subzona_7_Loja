@@ -146,7 +146,7 @@
                         </li>
 
                         <li>
-                            <a href="">
+                            <a href="{{ route('asignacion.index')}}">
                                 <span class="sub-item">Vehículos asignados a un subcircuito</span>
                             </a>
                         </li>

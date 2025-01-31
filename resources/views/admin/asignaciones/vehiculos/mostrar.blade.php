@@ -1,8 +1,8 @@
 @extends('admin.sistema')
 
 @push('css')
-<script src="../assets/js/plugin/webfont/webfont.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endpush
 
 @section('admin')
@@ -16,9 +16,9 @@
 
             </div>
             <div class="ms-md-auto py-2 py-md-0">
-                <a href="{{ route('flota_vehicular.create') }}" class="btn btn-primary btn-round ms-auto me-2"><i
+                <a href="{{ route('asignar-vehiculo.create') }}" class="btn btn-primary btn-round ms-auto me-2"><i
                         class="fa fa-plus"></i>
-                    Agregar
+                    Asignar a Subcircuito
                 </a>
             </div>
         </div>
@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Listar Flota Vehicular</h4>
+                            <h4 class="card-title">Lista de Vehículos Asignados a un Subcircuito</h4>
 
                         </div>
                     </div>
@@ -43,72 +43,62 @@
                         @endif
 
                         <!----INICIO DE LA TABLA--->
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="overflow-x: auto; max-width: 100%;">
 
-                            <table id="add-row" class="display table table-striped table-hover">
 
+                            <table id="basic-datatables" class="display table table-striped table-hover"
+                                style="table-layout: auto; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Placa</th>
-                                        <th>Tipo de Vehiculo</th>
-                                        <th>Marca</th>
-                                        <th>Modelo</th>
-                                        <th>Chasis </th>
-                                        <th>Motor</th>
-                                        <th>Kilometraje</th>
-                                        <th>Cilindraje</th>
-                                        <th>Capacidad Carga</th>
-                                        <th>Estado</th>
+                                        <th>Subcircuito</th>
+                                        <th>Fecha de Asignación</th>
+                                        <th>Observación</th>
                                         <th style="width: 10%">Acciones</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-
                                     @php $i=1; @endphp
 
-                                    @foreach ($flota as $vehi)
+                                    @foreach ($asignacion as $item)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-
-                                            <td>{{ $vehi->placa }}</td>
-                                            <td>{{ $vehi->tipo_vehiculo }}</td>
-                                            <td>{{ $vehi->marca }}</td>
-                                            <td>{{ $vehi->modelo }}</td>
-                                            <td>{{ $vehi->chasis }}</td>
-                                            <td>{{ $vehi->motor }}</td>
-                                            <td>{{ $vehi->kilometraje }}</td>
-                                            <td>{{ $vehi->cilindraje }}</td>
-                                            <td>{{ $vehi->capacidad_carga }}</td>
+                                            <td>{{ $item->vehiculo->placa }}</td>
+                                            <td>{{ $item->dependencia->nombre_sub_circuito }}</td>
                                             <td>
-                                              
-                                                <div class="badge badge-shadow"
-                                                    style="background-color: {{ $vehi->estado_asignacion === 'Asignado' ? '#28a745' : '#dc3545' }}; color: white;">
-                                                    {{ $vehi->estado_asignacion }}
-                                                </div>
+
+                                                <p class="fw-semibold mb-1"><span class="m-1"><i
+                                                            class="fas fa-calendar-alt"></i></span>{{ \Carbon\Carbon::parse($item->fecha_asignacion)->format('d-m-Y') }}
+                                                </p>
+                                                <p class="fw-semibold mb-0"><span class="m-1"><i
+                                                            class="far fa-clock"></i></span>{{ \Carbon\Carbon::parse($item->fecha_asignacion)->format('H:i') }}
+                                                </p>
 
                                             </td>
-
+                                            <td>{{ $item->observacion }}</td>
+                                           
                                             <td>
                                                 <div class="form-button-action">
-                                                    
-                                                    <a href="{{ route('flota_vehicular.edit', $vehi->id ) }}" data-bs-toggle="tooltip" title="Editar"
+                                                    <a href="{{ route('asignar-vehiculo.edit', $item->id) }}" data-bs-toggle="tooltip" title="Editar"
                                                         class="btn btn-link btn-primary btn-lg"
                                                         data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a data-bs-toggle="modal" title="Eliminar" data-bs-target="#createAKIKeyModal-{{ $vehi->id }}" class="btn btn-link btn-danger" data-original-title="Remove">
+
+                                                    <a data-bs-toggle="modal" title="Eliminar"
+                                                        data-bs-target="#createAKIKeyModal-{{ $item->id }}"
+                                                        class="btn btn-link btn-danger" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
                                                     </a>
-                                                
 
                                                 </div>
                                             </td>
                                         </tr>
 
                                         <!--MODAL PARA ELIMINAR LA FLOTA VEHICULAR--->
-                                        <div class="modal fade" id="createAKIKeyModal-{{ $vehi->id }}"
+                                        <div class="modal fade" id="createAKIKeyModal-{{ $item->id }}"
                                             tabindex="-1" aria-labelledby="createAKIKeyModalLabel" role="dialog"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -125,14 +115,15 @@
                                                     <!-- Body -->
                                                     <div class="modal-body">
                                                         <!-- Form -->
-                                                        ¿Seguro que quieres eliminar esta flota vehicular?
+                                                        ¿Seguro que quieres eliminar la asignacion de este vehiculo a subcircuito?
 
                                                     </div>
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cerrar</button>
-                                                        <form action="{{ route('flota_vehicular.delete', $vehi->id) }}"
+                                                        <form
+                                                            action="{{ route('asignar-vehiculo.delete', $item->id) }}"
                                                             method="get">
                                                             @method('DELETE')
                                                             @csrf
@@ -148,6 +139,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -176,17 +168,6 @@
     });
 </script>
 
-@if (session('eliminar') == 'flota vehicular eliminada')
-
-<script>
-    Swal.fire(
-        'Eliminado!',
-        'Flota Vehicular Eliminada con Éxito',
-        'success'
-    )
-</script>
-
-@endif
 
 <script>
     $(document).ready(function() {
@@ -255,5 +236,14 @@
     });
 </script>
 
+@if (session('eliminar') == 'el vehiculo asignado ha sido eliminado')
+<script>
+Swal.fire(
+    'Eliminado!',
+    'Vehiculo Asignado es Eliminado con Éxito',
+    'success'
+)
+</script>
+@endif
 
 @endsection
