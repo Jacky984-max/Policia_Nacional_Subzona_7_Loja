@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('observacion',255)->nullable();
             $table->enum('estado', ['PENDIENTE', 'EN PROCESO', 'COMPLETADO'])->default('PENDIENTE');
             $table->foreignId('flotavehicular_id')->constrained('vehiculos')->onDelete('cascade');
-            $table->foreignId('solicitante_id')->constrained('personal_policials')->onDelete('cascade');
+            $table->string('solicitante',255)->nullable();
             $table->timestamps();
         });
     }
