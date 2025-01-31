@@ -55,6 +55,8 @@
                                         <th>Ciudad de Nacimiento</th>
                                         <th>Celular</th>
                                         <th>Rango</th>
+                                        <th>Dependencia</th>
+                                        <th>Estado</th>
                                         <th style="width: 10%">Acciones</th>
                                     </tr>
                                 </thead>
@@ -85,6 +87,19 @@
                                             </td>
                                             <td>
                                                 {{ $pers->rango }}
+                                            </td>
+
+                                            <td>
+                                                {{ $pers->dependencia->nombre_distrito}}
+
+                                            </td>
+
+                                            <td>
+                                                <div class="badge badge-shadow"
+                                                style="background-color: {{ $pers->estado_asignacion === 'Asignado' ? '#28a745' : '#dc3545' }}; color: white;">
+                                                {{ $pers->estado_asignacion }}
+                                            </div>
+
                                             </td>
 
 

@@ -62,7 +62,7 @@
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="provincia" id="provincia"
                                                 placeholder="Digita la provincia" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                                aria-describedby="basic-addon1" oninput="this.value = this.value.toUpperCase();" required />
                                         </div>
                                     </div>
 
@@ -73,7 +73,7 @@
                                                     class="fas fa-envelope"></i></span>
                                             <input type="text" class="form-control" name="cod_distrito"
                                                 id="cod_distrito" placeholder="Digita el código de distrito"
-                                                aria-label="Email" required />
+                                                aria-label="Email" oninput="this.value = this.value.toUpperCase();" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -83,7 +83,7 @@
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="cod_circuito" id="cod_circuito"
                                                 placeholder="Digita el código de circuito" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                                aria-describedby="basic-addon1" oninput="this.value = this.value.toUpperCase();" required />
                                         </div>
                                     </div>
 
@@ -94,7 +94,7 @@
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="cod_sub_circuito"
                                                 id="cod_sub_circuito" placeholder="Digita el código de subcircuito"
-                                                aria-label="Username" aria-describedby="basic-addon1" required />
+                                                aria-label="Username" aria-describedby="basic-addon1" oninput="this.value = this.value.toUpperCase();" required />
                                         </div>
                                     </div>
 
@@ -120,7 +120,7 @@
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-unlock"></i></span>
                                             <input type="text" class="form-control" name="nombre_distrito"
-                                                id="nombre_distrito" placeholder="Nombre del distrito"
+                                                id="nombre_distrito" placeholder="Nombre del distrito" oninput="this.value = this.value.toUpperCase();"
                                                 required />
                                         </div>
 
@@ -132,7 +132,7 @@
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="nombre_circuito" id="nombre_circuito"
-                                                placeholder="Digita el nombre del circuito" aria-label="Username"
+                                                placeholder="Digita el nombre del circuito" aria-label="Username" oninput="this.value = this.value.toUpperCase();"
                                                 aria-describedby="basic-addon1" required />
                                         </div>
                                     </div>
@@ -144,7 +144,7 @@
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="nombre_sub_circuito"
                                                 id="nombre_sub_circuito" placeholder="Digita el nombre de subcircuito"
-                                                aria-label="Username" aria-describedby="basic-addon1" required />
+                                                aria-label="Username" aria-describedby="basic-addon1" oninput="this.value = this.value.toUpperCase();" required />
                                         </div>
                                     </div>
 
@@ -160,7 +160,7 @@
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="parroquia"
                                                 id="parroquia" placeholder="Digita la parroquia"
-                                                aria-label="Username" aria-describedby="basic-addon1" required />
+                                                aria-label="Username" aria-describedby="basic-addon1" oninput="this.value = this.value.toUpperCase();" required />
                                         </div>
                                     </div>
 

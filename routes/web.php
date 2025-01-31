@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PerfilController;
 use App\Http\Controllers\Admin\PersonalController;
 use App\Http\Controllers\Admin\ReclamoController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VincularPersonalController;
 use App\Http\Controllers\ReclamoSugerenciaController;
 
 /*
@@ -106,6 +107,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/solicitud-mantenimiento/delete/{id}', 'Destroy')->name('solicitud-mantenimiento.delete');
 
     });
+
+    Route::controller(VincularPersonalController::class)->group(function(){
+        Route::get('/vincular_persopnal/index', 'Index')->name('vincular_personal.index');
+        Route::get('/vincular_personal/create', 'Create')->name('vincular_personal.create');
+        Route::post('/vincular_personal/store', 'Store')->name('vincular_personal.store');
+        Route::get('/vincular_personal/edit/{id}', 'Edit')->name('vincular_personal.edit');
+        Route::post('/vincular_personal/update', 'Update')->name('vincular_personal.update');
+        Route::get('/vincular_personal/eliminar/{id}', 'Destroy')->name('vincular_personal.eliminar');
+
+    });
+
+
+
 
     
 

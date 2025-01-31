@@ -91,7 +91,7 @@
                         </li>
 
                         <li>
-                            <a href="">
+                            <a href="{{ route('vincular_personal.index')}}">
                                 <span class="sub-item">Mostrar Personal Asignado</span>
                             </a>
                         </li>
