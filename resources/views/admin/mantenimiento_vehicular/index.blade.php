@@ -16,14 +16,10 @@
 
             </div>
             <div class="ms-md-auto py-2 py-md-0">
-                
-                @can('solicitud-mantenimiento.create')
-                      <a href="{{ route('solicitud-mantenimiento.create')}}" class="btn btn-primary btn-round ms-auto me-2"><i
-                        class="fa fa-plus"></i>
-                    Añadir Solicitud
-                </a>
-                @endcan
-              
+                <!--<a href="" class="btn btn-primary btn-round ms-auto me-2"><i
+                                    class="fa fa-plus"></i>
+                                Agregar
+                            </a>-->
             </div>
         </div>
 
@@ -47,123 +43,90 @@
                         @endif
 
                         <!----INICIO DE LA TABLA--->
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="overflow-x: auto; max-width: 100%;">
 
-                            <table id="add-row" class="display table table-striped table-hover">
 
+                            <table id="basic-datatables" class="display table table-striped table-hover"
+                                style="table-layout: auto; width: 100%;"
+                                data-hs-datatables-options='{
+                                     "paging": true,
+                                      "searching": true,
+                                      "ordering": true,
+                                      "info": true
+                                  }'>
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Vehículo</th>
-                                        <th>Tipo de Mantenimiento</th>
                                         <th>Descripción del Problema</th>
-                                        <th>Kilometraje</th>
                                         <th>Fecha y Hora de Solicitud</th>
-                                        <th>Solicitante</th>
-                                        <th>Observaciones</th>
                                         <th>Estado</th>
-                                        <th style="width: 10%">Acciones</th>
+                                        @if (Auth::user()->rolesPermitidos === '3')
+                                            <th style="width: 10%">Acciones</th>
+                                        @endif
+
                                     </tr>
                                 </thead>
 
                                 <tbody>
-
                                     @php $i=1; @endphp
 
-                                    @foreach ($mantenimiento as $mante)
+                                    @foreach ($soli as $item)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-
+                                            <td>{{ $item->vehiculo->placa }}</td>
+                                            <td>{{ $item->descripcion }}</td>
                                             <td>
-                                               {{ $mante->flota->placa}}
+                                                <p class="fw-semibold mb-1"><span class="m-1"><i
+                                                            class="fas fa-calendar-alt"></i></span>{{ \Carbon\Carbon::parse($item->fecha_hora)->format('d-m-Y') }}
+                                                </p>
+                                                <p class="fw-semibold mb-0"><span class="m-1"><i
+                                                            class="far fa-clock"></i></span>{{ \Carbon\Carbon::parse($item->fecha_hora)->format('H:i') }}
+                                                </p>
                                             </td>
                                             <td>
-                                                {{ $mante->tipo_mantenimiento }}
-                                            </td>
-                                            <td>
-                                                {{ $mante->descripcion }}
-                                            </td>
-                                            <td>
-                                                {{ $mante->kilometraje}}
-                                            </td>
-                                            <td>
-                                                
-                                                <p class="fw-semibold mb-1"><span class="m-1"><i class="fas fa-calendar-alt"></i></span>{{\Carbon\Carbon::parse($mante->fecha_hora)->format('d-m-Y')}}</p>
-                                                <p class="fw-semibold mb-0"><span class="m-1"><i class="far fa-clock"></i></span>{{\Carbon\Carbon::parse($mante->fecha_hora)->format('H:i')}}</p>
-                                            </td>
-                                            <td>
-                                                {{ $mante->solicitante }}
-                                            </td>
-                                            <td>
-                                                {{ $mante->observacion}}
-                                            </td>
-                                            <td>
-                                                <div class="badge badge-shadow"
-                                                style="background-color: {{ $mante->estado === 'Pendiente' ? '#28a745' : '#dc3545' }}; color: white;">
-                                                {{ $mante->estado }}
-                                            </div>
+                                                @if ($item->estado == 'PENDIENTE')
+                                                    <span
+                                                        class="badge bg-danger btn-round ms-auto fw-semibold">Pendiente</span>
+                                                @elseif($item->estado == 'EN PROCESO')
+                                                    <span class="badge bg-secondary btn-round ms-auto fw-semibold">En
+                                                        Proceso</span>
+                                                @elseif($item->estado == 'COMPLETADO')
+                                                    <span
+                                                        class="badge bg-success btn-round ms-auto fw-semibold">Completado</span>
+                                                @endif
                                             </td>
 
-                                        
                                             <td>
-                                                <div class="form-button-action">
-                                                    <a href="" data-bs-toggle="tooltip" title="Editar"
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                    
-                                                    <a data-bs-toggle="modal" title="Eliminar" data-bs-target="#createAKIKeyModal-{{ $mante->id }}" class="btn btn-link btn-danger" data-original-title="Remove">
-                                                        <i class="fa fa-times"></i>
-                                                    </a>
+                                                @if (in_array(Auth::user()->id, [1, 3, 4]) && $item->estado == 'PENDIENTE')
+                                                    @if ($item->estado == 'PENDIENTE')
+                                                        <form action="{{ route('solicitudes.confirmar', $item->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <button type="submit"
+                                                                class="btn btn-warning text-white fw-semibold">Confirmar
+                                                                Solicitud</button>
+                                                        </form>
+                                                    @endif
 
-                                                </div>
+                                                   
+                                                @endif
+
+
+                                                @if (in_array(Auth::user()->id, [1, 3, 4]) && $item->estado == 'EN PROCESO')
+                                                    <a href="{{ route('mantenimientos.registro', $item->id) }}"
+                                                        class="btn btn-primary">Registrar Mantenimiento</a>
+                                                @endif
                                             </td>
+
+                                           
                                         </tr>
 
                                         <!--MODAL PARA ELIMINAR LA FLOTA VEHICULAR--->
-                                        <div class="modal fade" id="createAKIKeyModal-{{ $mante->id }}"
-                                            tabindex="-1" aria-labelledby="createAKIKeyModalLabel" role="dialog"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <!-- Header -->
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="createAKIKeyModalLabel">Mensaje de
-                                                            confirmación</h4>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <!-- End Header -->
-
-                                                    <!-- Body -->
-                                                    <div class="modal-body">
-                                                        <!-- Form -->
-                                                        ¿Seguro que quieres eliminar esta solicitud de mantenimiento vehicular?
-
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cerrar</button>
-                                                        <form action="{{ route('solicitud-mantenimiento.delete', $mante->id)}}"
-                                                            method="get">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <button type="submit"
-                                                                class="btn btn-danger">Confirmar</button>
-                                                        </form>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                        
-                                        @endforeach
-
+                                    @endforeach
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -171,6 +134,64 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $("#basic-datatables").DataTable({});
+
+        $("#multi-filter-select").DataTable({
+            pageLength: 5,
+            initComplete: function() {
+                this.api()
+                    .columns()
+                    .every(function() {
+                        var column = this;
+                        var select = $(
+                                '<select class="form-select"><option value=""></option></select>'
+                            )
+                            .appendTo($(column.footer()).empty())
+                            .on("change", function() {
+                                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                                column
+                                    .search(val ? "^" + val + "$" : "", true, false)
+                                    .draw();
+                            });
+
+                        column
+                            .data()
+                            .unique()
+                            .sort()
+                            .each(function(d, j) {
+                                select.append(
+                                    '<option value="' + d + '">' + d + "</option>"
+                                );
+                            });
+                    });
+            },
+        });
+
+        // Add Row
+        $("#add-row").DataTable({
+            pageLength: 5,
+        });
+
+        var action =
+            '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
+
+        $("#addRowButton").click(function() {
+            $("#add-row")
+                .dataTable()
+                .fnAddData([
+                    $("#addName").val(),
+                    $("#addPosition").val(),
+                    $("#addOffice").val(),
+                    action,
+                ]);
+            $("#addRowModal").modal("hide");
+        });
+    });
+</script>
 
 <script>
     WebFont.load({
@@ -203,5 +224,14 @@
 </script>
 
 @endif
+
+<script>
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable({
+            scrollX: true, // Activa el desplazamiento horizontal
+            responsive: true // Hace la tabla adaptativa
+        });
+    });
+</script>
 
 @endsection

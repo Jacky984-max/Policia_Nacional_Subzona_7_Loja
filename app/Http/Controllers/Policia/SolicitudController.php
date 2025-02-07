@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Policia;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMantenimientoRequest;
+use App\Http\Requests\UpdateSolicitudRequest;
 use App\Models\Personal_policial;
 use App\Models\SolicitudMantenimiento;
 use App\Models\Vehiculo;
@@ -122,24 +123,41 @@ class SolicitudController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         //
+
+        $soli_edit = SolicitudMantenimiento::findOrFail($id);
+
+        return view('policia_UI.editar', compact('soli_edit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSolicitudRequest $request, SolicitudMantenimiento $soli_up)
     {
         //
+        $soli_up = SolicitudMantenimiento::find($request->hidden_id);
+
+        $soli_up->kilometraje = $request->kilometraje;
+        $soli_up->descripcion = $request->descripcion;
+        $soli_up->observacion = $request->observacion;
+        $soli_up->save();
+
+        return redirect()->route('solicitud.index')->with('success', 'Solicitud Actualizada');
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
+        SolicitudMantenimiento::findOrFail($id)->delete();
+
+        return redirect()->route('solicitud.index')->with('eliminar', 'solicitud de mantenimiento eliminada');
     }
 }

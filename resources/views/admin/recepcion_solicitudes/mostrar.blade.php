@@ -9,6 +9,8 @@
 
 @include('layouts.partials.alert')
 
+
+
 <div class="container">
     <div class="page-inner">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
@@ -16,11 +18,10 @@
 
             </div>
             <div class="ms-md-auto py-2 py-md-0">
-                
-                    <!--<a href="" class="btn btn-primary btn-round ms-auto me-2"><i
-                            class="fa fa-plus"></i>
-                        Crear Solicitud
-                    </a>-->
+                <!--<a href="" class="btn btn-primary btn-round ms-auto me-2"><i
+                                    class="fa fa-plus"></i>
+                                Asignar a Subcircuito
+                            </a>-->
             </div>
         </div>
 
@@ -30,8 +31,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Solicitudes de Mantenimiento Realizadas</h4>
-
+                            <h4 class="card-title">Lista de Mantenimientos</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -44,69 +44,65 @@
                         @endif
 
                         <!----INICIO DE LA TABLA--->
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="overflow-x: auto; max-width: 100%;">
 
-                            <table id="add-row" class="display table table-striped table-hover">
 
+                            <table id="basic-datatables" class="display table table-striped table-hover"
+                                style="table-layout: auto; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Vehículo</th>
-                                        <th>Tipo de Mantenimiento</th>
-                                        <th>Descripción del Problema</th>
-                                        <th>Fecha y Hora de Solicitud</th>
-                                        <th>Observaciones</th>
+                                        <th>Vehiculo o Placa</th>
+                                        <th>Fecha de Ingreso</th>
+                                        <th>Asunto</th>
+                                        <!--<th>Responsable del Mantenimiento</th>-->
                                         <th>Estado</th>
                                         <th style="width: 10%">Acciones</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-
                                     @php $i=1; @endphp
 
-                                    @foreach ($mantenimiento as $mante)
+                                    @foreach ($mantenimientos as $mantenimiento)
                                         <tr>
                                             <td>{{ $i++ }}</td>
+                                            <td>
+                                                {{ $mantenimiento->placa }}
+                                            </td>
 
                                             <td>
-                                                {{ $mante->vehiculo->placa}}
-                                            </td>
-                                            <td>
-                                                {{ $mante->tipo_mantenimiento }}
-                                            </td>
-                                            <td>
-                                                {{ $mante->descripcion }}
-                                            </td>
-                                            <td>
-
                                                 <p class="fw-semibold mb-1"><span class="m-1"><i
-                                                            class="fas fa-calendar-alt"></i></span>{{ \Carbon\Carbon::parse($mante->fecha_hora)->format('d-m-Y') }}
+                                                            class="fas fa-calendar-alt"></i></span>{{ \Carbon\Carbon::parse($mantenimiento->fecha_ingreso)->format('d-m-Y') }}
                                                 </p>
                                                 <p class="fw-semibold mb-0"><span class="m-1"><i
-                                                            class="far fa-clock"></i></span>{{ \Carbon\Carbon::parse($mante->fecha_hora)->format('H:i') }}
+                                                            class="far fa-clock"></i></span>{{ \Carbon\Carbon::parse($mantenimiento->fecha_ingreso)->format('H:i') }}
                                                 </p>
                                             </td>
 
                                             <td>
-                                                {{ $mante->observacion }}
-                                            </td>
-                                
-                                            <td>
-                                                {{ $mante->estado }}
+                                                {{ $mantenimiento->asunto }}
                                             </td>
 
+                                            <!--<td>
+                                                       
+                                                    </td>-->
+                                            <td>
+                                                @if ($mantenimiento->estado == 'COMPLETADO')
+                                                    <span class="badge bg-success">COMPLETADO</span>
+                                                @endif
+                                            </td>
 
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="{{ route('solicitud.edit', $mante->id) }}" data-bs-toggle="tooltip" title="Editar"
+                                                    <a href="" data-bs-toggle="tooltip" title="Editar"
                                                         class="btn btn-link btn-primary btn-lg"
                                                         data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
 
                                                     <a data-bs-toggle="modal" title="Eliminar"
-                                                        data-bs-target="#createAKIKeyModal-{{ $mante->id }}"
+                                                        data-bs-target="#createAKIKeyModal-"
                                                         class="btn btn-link btn-danger" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
                                                     </a>
@@ -116,9 +112,8 @@
                                         </tr>
 
                                         <!--MODAL PARA ELIMINAR LA FLOTA VEHICULAR--->
-                                        <div class="modal fade" id="createAKIKeyModal-{{ $mante->id }}"
-                                            tabindex="-1" aria-labelledby="createAKIKeyModalLabel" role="dialog"
-                                            aria-hidden="true">
+                                        <div class="modal fade" id="createAKIKeyModal-" tabindex="-1"
+                                            aria-labelledby="createAKIKeyModalLabel" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <!-- Header -->
@@ -133,15 +128,14 @@
                                                     <!-- Body -->
                                                     <div class="modal-body">
                                                         <!-- Form -->
-                                                        ¿Seguro que quieres eliminar esta solicitud de mantenimiento
-                                                        vehicular?
+                                                        ¿Seguro que quieres eliminar este Mantenimiento?
 
                                                     </div>
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cerrar</button>
-                                                        <form action="{{ route('solicitud.eliminar', $mante->id)}}" method="get">
+                                                        <form action="" method="get">
                                                             @method('DELETE')
                                                             @csrf
                                                             <button type="submit"
@@ -153,9 +147,9 @@
                                             </div>
                                         </div>
                                     @endforeach
-
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -184,11 +178,79 @@
     });
 </script>
 
-@if (session('eliminar') == 'solicitud de mantenimiento eliminada')
+
+<script>
+    $(document).ready(function() {
+        $("#basic-datatables").DataTable({});
+
+        $("#multi-filter-select").DataTable({
+            pageLength: 3,
+            initComplete: function() {
+                this.api()
+                    .columns()
+                    .every(function() {
+                        var column = this;
+                        var select = $(
+                                '<select class="form-select"><option value=""></option></select>'
+                            )
+                            .appendTo($(column.footer()).empty())
+                            .on("change", function() {
+                                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                                column
+                                    .search(val ? "^" + val + "$" : "", true, false)
+                                    .draw();
+                            });
+
+                        column
+                            .data()
+                            .unique()
+                            .sort()
+                            .each(function(d, j) {
+                                select.append(
+                                    '<option value="' + d + '">' + d + "</option>"
+                                );
+                            });
+                    });
+            },
+        });
+
+        // Add Row
+        $("#add-row").DataTable({
+            pageLength: 3,
+        });
+
+        var action =
+            '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
+
+        $("#addRowButton").click(function() {
+            $("#add-row")
+                .dataTable()
+                .fnAddData([
+                    $("#addName").val(),
+                    $("#addPosition").val(),
+                    $("#addOffice").val(),
+                    action,
+                ]);
+            $("#addRowModal").modal("hide");
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable({
+            scrollX: true, // Activa el desplazamiento horizontal
+            responsive: true // Hace la tabla adaptativa
+        });
+    });
+</script>
+
+@if (session('eliminar') == 'personal eliminado')
     <script>
         Swal.fire(
             'Eliminado!',
-            'Solicitud Eliminada con Éxito',
+            'Personal Eliminado con Éxito',
             'success'
         )
     </script>
