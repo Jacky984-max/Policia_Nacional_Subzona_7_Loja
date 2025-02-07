@@ -56,6 +56,7 @@
                                         <th>Fecha de Ingreso</th>
                                         <th>Asunto</th>
                                         <!--<th>Responsable del Mantenimiento</th>-->
+                                        <th>Tipo de Mantenimiento</th>
                                         <th>Estado</th>
                                         <th style="width: 10%">Acciones</th>
                                     </tr>
@@ -84,9 +85,10 @@
                                                 {{ $mantenimiento->asunto }}
                                             </td>
 
-                                            <!--<td>
-                                                       
-                                                    </td>-->
+                                            <td>
+                                                {{ $mantenimiento->tipo_mantenimiento }}      
+                                            </td>
+
                                             <td>
                                                 @if ($mantenimiento->estado == 'COMPLETADO')
                                                     <span class="badge bg-success">COMPLETADO</span>
@@ -95,11 +97,7 @@
 
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="" data-bs-toggle="tooltip" title="Editar"
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
+                                                   
 
                                                     <a data-bs-toggle="modal" title="Eliminar"
                                                         data-bs-target="#createAKIKeyModal-{{ $mantenimiento->id }}"

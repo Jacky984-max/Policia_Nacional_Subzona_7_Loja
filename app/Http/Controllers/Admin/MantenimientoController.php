@@ -50,6 +50,10 @@ class MantenimientoController extends Controller
             'asunto' => 'required|string',
             'detalle' => 'required|string',
             'estado' => 'required|in:COMPLETADO',
+            'tipo_mantenimiento' => 'required',
+            'subtotal' => 'required|numeric',
+            'iva' => 'required|numeric',
+            'total' => 'required|numeric',
         ]);
 
         $solicitud = SolicitudMantenimiento::findOrFail($id);
@@ -69,6 +73,11 @@ class MantenimientoController extends Controller
             'asunto' => $request->asunto,
             'detalle' => $request->detalle,
             'estado' => $request->estado,
+            'tipo_mantenimiento' => $request->tipo_mantenimiento,
+            'subtotal' => $request->subtotal,
+            'iva' => $request->iva,
+            'total' => $request->total,
+
         ]);
 
         if ($request->estado == 'COMPLETADO') {
