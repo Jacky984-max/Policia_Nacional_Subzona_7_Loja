@@ -125,8 +125,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('solicitud/index', 'Index')->name('solicitud.index');
         Route::get('solicitud-mantenimiento', 'Create')->name('solicitud.create');
         Route::post('/solicitud-mantenimiento/store', 'Store')->name('solicitud.store');
+        Route::get('/solicitud-mantenimiento/edit/{id}', 'Edit')->name('solicitud.edit');
+        Route::post('/solicitud-mantenimiento/update', 'Update')->name('solicitud.update');
         Route::get('gestionar-solicitudes', 'gestionarsolicitud')->name('gestionar.solicitud');
         Route::post('/solicitudes/{id}/confirmar', 'confirmar')->name('solicitudes.confirmar');
+        Route::get('/solicitud-mantenimiento/eliminar/{id}', 'Destroy')->name('solicitud.eliminar');
 
     });
 

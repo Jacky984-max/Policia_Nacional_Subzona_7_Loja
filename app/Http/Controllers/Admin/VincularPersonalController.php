@@ -103,8 +103,12 @@ class VincularPersonalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
+
+        AsignacionPersonal::findOrFail($id)->delete();
+
+        return redirect()->route('vincular_personal.index')->with('eliminar', 'el personal asignado ha sido eliminado');
     }
 }
