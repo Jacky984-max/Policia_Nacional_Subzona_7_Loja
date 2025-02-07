@@ -107,8 +107,12 @@ class MantenimientoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
+
+        Mantenimiento::findOrFail($id)->delete();
+
+        return redirect()->route('mantenimiento.index')->with('eliminar', 'mantenimiento eliminado');
     }
 }

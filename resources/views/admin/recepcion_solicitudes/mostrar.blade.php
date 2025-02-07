@@ -102,7 +102,7 @@
                                                     </a>
 
                                                     <a data-bs-toggle="modal" title="Eliminar"
-                                                        data-bs-target="#createAKIKeyModal-"
+                                                        data-bs-target="#createAKIKeyModal-{{ $mantenimiento->id }}"
                                                         class="btn btn-link btn-danger" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
                                                     </a>
@@ -112,7 +112,7 @@
                                         </tr>
 
                                         <!--MODAL PARA ELIMINAR LA FLOTA VEHICULAR--->
-                                        <div class="modal fade" id="createAKIKeyModal-" tabindex="-1"
+                                        <div class="modal fade" id="createAKIKeyModal-{{ $mantenimiento->id }}" tabindex="-1"
                                             aria-labelledby="createAKIKeyModalLabel" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -135,7 +135,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cerrar</button>
-                                                        <form action="" method="get">
+                                                        <form action="{{ route('mantenimientos.eliminar', $mantenimiento->id)}}" method="get">
                                                             @method('DELETE')
                                                             @csrf
                                                             <button type="submit"
@@ -246,11 +246,11 @@
     });
 </script>
 
-@if (session('eliminar') == 'personal eliminado')
+@if (session('eliminar') == 'mantenimiento eliminado')
     <script>
         Swal.fire(
             'Eliminado!',
-            'Personal Eliminado con Éxito',
+            'Mantenimiento Eliminado con Éxito',
             'success'
         )
     </script>
