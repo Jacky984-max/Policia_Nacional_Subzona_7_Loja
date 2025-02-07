@@ -137,6 +137,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/mantenimiento', 'Index')->name('mantenimiento.index');
         Route::get('/mantenimientos/registro/{id}', 'Create')->name('mantenimientos.registro');
         Route::post('/mantenimientos/guardar/{id}', 'Store')->name('mantenimientos.guardar');
+        Route::get('/mantenimientos/eliminar/{id}', 'Destroy')->name('mantenimientos.eliminar');
 
     });
 

@@ -32,7 +32,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Añadir Personal</div>
+                        <div class="card-title">Editar Personal</div>
                     </div>
 
                     <div class="card-body">
