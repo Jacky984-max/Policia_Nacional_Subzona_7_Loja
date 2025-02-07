@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AsignacionController;
 use App\Http\Controllers\Admin\AsignacionVehiculoController;
 use App\Http\Controllers\Admin\DependenciaController;
 use App\Http\Controllers\Admin\FlotaVehicularController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\PersonalController;
 use App\Http\Controllers\Admin\ReclamoController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VincularPersonalController;
+use App\Http\Controllers\Policia\SolicitudController;
 use App\Http\Controllers\ReclamoSugerenciaController;
 
 /*
@@ -99,13 +101,13 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-    Route::controller(MantenimientoController::class)->group(function(){
-        Route::get('/mantenimiento-vehicular', 'Index')->name('mantenimiento-vehicular.index');            
-        Route::get('/solicitud-mantenimiento', 'Create')->name('solicitud-mantenimiento.create');
-        Route::post('/solicitud-mantenimiento/store', 'Store')->name('solicitud-mantenimiento.store');
-        Route::get('/solicitud-mantenimiento/edit/{id}', 'Edit')->name('solicitud-mantenimiento.edit');
-        Route::post('/solicitud-mantenimiento/update', 'Update')->name('solicitud-mantenimiento.update');
-        Route::get('/solicitud-mantenimiento/delete/{id}', 'Destroy')->name('solicitud-mantenimiento.delete');
+    Route::controller(AsignacionController::class)->group(function(){
+        Route::get('/asignacion', 'Index')->name('asignacion.index');
+        Route::get('/asignar-vehiculo/create', 'Create')->name('asignar-vehiculo.create');
+        Route::post('/asignar-vehiculo/store', 'Store')->name('asignar-vehiculo.store');
+        Route::get('/asignar-vehiculo/edit/{id}', 'Edit')->name('asignar-vehiculo.edit');
+        Route::post('/asignar-vehiculo/update', 'Update')->name('asignar-vehiculo.update');
+        Route::get('/asignar-vehiculo/delete/{id}', 'Destroy')->name('asignar-vehiculo.delete');
 
     });
 
@@ -119,25 +121,21 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-    Route::controller(AsignacionVehiculoController::class)->group(function(){
-        Route::get('/asignacion', 'Index')->name('asignacion.index');
-        Route::get('/asignar-vehiculo/create', 'Create')->name('asignar-vehiculo.create');
-        Route::post('/asignar-vehiculo/store', 'Store')->name('asignar-vehiculo.store');
-        Route::get('/asignar-vehiculo/edit/{id}', 'Edit')->name('asignar-vehiculo.edit');
-        Route::post('/asignar-vehiculo/update', 'Update')->name('asignar-vehiculo.update');
-        Route::get('/asignar-vehiculo/delete/{id}', 'Destroy')->name('asignar-vehiculo.delete');
+    Route::controller(SolicitudController::class)->group(function(){
+        Route::get('solicitud/index', 'Index')->name('solicitud.index');
+        Route::get('solicitud-mantenimiento', 'Create')->name('solicitud.create');
+        Route::post('/solicitud-mantenimiento/store', 'Store')->name('solicitud.store');
+        Route::get('gestionar-solicitudes', 'gestionarsolicitud')->name('gestionar.solicitud');
+        Route::post('/solicitudes/{id}/confirmar', 'confirmar')->name('solicitudes.confirmar');
+
     });
 
+    Route::controller(MantenimientoController::class)->group(function(){
+        Route::get('/mantenimiento', 'Index')->name('mantenimiento.index');
+        Route::get('/mantenimientos/registro/{id}', 'Create')->name('mantenimientos.registro');
+        Route::post('/mantenimientos/guardar/{id}', 'Store')->name('mantenimientos.guardar');
 
-
-
-
-
-    
-
-
-
-
+    });
 
 
 
