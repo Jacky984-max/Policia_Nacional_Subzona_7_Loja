@@ -44,10 +44,6 @@ class RoleSeeder extends Seeder
       Permission::create(['name' => 'ver_reclamos.index'])->syncRoles([$admin, $gerencia]);
       Permission::create(['name' => 'reclamos.descargar'])->syncRoles([$admin, $gerencia]);
 
-      Permission::create(['name' => 'mantenimiento-vehicular.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
-      Permission::create(['name' => 'solicitud-mantenimiento.create'])->syncRoles([$admin, $policia]);
-      Permission::create(['name' => 'solicitud-mantenimiento.store'])->syncRoles([$admin, $policia]);
-
       Permission::create(['name' => 'asignacion.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
       Permission::create(['name' => 'asignar-vehiculo.create'])->syncRoles([$admin, $tecnico1, $tecnico2]);
       Permission::create(['name' => 'asignar-vehiculo.store'])->syncRoles([$admin, $tecnico1, $tecnico2]);
@@ -55,6 +51,17 @@ class RoleSeeder extends Seeder
       Permission::create(['name' => 'vincular_personal.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
       Permission::create(['name' => 'vincular_personal.create'])->syncRoles([$admin, $tecnico1, $tecnico2]);
       Permission::create(['name' => 'vincular_personal.store'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+
+      Permission::create(['name' => 'solicitud.index'])->syncRoles([$policia]);
+      Permission::create(['name' => 'solicitud.create'])->syncRoles([$policia]);
+      Permission::create(['name' => 'solicitud.store'])->syncRoles([$policia]);
+      Permission::create(['name' => 'gestionar.solicitud'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'solicitudes.confirmar'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+
+      Permission::create(['name' => 'mantenimiento.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'mantenimientos.registro'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'mantenimientos.guardar'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+
 
       
     }
