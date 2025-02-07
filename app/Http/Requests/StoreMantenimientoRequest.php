@@ -19,7 +19,7 @@ class StoreMantenimientoRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             //
@@ -29,7 +29,6 @@ class StoreMantenimientoRequest extends FormRequest
             'kilometraje' => 'required',
             'observacion' => 'required',
             'flotavehicular_id' => 'required|exists:vehiculos,id',
-            'solicitante' => 'required',
         ];
     }
 }
