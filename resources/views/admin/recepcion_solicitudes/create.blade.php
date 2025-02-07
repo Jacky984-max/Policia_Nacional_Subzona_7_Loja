@@ -98,7 +98,7 @@
                                         </div>-->
 
 
-                                    <!--<div class="form-group">
+                                    <div class="form-group">
                                             <label for="defaultSelect">{{ __('Tipo de Mantenimiento') }}</label>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1"><i
@@ -116,7 +116,13 @@
 
                                                 </select>
                                             </div>
-                                        </div>-->
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label for="total" class="form-label">Total</label>
+                                            <input type="text" class="form-control" name="total" id="total" readonly>
+                                        </div>
 
 
 
@@ -168,6 +174,10 @@
                                             <option value="COMPLETADO">COMPLETADO</option>
                                             <!--<option value="CANCELADO">CANCELADO</option>-->
                                         </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="subtotal" class="form-label">Subtotal</label>
+                                        <input type="text" class="form-control" name="subtotal" id="subtotal" readonly>
                                     </div>
 
                                     <!--<div class="form-group">
@@ -227,6 +237,12 @@
                                     </div>
 
 
+                                    <div class="mb-3">
+                                        <label for="iva" class="form-label">IVA (12%)</label>
+                                        <input type="text" class="form-control" name="iva" id="iva" readonly>
+                                    </div>
+
+
                                     
 
 
@@ -272,6 +288,25 @@
         active: function() {
             sessionStorage.fonts = true;
         },
+    });
+</script>
+
+
+<script>
+    document.querySelector('select[name="tipo_mantenimiento"]').addEventListener('change', function() {
+        let tipo = this.value;
+        let subtotal = 0;
+
+        if (tipo === "Mantenimiento 1") subtotal = 43.59;
+        if (tipo === "Mantenimiento 2") subtotal = 60.00;
+        if (tipo === "Mantenimiento 3") subtotal = 180.00;
+
+        let iva = subtotal * 0.12;
+        let total = subtotal + iva;
+
+        document.getElementById("subtotal").value = subtotal.toFixed(2);
+        document.getElementById("iva").value = iva.toFixed(2);
+        document.getElementById("total").value = total.toFixed(2);
     });
 </script>
 

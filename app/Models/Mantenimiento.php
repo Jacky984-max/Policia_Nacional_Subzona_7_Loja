@@ -20,6 +20,11 @@ class Mantenimiento extends Model
         'asunto',
         'detalle',
         'estado',
+        'tipo_mantenimiento',
+        'subtotal',
+        'iva',
+        'total',
+
     ];
 
     public function solicitud()
