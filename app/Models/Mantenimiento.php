@@ -9,15 +9,27 @@ class Mantenimiento extends Model
 {
     use HasFactory;
 
-    protected  $guarded = [
-        'id',
-        
-        
+    protected $fillable = [
+        'solicitud_id',
+        'fecha_ingreso',
+        'kilometraje',
+        'tipo_vehiculo',
+        'placa', 
+        'marca',
+        'modelo',
+        'asunto',
+        'detalle',
+        'estado',
     ];
 
-    public function flota()
+    public function solicitud()
     {
-        return $this->belongsTo(Vehiculo::class, 'flotavehicular_id');
+        return $this->belongsTo(SolicitudMantenimiento::class);
+    }
+
+    public function vehiculo()
+    {
+        return $this->belongsTo(Vehiculo::class, 'vehiculo_id');
     }
 
 

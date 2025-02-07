@@ -92,7 +92,7 @@
 
                         <li>
                             <a href="{{ route('vincular_personal.index')}}">
-                                <span class="sub-item">Mostrar Personal Asignado</span>
+                                <span class="sub-item">Ver Personal Asignado</span>
                             </a>
                         </li>
 
@@ -179,34 +179,61 @@
                     </ul>
                 </div>
             </li>
-            
              @endcan
-          
 
-              <li class="nav-item">
-                  <a data-bs-toggle="collapse" href="#maps">
-                      <i class="fas fa-map-marker-alt"></i>
-                      <p>Mantenimiento Vehicular</p>
-                      <span class="caret"></span>
-                  </a>
-                  <div class="collapse" id="maps">
-                      <ul class="nav nav-collapse">
-                          <li>
-                              <a href="{{ route('mantenimiento-vehicular.index')}}">
-                                  <span class="sub-item">Mostrar</span>
-                              </a>
-                          </li>
-                          @can('solicitud-mantenimiento.create')
-                                 <li>
-                              <a href="{{ route('solicitud-mantenimiento.create')}}">
-                                  <span class="sub-item">Registrar Solicitud</span>
-                              </a>
-                          </li>
-                          @endcan
-                       
-                      </ul>
-                  </div>
-              </li>
+ <!---PARA ADMIN, TECNICO 1 , TECNICO 2-->
+ @can('gestionar.solicitud')
+ <li class="nav-item">
+     <a data-bs-toggle="collapse" href="#mante">
+         <i class="fas fa-pen-square"></i>
+         <p>Gestionar Mantenimientos</p>
+         <span class="caret"></span>
+     </a>
+     <div class="collapse" id="mante">
+         <ul class="nav nav-collapse">
+
+             <li>
+                 <a href="{{ route('gestionar.solicitud') }}">
+                     <span class="sub-item">Mostrar Solicitudes</span>
+                 </a>
+             </li>
+
+             <li>
+                 <a href="{{ route('mantenimiento.index')}}">
+                     <span class="sub-item">Lista de Mantenimientos</span>
+                 </a>
+             </li>
+
+             
+         </ul>
+     </div>
+ </li>
+@endcan
+
+
+
+             <!---PARA POLICIA-->
+        @can('solicitud.index')
+             <li class="nav-item">
+                 <a href="{{ route('solicitud.index') }}">
+                     <i class="fas fa-file"></i>
+                     <p>Ver mis Solicitudes</p>
+
+                 </a>
+             </li>
+         @endcan
+
+    @can('solicitud.create')
+         <li class="nav-item">
+             <a href="{{ route('solicitud.create') }}">
+                 <i class="fas fa-file"></i>
+                 <p>Registrar Solicitud</p>
+
+             </a>
+         </li>
+     @endcan
+
+          
 
               @if (auth()->user()->hasRole('gerencia'))
               <li class="nav-item">
