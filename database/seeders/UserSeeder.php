@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'tipo_usuario' => 'admin',
         ])->assignRole('admin');
 
         User::create([
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'tipo_usuario' => 'gerencia',
         ])->assignRole('gerencia');
 
         User::create([
@@ -37,6 +39,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'tipo_usuario' => 'tecnico1',
         ])->assignRole('tecnico1');
 
         User::create([
@@ -45,6 +48,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'tipo_usuario' => 'tecnico2',
         ])->assignRole('tecnico2');
         
 

@@ -61,6 +61,14 @@ class RoleSeeder extends Seeder
       Permission::create(['name' => 'mantenimiento.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
       Permission::create(['name' => 'mantenimientos.registro'])->syncRoles([$admin, $tecnico1, $tecnico2]);
       Permission::create(['name' => 'mantenimientos.guardar'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'mantenimientos.eliminar'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+
+
+      Permission::create(['name' => 'ordenes.index'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'ordenes.generar'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'ordenes.finalizar'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'ordenes.pdf'])->syncRoles([$admin, $tecnico1, $tecnico2]);
+      Permission::create(['name' => 'ordenes.imprimir'])->syncRoles([$admin, $tecnico1, $tecnico2]);
 
 
       

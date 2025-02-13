@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('solicitud_mantenimientos', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_mantenimiento');
-            $table->string('descripcion',255)->nullable();
             $table->dateTime('fecha_hora');
             $table->integer('kilometraje');
             $table->string('observacion',255)->nullable();
-            $table->string('solicitante');
-            $table->enum('estado', ['PENDIENTE', 'EN PROCESO', 'COMPLETADO', 'CANCELADO'])->default('PENDIENTE');
+            $table->foreignId('policia_id')->constrained('personal_policials')->onDelete('cascade');
             $table->foreignId('flotavehicular_id')->constrained('vehiculos')->onDelete('cascade');
+            $table->enum('estado', ['PENDIENTE', 'EN PROCESO', 'COMPLETADO', 'CANCELADO'])->default('PENDIENTE');
+            $table->foreignId('confirmado_por')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }
