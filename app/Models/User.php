@@ -43,4 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function personalPolicial()
+    {
+        return $this->hasOne(Personal_policial::class, 'user_id');
+    }
+
+    public function Policial()
+    {
+        return $this->hasOne(Personal_policial::class, 'user_id');
+    }
 }

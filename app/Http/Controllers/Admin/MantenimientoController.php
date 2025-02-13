@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Mantenimiento;
 use App\Models\SolicitudMantenimiento;
+use App\Models\Vehiculo;
 use Illuminate\Http\Request;
 
 class MantenimientoController extends Controller
@@ -28,12 +29,16 @@ class MantenimientoController extends Controller
         //
         $recepcion = SolicitudMantenimiento::findOrFail($id);
 
+        $kilometraje = $recepcion->kilometraje;
+
         if ($recepcion->estado !== 'EN PROCESO') {
     
             return redirect()->route('mantenimiento.index')->with('error', 'Esta solicitud aún no está en proceso.');
         }
 
-        return view('admin.recepcion_solicitudes.create', compact('recepcion'));
+        $vehiculo = Vehiculo::findOrFail($recepcion->flotavehicular_id);
+
+        return view('admin.recepcion_solicitudes.create', compact('recepcion', 'vehiculo', 'kilometraje'));
     }
 
 
@@ -50,13 +55,15 @@ class MantenimientoController extends Controller
             'asunto' => 'required|string',
             'detalle' => 'required|string',
             'estado' => 'required|in:COMPLETADO',
-            'tipo_mantenimiento' => 'required',
+            'tipo_mantenimiento' => 'required|string|in:Mantenimiento 1,Mantenimiento 2,Mantenimiento 3',
             'subtotal' => 'required|numeric',
             'iva' => 'required|numeric',
             'total' => 'required|numeric',
         ]);
 
         $solicitud = SolicitudMantenimiento::findOrFail($id);
+
+        $vehiculo = Vehiculo::where('id', $solicitud->vehiculo_id)->first();
 
         if ($solicitud->estado !== 'EN PROCESO') {
             return redirect()->back()->with('error', 'La solicitud debe estar en proceso');
@@ -66,10 +73,10 @@ class MantenimientoController extends Controller
             'solicitud_id' => $solicitud->id,
             'fecha_ingreso' => $request->fecha_ingreso,
             'kilometraje' => $request->kilometraje,
-            'tipo_vehiculo' => $request->tipo_vehiculo,
-            'placa' => $request->placa,
-            'marca' => $request->marca,
-            'modelo' => $request->modelo,
+            'tipo_vehiculo' => $request->tipo_vehiculo ?? $vehiculo->tipo_vehiculo,
+            'placa' => $request->placa ?? $vehiculo->placa,
+            'marca' => $request->marca ?? $vehiculo->marca,
+            'modelo' => $request->modelo ?? $vehiculo->modelo,
             'asunto' => $request->asunto,
             'detalle' => $request->detalle,
             'estado' => $request->estado,

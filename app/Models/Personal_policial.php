@@ -23,4 +23,9 @@ class Personal_policial extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function solicitudesMantenimiento()
+    {
+        return $this->hasMany(SolicitudMantenimiento::class, 'policia_id');
+    }
 }

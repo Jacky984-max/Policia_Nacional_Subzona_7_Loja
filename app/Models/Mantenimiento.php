@@ -37,5 +37,10 @@ class Mantenimiento extends Model
         return $this->belongsTo(Vehiculo::class, 'vehiculo_id');
     }
 
+    public function ordenTrabajo()
+    {
+        return $this->hasOne(OrdenTrabajo::class, 'mantenimiento_id');
+    }
+
 
 }

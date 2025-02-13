@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Solicitudes de Mantenimiento Realizadas</h4>
+                            <h4 class="card-title">Mis Solicitudes</h4>
 
                         </div>
                     </div>
@@ -51,9 +51,8 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Policia</th>
                                         <th>Vehículo</th>
-                                        <th>Tipo de Mantenimiento</th>
-                                        <th>Descripción del Problema</th>
                                         <th>Fecha y Hora de Solicitud</th>
                                         <th>Observaciones</th>
                                         <th>Estado</th>
@@ -70,14 +69,13 @@
                                             <td>{{ $i++ }}</td>
 
                                             <td>
+                                                {{ $mante->personalPolicial->nombre ?? 'No asignado' }}
+                                            </td>
+
+                                            <td>
                                                 {{ $mante->vehiculo->placa}}
                                             </td>
-                                            <td>
-                                                {{ $mante->tipo_mantenimiento }}
-                                            </td>
-                                            <td>
-                                                {{ $mante->descripcion }}
-                                            </td>
+                                           
                                             <td>
 
                                                 <p class="fw-semibold mb-1"><span class="m-1"><i

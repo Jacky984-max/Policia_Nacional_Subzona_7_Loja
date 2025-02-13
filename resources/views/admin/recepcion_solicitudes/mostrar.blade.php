@@ -9,19 +9,18 @@
 
 @include('layouts.partials.alert')
 
-
-
 <div class="container">
     <div class="page-inner">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
 
             </div>
+
+
             <div class="ms-md-auto py-2 py-md-0">
-                <!--<a href="" class="btn btn-primary btn-round ms-auto me-2"><i
-                                    class="fa fa-plus"></i>
-                                Asignar a Subcircuito
-                            </a>-->
+
+
+
             </div>
         </div>
 
@@ -54,9 +53,12 @@
                                         <th>#</th>
                                         <th>Vehiculo o Placa</th>
                                         <th>Fecha de Ingreso</th>
+                                        <th>Tipo de Mantenimiento</th>
+                                        <th>Subtotal</th>
+                                        <th>IVA</th>
+                                        <th>Total</th>
                                         <th>Asunto</th>
                                         <!--<th>Responsable del Mantenimiento</th>-->
-                                        <th>Tipo de Mantenimiento</th>
                                         <th>Estado</th>
                                         <th style="width: 10%">Acciones</th>
                                     </tr>
@@ -81,14 +83,18 @@
                                                 </p>
                                             </td>
 
+                                            <td>{{ $mantenimiento->tipo_mantenimiento }}</td>
+                                            <td>${{ number_format($mantenimiento->subtotal, 2) }}</td>
+                                            <td>${{ number_format($mantenimiento->iva, 2) }}</td>
+                                            <td>${{ number_format($mantenimiento->total, 2) }}</td>
+
                                             <td>
                                                 {{ $mantenimiento->asunto }}
                                             </td>
 
-                                            <td>
-                                                {{ $mantenimiento->tipo_mantenimiento }}      
-                                            </td>
-
+                                            <!--<td>
+                                                                           
+                                                                        </td>-->
                                             <td>
                                                 @if ($mantenimiento->estado == 'COMPLETADO')
                                                     <span class="badge bg-success">COMPLETADO</span>
@@ -97,20 +103,28 @@
 
                                             <td>
                                                 <div class="form-button-action">
-                                                   
+                                                    
 
-                                                    <a data-bs-toggle="modal" title="Eliminar"
-                                                        data-bs-target="#createAKIKeyModal-{{ $mantenimiento->id }}"
-                                                        class="btn btn-link btn-danger" data-original-title="Remove">
-                                                        <i class="fa fa-times"></i>
-                                                    </a>
+                                                    @if (!$mantenimiento->ordenTrabajo)
+                                                        <a href="{{ route('ordenes.generar', $mantenimiento->id) }}"
+                                                            class="btn btn-sm btn-success">
+                                                            Generar Orden
+                                                        </a>
+                                                    @else
+                                                        <span class="badge bg-primary">Orden Generada</span>
+                                                    @endif
 
                                                 </div>
+
+
+
                                             </td>
+
+
                                         </tr>
 
                                         <!--MODAL PARA ELIMINAR LA FLOTA VEHICULAR--->
-                                        <div class="modal fade" id="createAKIKeyModal-{{ $mantenimiento->id }}" tabindex="-1"
+                                        <div class="modal fade" id="createAKIKeyModal-" tabindex="-1"
                                             aria-labelledby="createAKIKeyModalLabel" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -133,7 +147,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cerrar</button>
-                                                        <form action="{{ route('mantenimientos.eliminar', $mantenimiento->id)}}" method="get">
+                                                        <form action="" method="get">
                                                             @method('DELETE')
                                                             @csrf
                                                             <button type="submit"
@@ -244,14 +258,5 @@
     });
 </script>
 
-@if (session('eliminar') == 'mantenimiento eliminado')
-    <script>
-        Swal.fire(
-            'Eliminado!',
-            'Mantenimiento Eliminado con Éxito',
-            'success'
-        )
-    </script>
-@endif
 
 @endsection

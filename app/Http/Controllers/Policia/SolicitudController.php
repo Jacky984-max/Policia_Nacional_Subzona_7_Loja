@@ -25,10 +25,11 @@ class SolicitudController extends Controller
 
         if (in_array($user->id, $rolesPermitidos)) {
          
-            $mantenimiento = SolicitudMantenimiento::where('estado', 'EN PROCESO')->get();
+            $mantenimiento = SolicitudMantenimiento::where('estado', 'EN PROCESO')->with('personalPolicial', 'vehiculo')->get();
+
         } else {
           
-            $mantenimiento = SolicitudMantenimiento::where('solicitante', $user->id)->get();
+            $mantenimiento = SolicitudMantenimiento::where('policia_id', $user->personalPolicial->id)->with('vehiculo')->get();
         }
 
         return view('policia_UI.ver_solicitud', compact('mantenimiento'));
@@ -53,15 +54,19 @@ class SolicitudController extends Controller
     public function store(StoreMantenimientoRequest $request)
     {
         //
+        $policia = Auth::user()->personalPolicial;
+
+        if (!$policia) {
+            return redirect()->back()->with('error', 'No tienes un perfil de policía asociado.');
+        }
+
         $mante_vehicular = SolicitudMantenimiento::create($request->validated() + [
 
-            'tipo_mantenimiento' => $request->tipo_mantenimiento,
-            'descripcion' => $request->descripcion,
+            'policia_id' => $policia->id,
             'fecha_hora' => $request->fecha_hora,
             'kilometraje' => $request->kilometraje,
             'observacion' => $request->observacion,
             'flotavehicular_id' => $request->flotavehicular_id,
-            'solicitante' => Auth::id(),
 
         ]);
 
@@ -81,7 +86,7 @@ class SolicitudController extends Controller
             $soli = SolicitudMantenimiento::all();
         } else {
         
-            $soli = SolicitudMantenimiento::where('solicitante', $user->id)->get();
+            $soli = SolicitudMantenimiento::where('policia_id', $user->id)->get();
         }
 
         return view('admin.mantenimiento_vehicular.index', compact('soli'));
@@ -106,6 +111,7 @@ class SolicitudController extends Controller
         }
 
         $soli->estado = 'EN PROCESO';
+        $soli->confirmado_por = Auth::id();
         $soli->save();
 
         return redirect()->route('gestionar.solicitud')->with('success', 'Solicitud confirmada.');

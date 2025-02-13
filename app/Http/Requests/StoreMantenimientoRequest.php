@@ -23,8 +23,6 @@ class StoreMantenimientoRequest extends FormRequest
     {
         return [
             //
-            'tipo_mantenimiento' => 'required',
-            'descripcion' => 'required',
             'fecha_hora' => 'required',
             'kilometraje' => 'required',
             'observacion' => 'required',

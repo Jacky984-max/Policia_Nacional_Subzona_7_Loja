@@ -6,7 +6,7 @@
 <div class="container">
     <div class="page-inner">
         <div class="page-header">
-            <h3 class="fw-bold mb-3">Forms</h3>
+            <h3 class="fw-bold mb-3">Registrar Mantenimiento</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="#">
@@ -32,7 +32,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Registrar Mantenimiento</div>
+                        <div class="card-title">Datos del Vehículo</div>
                     </div>
 
                     <div class="card-body">
@@ -51,10 +51,7 @@
                         <form method="post" action="{{ route('mantenimientos.guardar', $recepcion->id) }}">
                             @csrf
 
-
                             <div class="row">
-
-
 
                                 <div class="col-md-6 col-lg-4">
 
@@ -64,7 +61,7 @@
                                             name="fecha_ingreso" required>
                                     </div>
 
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <label for="email2">{{ __('Placa') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
@@ -74,96 +71,52 @@
                                                 placeholder="Digita la placa" aria-label="Username"
                                                 aria-describedby="basic-addon1" required />
                                         </div>
+                                    </div>-->
+
+                                    <div class="form-group">
+                                        <label for="email2">{{ __('Placa') }}</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fa fa-user"></i></span>
+                                            <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="placa" value="{{ $vehiculo->placa }}" readonly />
+                                        </div>
                                     </div>
 
 
                                     <div class="form-group">
                                         <label for="asunto" class="form-label">Asunto</label>
-                                        <input type="text" class="form-control" id="asunto" name="asunto"
+                                        <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control" id="asunto" name="asunto"
                                             required>
                                     </div>
-
-
-
-
-                                    <!--<div class="form-group">
-                                            <label for="password">Responsable del Vehículo</label>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1"><i
-                                                        class="fas fa-unlock"></i></span>
-                                                <input type="text" class="form-control" name="nombre_responsable"
-                                                    id="nombre_responsable" oninput="this.value = this.value.toUpperCase();"
-                                                    placeholder="Responsable" required />
-                                            </div>
-                                        </div>-->
-
-
-                                    <div class="form-group">
-                                            <label for="defaultSelect">{{ __('Tipo de Mantenimiento') }}</label>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1"><i
-                                                        class="fas fa-user-cog"></i></span>
-                                                <select class="form-select form-control" name="tipo_mantenimiento"
-                                                    id="tipo_mantenimiento">
-
-                                                    <option value="" selected disabled>Selecciona:</option>
-
-
-                                                    <option value="Mantenimiento 1">Mantenimiento 1</option>
-                                                    <option value="Mantenimiento 2">Mantenimiento 2</option>
-                                                    <option value="Mantenimiento 3">Mantenimiento 3</option>
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="mb-3">
-                                            <label for="total" class="form-label">Total</label>
-                                            <input type="text" class="form-control" name="total" id="total" readonly>
-                                        </div>
-
 
 
                                 </div>
 
 
-
                                 <div class="col-md-6 col-lg-4">
 
 
-                                    <!--<div class="form-group">
-                                                <label for="email2">Nombres</label>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="fa fa-user"></i></span>
-                                                    <input type="text" class="form-control" name="nombres" id="nombres"
-                                                        placeholder="Digita tu nombre" aria-label="Username"
-                                                        aria-describedby="basic-addon1" oninput="this.value = this.value.toUpperCase();" required />
-                                                </div>
-                                            </div>--->
-
                                     <div class="form-group">
-                                        <label for="email2">{{ __('Kilometraje') }}</label>
+                                        <label for="email2">{{ __('Kilometraje Actual') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="kilometraje"
-                                                id="kilometraje" placeholder="Digita el kilometraje"
-                                                aria-label="Username" aria-describedby="basic-addon1" required />
+                                                aria-label="Username" aria-describedby="basic-addon1" value="{{ $kilometraje }}" required />
                                         </div>
                                     </div>
+
+                                   
 
                                     <div class="form-group">
                                         <label for="email2">{{ __('Marca') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-envelope"></i></span>
-                                            <input oninput="this.value = this.value.toUpperCase();" type="text"
-                                                class="form-control" name="marca" id="marca"
-                                                placeholder="Digita la marca del vehículo" aria-label="Email"
-                                                required />
+                                            <input type="text"
+                                                class="form-control"
+                                                aria-label="Email" name="marca" value="{{ $vehiculo->marca }}"
+                                                readonly />
                                         </div>
                                     </div>
 
@@ -175,21 +128,7 @@
                                             <!--<option value="CANCELADO">CANCELADO</option>-->
                                         </select>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="subtotal" class="form-label">Subtotal</label>
-                                        <input type="text" class="form-control" name="subtotal" id="subtotal" readonly>
-                                    </div>
 
-                                    <!--<div class="form-group">
-                                                <label for="email2">Rango</label>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="fa fa-user"></i></span>
-                                                    <input type="text" class="form-control" name="rango" id="rango"
-                                                        placeholder="Digita tu Rango o Grado" aria-label="Username"
-                                                        aria-describedby="basic-addon1" oninput="this.value = this.value.toUpperCase();" required />
-                                                </div>
-                                            </div>-->
 
                                 </div>
 
@@ -197,25 +136,16 @@
 
                                 <div class="col-md-6 col-lg-4">
 
-                                    <!--<div class="form-group">
-                                                <label for="email2">Apellidos</label>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="fa fa-user"></i></span>
-                                                    <input type="text" class="form-control" name="apellidos"
-                                                        id="apellidos" placeholder="Digita tus Apellidos"
-                                                        aria-label="Username" oninput="this.value = this.value.toUpperCase();" aria-describedby="basic-addon1" required />
-                                                </div>
-                                            </div>-->
+
                                     <div class="form-group">
                                         <label for="email2">{{ __('Tipo de Vehículo') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input oninput="this.value = this.value.toUpperCase();" type="text"
-                                                class="form-control" name="tipo_vehiculo" id="tipo_vehiculo"
-                                                placeholder="Digita el tipo de vehículo" aria-label="Username"
-                                                aria-describedby="basic-addon1" value="" />
+                                            <input type="text"
+                                                class="form-control"
+                                                 aria-label="Username"
+                                                aria-describedby="basic-addon1" name="tipo_vehiculo" value="{{ $vehiculo->tipo_vehiculo }}" readonly />
                                         </div>
                                     </div>
 
@@ -224,43 +154,88 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-unlock"></i></span>
-                                            <input oninput="this.value = this.value.toUpperCase();" type="text"
-                                                class="form-control" name="modelo" id="modelo"
-                                                placeholder="Digita el modelo del vehículo" required />
+                                            <input type="text"
+                                                class="form-control" name="modelo" value="{{ $vehiculo->modelo }}" readonly />
                                         </div>
 
                                     </div>
 
                                     <div class="form-group">
                                         <label for="detalle" class="form-label">Detalle</label>
-                                        <textarea rows="3" class="form-control" name="detalle" required></textarea>
+                                        <textarea rows="3" oninput="this.value = this.value.toUpperCase();" class="form-control" name="detalle" required></textarea>
                                     </div>
 
+
+                                </div>
+
+                                
+
+                             
+
+                                <div class="card-action">
+
+                                    <h1 class="card-title">Tipos de Mantenimiento</h1>
+                                </div>
+
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="defaultSelect">{{ __('Tipo de Mantenimiento') }}</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fas fa-user-cog"></i></span>
+                                            <select class="form-select form-control" name="tipo_mantenimiento"
+                                                id="tipo_mantenimiento">
+
+                                                <option value="" selected disabled>Selecciona:</option>
+
+
+                                                <option value="Mantenimiento 1">Mantenimiento 1</option>
+                                                <option value="Mantenimiento 2">Mantenimiento 2</option>
+                                                <option value="Mantenimiento 3">Mantenimiento 3</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-lg-4">
+
+                                    <div class="mb-3">
+                                        <label for="subtotal" class="form-label">Subtotal</label>
+                                        <input type="text" class="form-control" name="subtotal" id="subtotal"
+                                            readonly>
+                                    </div>
 
                                     <div class="mb-3">
                                         <label for="iva" class="form-label">IVA (12%)</label>
-                                        <input type="text" class="form-control" name="iva" id="iva" readonly>
+                                        <input type="text" class="form-control" name="iva" id="iva"
+                                            readonly>
                                     </div>
 
-
-                                    
-
-
-
+                                    <div class="mb-3">
+                                        <label for="total" class="form-label">Total</label>
+                                        <input type="text" class="form-control" name="total" id="total"
+                                            readonly>
+                                    </div>
 
                                 </div>
+
+                             
+
 
                                 <div class="card-action">
                                     <button type="submit" class="btn btn-secondary">Guardar</button>
+
+                                    <!--<a href=""
+                                        class="btn btn-secondary">Generar Orden de Trabajo</a>-->
                                 </div>
 
                             </div>
+
                         </form>
 
                     </div>
-
-
-
 
 
                 </div>
@@ -268,6 +243,7 @@
         </div>
     </div>
 </div>
+
 
 
 
@@ -290,7 +266,6 @@
         },
     });
 </script>
-
 
 <script>
     document.querySelector('select[name="tipo_mantenimiento"]').addEventListener('change', function() {
