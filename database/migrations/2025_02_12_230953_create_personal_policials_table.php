@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('personal_policials', function (Blueprint $table) {
             $table->id();
             $table->integer('cedula');
-            $table->string('nombres');
-            $table->string('apellidos');
+            $table->string('nombre');
             $table->date('fecha_nacimiento');
             $table->string('tipo_sangre');
             $table->string('ciudad_nacimiento');
@@ -23,6 +22,7 @@ return new class extends Migration
             $table->string('rango');
             $table->enum('estado_asignacion', ['Asignado', 'No Asignado'])->default('No Asignado'); 
             $table->foreignId('dependencia_id')->constrained('dependencias')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null'); 
             $table->timestamps();
         });
     }

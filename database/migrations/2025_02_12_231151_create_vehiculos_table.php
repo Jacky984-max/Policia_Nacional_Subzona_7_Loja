@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('chasis', 50)->nullable();
             $table->string('motor', 50)->nullable();
             $table->integer('kilometraje')->default(0);
-            $table->decimal('cilindraje', 5,2)->nullable();
+            $table->decimal('cilindraje', 5, 2)->nullable();
             $table->decimal('capacidad_carga', 5, 2)->nullable();
             $table->integer('capacidad_pasajeros')->nullable();
-            $table->enum('estado_asignacion', ['Asignado', 'No Asignado'])->default('No Asignado'); 
+            $table->enum('estado_asignacion', ['Asignado', 'No Asignado'])->default('No Asignado');
             $table->foreignId('personal_id')->constrained('personal_policials')->onDelete('cascade');
             $table->timestamps();
         });
