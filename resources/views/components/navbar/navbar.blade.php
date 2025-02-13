@@ -204,6 +204,12 @@
                  </a>
              </li>
 
+             <li>
+                <a href="{{ route('ordenes.index') }}">
+                    <span class="sub-item">Ordenes de Trabajo</span>
+                </a>
+            </li>
+
              
          </ul>
      </div>
