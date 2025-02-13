@@ -1,10 +1,11 @@
 @extends('admin.sistema')
 
 @section('admin')
+
 <div class="container">
     <div class="page-inner">
         <div class="page-header">
-            <h3 class="fw-bold mb-3">Forms</h3>
+            <h3 class="fw-bold mb-3">Agregar Personal Policial</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="#">
@@ -29,8 +30,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+
                     <div class="card-header">
-                        <div class="card-title">Añadir Personal</div>
+                        <div class="card-title">Información Personal</div>
                     </div>
 
                     <div class="card-body">
@@ -71,10 +73,11 @@
 
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
-                                                class="fa fa-user"></i></span>
-                                            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control">
+                                                    class="fa fa-user"></i></span>
+                                            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento"
+                                                class="form-control">
                                         </div>
-                                      
+
                                     </div>
 
                                     <div class="form-group">
@@ -84,7 +87,9 @@
                                                     class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" name="celular" id="celular"
                                                 placeholder="Digita tu celular" maxlength="10" aria-label="Username"
-                                                aria-describedby="basic-addon1" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required />
+                                                aria-describedby="basic-addon1"
+                                                onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+                                                required />
                                         </div>
                                     </div>
 
@@ -98,9 +103,10 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="nombres" id="nombres"
+                                            <input type="text" class="form-control" name="nombre" id="nombre"
                                                 placeholder="Digita tu nombre" aria-label="Username"
-                                                aria-describedby="basic-addon1" oninput="this.value = this.value.toUpperCase();" required />
+                                                aria-describedby="basic-addon1"
+                                                oninput="this.value = this.value.toUpperCase();" required />
                                         </div>
                                     </div>
 
@@ -109,8 +115,10 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-envelope"></i></span>
-                                            <input type="text" class="form-control" oninput="this.value = this.value.toUpperCase();" name="tipo_sangre" id="tipo_sangre"
-                                                placeholder="Digita tu Tipo de Sangre" aria-label="Email" required />
+                                            <input type="text" class="form-control" name="tipo_sangre"
+                                                id="tipo_sangre" placeholder="Digita tu Tipo de Sangre"
+                                                aria-label="Email" oninput="this.value = this.value.toUpperCase();"
+                                                required />
                                         </div>
                                     </div>
 
@@ -119,37 +127,39 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" oninput="this.value = this.value.toUpperCase();" name="rango" id="rango"
+                                            <input type="text" class="form-control" name="rango" id="rango"
                                                 placeholder="Digita tu Rango o Grado" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
+                                                aria-describedby="basic-addon1"
+                                                oninput="this.value = this.value.toUpperCase();" required />
                                         </div>
                                     </div>
-
 
                                 </div>
 
                                 <div class="col-md-6 col-lg-4">
 
-                                    <div class="form-group">
-                                        <label for="email2">Apellidos</label>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" id="basic-addon1"><i
-                                                    class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" oninput="this.value = this.value.toUpperCase();" name="apellidos" id="apellidos"
-                                                placeholder="Digita tus Apellidos" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
-                                        </div>
-                                    </div>
+                                    <!--<div class="form-group">
+                                                <label for="email2">Apellidos</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i
+                                                            class="fa fa-user"></i></span>
+                                                    <input type="text" class="form-control" name="apellidos"
+                                                        id="apellidos" placeholder="Digita tus Apellidos"
+                                                        aria-label="Username" oninput="this.value = this.value.toUpperCase();"
+                                                        aria-describedby="basic-addon1" required />
+                                                </div>
+                                            </div>-->
 
                                     <div class="form-group">
                                         <label for="password">Ciudad de Nacimiento</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-unlock"></i></span>
-                                            <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control" name="ciudad_nacimiento" id="ciudad_nacimiento"
+                                            <input type="text" class="form-control" name="ciudad_nacimiento"
+                                                id="ciudad_nacimiento"
+                                                oninput="this.value = this.value.toUpperCase();"
                                                 placeholder="Digita tu Ciudad de Nacimiento" required />
                                         </div>
-
                                     </div>
 
                                     <div class="form-group">
@@ -162,34 +172,82 @@
 
                                                 <option value="" selected disabled>Selecciona:</option>
 
-                                            @foreach ($dependencias as $item)
-                                                <option value="{{$item->id}}">{{$item->provincia}} - {{$item->nombre_distrito}} - {{$item->parroquia}} </option>
-                                            @endforeach
+                                                @foreach ($dependencias as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->provincia }} -
+                                                        {{ $item->nombre_distrito }} - {{ $item->parroquia }} </option>
+                                                @endforeach
 
                                             </select>
                                         </div>
                                     </div>
 
 
+
                                 </div>
+
 
                                 <div class="card-action">
-                                    <button type="submit" class="btn btn-secondary">Guardar</button>
+
+                                    <h1 class="card-title">Generar Credenciales</h1>
                                 </div>
 
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="email2">Correo</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fa fa-user"></i></span>
+                                            <input type="text" class="form-control" name="email" id="email"
+                                                placeholder="Digita un Correo" aria-label="email"
+                                                aria-describedby="basic-addon1"
+                                                oninput="this.value = this.value.toUpperCase();" required />
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-6 col-lg-4">
+
+                                    <div class="form-group">
+                                        <label for="password">Contraseña</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                    class="fas fa-unlock"></i></span>
+                                            <input type="password" class="form-control" name="password"
+                                                id="password" placeholder="Digita una Contraseña" required />
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                
+
+
+
                             </div>
-                        </form>
+
+
+
+
+                            <div class="card-action">
+                                <button type="submit" class="btn btn-secondary">Guardar</button>
+                            </div>
 
                     </div>
-
-
-
-
+                    </form>
 
                 </div>
+
+
+
+
+
             </div>
         </div>
     </div>
+</div>
 </div>
 
 

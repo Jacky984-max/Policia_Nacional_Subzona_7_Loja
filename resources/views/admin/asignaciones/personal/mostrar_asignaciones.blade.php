@@ -66,7 +66,7 @@
                                         <tr>
                                             <td>{{ $i++ }}</td>
                                             <td>
-                                                {{ $asignar->personal->nombres }} {{ $asignar->personal->apellidos }}
+                                                {{ $asignar->personal->nombre }} 
                                             </td>
                                             <td>
                                                 {{ $asignar->dependencia->nombre_sub_circuito }}

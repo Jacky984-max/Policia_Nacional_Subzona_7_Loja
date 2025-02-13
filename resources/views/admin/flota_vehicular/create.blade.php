@@ -147,7 +147,7 @@
 
                                                 @foreach ($personal as $item)
                                             
-                                                    <option value="{{$item->id}}">{{$item->nombres}} {{$item->apellidos}}</option>
+                                                    <option value="{{$item->id}}">{{$item->nombre}}</option>
                                                 @endforeach
 
                                             </select>
