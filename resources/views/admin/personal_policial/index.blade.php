@@ -16,7 +16,8 @@
 
             </div>
             <div class="ms-md-auto py-2 py-md-0">
-                <a href="{{ route('personal_policial.create') }}" class="btn btn-primary btn-round ms-auto me-2"><i class="fa fa-plus"></i>
+                <a href="{{ route('personal_policial.create') }}" class="btn btn-primary btn-round ms-auto me-2"><i
+                        class="fa fa-plus"></i>
                     Agregar
                 </a>
             </div>
@@ -41,6 +42,16 @@
                             </div>
                         @endif
 
+                        @if (session('email'))
+                            <div class="alert alert-info">
+                                <p><strong>Usuario:</strong> {{ session('email') }}</p>
+                                <p><strong>Contraseña:</strong> {{ session('password') }}</p>
+                                <p>Recuerda cambiar tu contraseña al iniciar sesión.</p>
+                            </div>
+                        @endif
+
+
+
                         <!----INICIO DE LA TABLA--->
                         <div class="table-responsive">
 
@@ -50,14 +61,14 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Cédula</th>
-                                        <th>Nombres y Apellidos</th>
+                                        <th>Nombre y Apellido</th>
                                         <th>Tipo de Sangre</th>
                                         <th>Ciudad de Nacimiento</th>
                                         <th>Celular</th>
-                                        <th>Rango</th>
                                         <th>Dependencia</th>
                                         <th>Estado</th>
-                                        <th style="width: 10%">Acciones</th>
+                                        <!--<th>Asignar Personal</th>-->
+                                        <th style="width: 100%">Acciones</th>
                                     </tr>
                                 </thead>
 
@@ -66,16 +77,15 @@
                                     @php $i=1; @endphp
 
                                     @foreach ($personal as $pers)
-
-
                                         <tr>
                                             <td>{{ $i++ }}</td>
                                             <td>
                                                 {{ $pers->cedula }}
                                             </td>
                                             <td>
-                                                {{$pers->nombres}} {{$pers->apellidos}}
+                                                {{ $pers->nombre }}
                                             </td>
+                                            
                                             <td>
                                                 {{ $pers->tipo_sangre }}
                                             </td>
@@ -85,42 +95,61 @@
                                             <td>
                                                 {{ $pers->celular }}
                                             </td>
-                                            <td>
-                                                {{ $pers->rango }}
-                                            </td>
+
 
                                             <td>
-                                                {{ $pers->dependencia->nombre_distrito}}
-
+                                                {{ $pers->dependencia->nombre_distrito }}
                                             </td>
+
+
 
                                             <td>
                                                 <div class="badge badge-shadow"
-                                                style="background-color: {{ $pers->estado_asignacion === 'Asignado' ? '#28a745' : '#dc3545' }}; color: white;">
-                                                {{ $pers->estado_asignacion }}
-                                            </div>
-
+                                                    style="background-color: {{ $pers->estado_asignacion === 'Asignado' ? '#28a745' : '#dc3545' }}; color: white;">
+                                                    {{ $pers->estado_asignacion }}
+                                                </div>
                                             </td>
+
+                                            <!--<td>
+                                                                
+                                                        <a href="{{ route('vincular_personal.create', $pers->id) }}"
+                                                            class="btn btn-warning text-white">
+                                                            Asignar
+                                                        </a>
+
+                                                
+                                                </td>-->
 
 
                                             <td>
                                                 <div class="form-button-action">
-                                                   
-                                                    <a type="button" href="{{ route('personal_policial.edit', $pers->id) }}" data-bs-toggle="tooltip" title="Editar"
+                                                    <a type="button"
+                                                        href="{{ route('personal_policial.edit', $pers->id) }}"
+                                                        data-bs-toggle="tooltip" title="Editar"
                                                         class="btn btn-link btn-primary btn-lg"
                                                         data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    
-                                                    <a data-bs-toggle="modal" title="Eliminar" data-bs-target="#createAKIKeyModal-{{ $pers->id }}" class="btn btn-link btn-danger" data-original-title="Remove">
+
+                                                    <!--<button type="button" data-bs-toggle="tooltip" title=""
+                                                                            class="btn btn-link btn-danger" data-original-title="Remove">
+                                                                            <i class="fa fa-times"></i>
+                                                                        </button>-->
+
+                                                    <a data-bs-toggle="modal" title="Eliminar"
+                                                        data-bs-target="#createAKIKeyModal-{{ $pers->id }}"
+                                                        class="btn btn-link btn-danger" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
                                                     </a>
+
+
+
                                                 </div>
                                             </td>
                                         </tr>
 
-                                         <!--MODAL PARA ELIMINAR PERSONAL-->
-                                         <div class="modal fade" id="createAKIKeyModal-{{ $pers->id }}"
+                                        <!--MODAL PARA ELIMINAR PERSONAL-->
+                                        <div class="modal fade" id="createAKIKeyModal-{{ $pers->id }}"
                                             tabindex="-1" aria-labelledby="createAKIKeyModalLabel" role="dialog"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -144,7 +173,8 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cerrar</button>
-                                                        <form action="{{ route('personal_policial.eliminar', $pers->id) }}"
+                                                        <form
+                                                            action="{{ route('personal_policial.eliminar', $pers->id) }}"
                                                             method="get">
                                                             @method('DELETE')
                                                             @csrf
@@ -156,9 +186,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
-                                        @endforeach
+                                    @endforeach
 
                                 </tbody>
                             </table>
@@ -191,15 +219,13 @@
 </script>
 
 @if (session('eliminar') == 'personal eliminado')
-
-<script>
-    Swal.fire(
-        'Eliminado!',
-        'Personal Eliminado con Éxito',
-        'success'
-    )
-</script>
-
+    <script>
+        Swal.fire(
+            'Eliminado!',
+            'Personal Eliminado con Éxito',
+            'success'
+        )
+    </script>
 @endif
 
 @endsection

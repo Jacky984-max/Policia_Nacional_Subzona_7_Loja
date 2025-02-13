@@ -24,14 +24,15 @@ class StorePersonalRequest extends FormRequest
         return [
             //
             'cedula' => 'required',
-            'nombres' => 'required',
-            'apellidos' => 'required',
+            'nombre' => 'required|string|max:255',
             'fecha_nacimiento' => 'required',
             'tipo_sangre' => 'required',
             'ciudad_nacimiento' => 'required',
             'celular' => 'required',
             'rango' => 'required',
             'dependencia_id' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
         ];
     }
 }

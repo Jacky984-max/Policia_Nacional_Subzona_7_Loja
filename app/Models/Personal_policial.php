@@ -18,4 +18,9 @@ class Personal_policial extends Model
     {
         return $this->belongsTo(Dependencia::class);
     }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

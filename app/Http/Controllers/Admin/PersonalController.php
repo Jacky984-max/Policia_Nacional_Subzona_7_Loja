@@ -7,7 +7,10 @@ use App\Http\Requests\StorePersonalRequest;
 use App\Http\Requests\UpdatePersonalRequest;
 use App\Models\Dependencia;
 use App\Models\Personal_policial;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class PersonalController extends Controller
 {
@@ -31,7 +34,9 @@ class PersonalController extends Controller
         //
         $dependencias = Dependencia::all();
 
-        return view('admin.personal_policial.create', compact('dependencias'));
+        $roles = Role::all();
+
+        return view('admin.personal_policial.create', compact('dependencias', 'roles'));
     }
 
     /**
@@ -40,17 +45,27 @@ class PersonalController extends Controller
     public function store(StorePersonalRequest $request)
     {
         //
-        $policial = Personal_policial::create($request->validated() + [
 
+        $user = User::create([
+            'name' => $request->nombre,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), 
+            'tipo_usuario' => 'policia', 
+        ]);
+
+        $user->assignRole('policia');
+
+        $policial = Personal_policial::create($request->validated() + [
+            'nombre' => $request->nombre,
             'cedula' => $request->cedula,
-            'nombres' => $request->nombres,
-            'apellidos' => $request->apellidos,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'tipo_sangre' => $request->tipo_sangre,
             'ciudad_nacimiento' => $request->ciudad_nacimiento,
             'celular' => $request->celular,
             'rango' => $request->rango,
             'dependencia_id' => $request->dependencia_id,
+            'email' => $request->email,
+            'user_id' => $user->id,
         ]);
 
         $policial->saveOrFail();

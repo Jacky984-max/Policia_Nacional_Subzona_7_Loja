@@ -16,9 +16,9 @@
 
             </div>
             <div class="ms-md-auto py-2 py-md-0">
-                <a href="{{ route('flota_vehicular.create') }}" class="btn btn-primary btn-round ms-auto me-2"><i
+                <a href="{{ route('flota_vehicular.create')}}" class="btn btn-primary btn-round ms-auto me-2"><i
                         class="fa fa-plus"></i>
-                    Agregar
+                    Agregar Vehículo
                 </a>
             </div>
         </div>
@@ -43,35 +43,37 @@
                         @endif
 
                         <!----INICIO DE LA TABLA--->
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="overflow-x: auto; max-width: 100%;">
 
-                            <table id="add-row" class="display table table-striped table-hover">
 
+                            <table id="basic-datatables" class="display table table-striped table-hover"
+                                style="table-layout: auto; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Placa</th>
-                                        <th>Tipo de Vehiculo</th>
+                                        <th>Tipo de Vehículo</th>
                                         <th>Marca</th>
                                         <th>Modelo</th>
-                                        <th>Chasis </th>
+                                        <th>Chasis</th>
                                         <th>Motor</th>
                                         <th>Kilometraje</th>
                                         <th>Cilindraje</th>
                                         <th>Capacidad Carga</th>
                                         <th>Estado</th>
                                         <th style="width: 10%">Acciones</th>
+
+
+
                                     </tr>
                                 </thead>
 
                                 <tbody>
-
                                     @php $i=1; @endphp
 
                                     @foreach ($flota as $vehi)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-
                                             <td>{{ $vehi->placa }}</td>
                                             <td>{{ $vehi->tipo_vehiculo }}</td>
                                             <td>{{ $vehi->marca }}</td>
@@ -82,26 +84,39 @@
                                             <td>{{ $vehi->cilindraje }}</td>
                                             <td>{{ $vehi->capacidad_carga }}</td>
                                             <td>
-                                              
+                                                <!--<div class="badge badge-danger badge-shadow">
+
+                                                                    {{ $vehi->estado_asignacion }}
+                                                                </div>-->
+
                                                 <div class="badge badge-shadow"
                                                     style="background-color: {{ $vehi->estado_asignacion === 'Asignado' ? '#28a745' : '#dc3545' }}; color: white;">
                                                     {{ $vehi->estado_asignacion }}
                                                 </div>
 
-                                            </td>
 
+
+                                            </td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    
-                                                    <a href="{{ route('flota_vehicular.edit', $vehi->id ) }}" data-bs-toggle="tooltip" title="Editar"
+                                                    <a href="{{ route('flota_vehicular.edit', $vehi->id) }}"
+                                                        data-bs-toggle="tooltip" title="Editar"
                                                         class="btn btn-link btn-primary btn-lg"
                                                         data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a data-bs-toggle="modal" title="Eliminar" data-bs-target="#createAKIKeyModal-{{ $vehi->id }}" class="btn btn-link btn-danger" data-original-title="Remove">
+
+                                                    <a data-bs-toggle="modal" title="Eliminar"
+                                                        data-bs-target="#createAKIKeyModal-{{ $vehi->id }}"
+                                                        class="btn btn-link btn-danger" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
                                                     </a>
-                                                
+
+                                                    <!--<a href="{{ route('asignacion.index') }}" data-bs-toggle="tooltip"
+                                                                title="Asignar" class="btn btn-link btn-primary btn-lg"
+                                                                data-original-title="Edit Task">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>-->
 
                                                 </div>
                                             </td>
@@ -144,10 +159,10 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     @endforeach
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -176,17 +191,17 @@
     });
 </script>
 
+
 @if (session('eliminar') == 'flota vehicular eliminada')
-
-<script>
-    Swal.fire(
-        'Eliminado!',
-        'Flota Vehicular Eliminada con Éxito',
-        'success'
-    )
-</script>
-
+    <script>
+        Swal.fire(
+            'Eliminado!',
+            'Flota Vehicular Eliminada con Éxito',
+            'success'
+        )
+    </script>
 @endif
+
 
 <script>
     $(document).ready(function() {

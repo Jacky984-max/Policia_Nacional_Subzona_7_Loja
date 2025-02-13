@@ -64,8 +64,8 @@
                                                 <option value="" selected disabled>Selecciona:</option>
                                                 @foreach ($perso_policial as $pers)
                                                     <option value="{{ $pers->id }}">
-                                                        {{ $pers->nombres }} - {{ $pers->apellidos }}
-                                                        {{ $pers->rango }}
+                                                        {{ $pers->nombre }}
+                                                       
                                                     </option>
                                                 @endforeach
                                             </select>
