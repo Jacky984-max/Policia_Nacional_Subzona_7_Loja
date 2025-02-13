@@ -11,7 +11,7 @@ class Vehiculo extends Model
 
     protected  $guarded = [
         'id',
-        
+
     ];
 
     public function personal()
@@ -19,5 +19,13 @@ class Vehiculo extends Model
         return $this->belongsTo(Personal_policial::class);
     }
 
+    public function mantenimientos()
+    {
+        return $this->hasMany(Mantenimiento::class);
+    }
 
+    public function personalPolicial()
+    {
+        return $this->belongsTo(Personal_policial::class, 'personal_id');
+    }
 }

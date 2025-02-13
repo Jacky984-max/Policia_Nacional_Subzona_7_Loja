@@ -24,4 +24,14 @@ class SolicitudMantenimiento extends Model
     {
         return $this->hasOne(Mantenimiento::class);
     }
+
+    public function confirmadoPor()
+    {
+        return $this->belongsTo(User::class, 'confirmado_por');
+    }
+
+    public function personalPolicial()
+    {
+        return $this->belongsTo(Personal_policial::class, 'policia_id');
+    }
 }

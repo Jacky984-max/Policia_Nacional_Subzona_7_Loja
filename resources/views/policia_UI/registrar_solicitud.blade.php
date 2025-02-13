@@ -76,7 +76,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <label for="defaultSelect">{{ __('Solicitante') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
@@ -90,79 +90,38 @@
                                                 </option>
                                             </select>
                                         </div>
+                                    </div>-->
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Policia:</label>
+                                        <input type="text" class="form-control" value="{{ Auth::user()->personalPolicial->nombre }}" disabled>
                                     </div>
 
-                                    <div class="input-group">
-                                        <label>{{ __('Observaciones') }}</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-envelope"></i>
-                                                </div>
-                                            </div>
-                                            <textarea oninput="this.value = this.value.toUpperCase();" class="form-control" id="observacion" name="observacion"
-                                                required>
-                                            </textarea>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="col-md-6 col-lg-4">
 
                                     <div class="form-group">
-                                        <label for="defaultSelect">{{ __('Tipo de Mantenimiento') }}</label>
+                                        <label for="fecha_ingreso" class="form-label">{{ __('Fecha y Hora') }}</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fas fa-user-cog"></i></span>
-                                            <select class="form-select form-control" name="tipo_mantenimiento"
-                                                id="tipo_mantenimiento">
-
-                                                <option value="" selected disabled>Selecciona:</option>
-
-                                                <option value="Preventivo">Preventivo</option>
-                                                <option value="Correctivo">Correctivo</option>
-
-                                            </select>
+                                            <input type="datetime-local" class="form-control" id="fecha_hora"
+                                                name="fecha_hora" value="<?php echo date('Y-m-d'); ?>" required>
                                         </div>
                                     </div>
-
-
 
                                     <div class="form-group">
-                                        <label for="email2">{{ __('Fecha de Solicitud') }}</label>
-
+                                        <label>{{ __('Observaciones Adicionales') }}</label>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text" id="basic-addon1"><i
-                                                    class="fa fa-user"></i></span>
-                                            <input readonly type="date" name="fecha_hora" id="fecha_hora"
-                                                class="form-control" value="<?php echo date('Y-m-d'); ?>">
-                                            <?php
-                                            
-                                            use Carbon\Carbon;
-                                            
-                                            $fecha_hora = Carbon::now()->toDateTimeString();
-                                            ?>
-                                            <input type="hidden" name="fecha_hora" value="{{ $fecha_hora }}">
-
+                                            <textarea oninput="this.value = this.value.toUpperCase();" class="form-control" id="observacion" name="observacion"
+                                                rows="3" required></textarea>
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="col-md-6 col-lg-4">
-
-                                    <div class="input-group">
-                                        <label>{{ __('Descripción del Problema') }}</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-envelope"></i>
-                                                </div>
-                                            </div>
-                                            <textarea oninput="this.value = this.value.toUpperCase();" class="form-control" id="descripcion" name="descripcion"
-                                                required>
-                                            </textarea>
-                                        </div>
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="email2">{{ __('Kilometraje Actual') }}</label>
