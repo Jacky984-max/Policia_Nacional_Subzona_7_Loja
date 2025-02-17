@@ -32,6 +32,14 @@
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Listar Dependencias</h4>
 
+                            <a href="{{ route('reportes.dependencias') }}"
+                            class="btn btn-label-success ms-auto btn-round me-4">
+                            <span class="btn-label">
+                                <i class="fa fa-pencil"></i>
+                            </span>
+                            Descargar Reporte
+                        </a>
+
                         </div>
                     </div>
                     <div class="card-body">
@@ -57,6 +65,7 @@
                                         <th>Código de Distrito</th>
                                         <th>Nombre de Distrito</th>
                                         <th>Número de Distrito</th>
+                                        <th>Nombre de Cicuito</th>
                                         <th style="width: 10%">Acciones</th>
                                     </tr>
                                 </thead>
@@ -91,6 +100,11 @@
                                                 {{ $dp->numero_distrito }}
                                             </td>
                                           
+                                            <td>
+                                                {{ $dp->nombre_circuito }}
+                                            </td>
+                                           
+
                                           
                                             <td>
                                                 <div class="form-button-action">

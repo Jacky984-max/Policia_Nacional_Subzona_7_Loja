@@ -138,17 +138,7 @@
 
                                 <div class="col-md-6 col-lg-4">
 
-                                    <!--<div class="form-group">
-                                                <label for="email2">Apellidos</label>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="fa fa-user"></i></span>
-                                                    <input type="text" class="form-control" name="apellidos"
-                                                        id="apellidos" placeholder="Digita tus Apellidos"
-                                                        aria-label="Username" oninput="this.value = this.value.toUpperCase();"
-                                                        aria-describedby="basic-addon1" required />
-                                                </div>
-                                            </div>-->
+                               
 
                                     <div class="form-group">
                                         <label for="password">Ciudad de Nacimiento</label>
@@ -200,7 +190,7 @@
                                             <input type="text" class="form-control" name="email" id="email"
                                                 placeholder="Digita un Correo" aria-label="email"
                                                 aria-describedby="basic-addon1"
-                                                oninput="this.value = this.value.toUpperCase();" required />
+                                                 required />
                                         </div>
                                     </div>
 

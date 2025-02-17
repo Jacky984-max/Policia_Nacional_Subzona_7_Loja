@@ -241,7 +241,7 @@
 
           
 
-              @if (auth()->user()->hasRole('gerencia'))
+     @can('reportes.gerencia')
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#dev">
                     <i class="fas fa-table"></i>
@@ -251,15 +251,15 @@
                 <div class="collapse" id="dev">
                     <ul class="nav nav-collapse">
                         <li>
-                            <a href="">
-                                <span class="sub-item">Reportes del Personal</span>
+                            <a href="{{ route('reportes.gerencia')}}">
+                                <span class="sub-item">Mostrar Reportes</span>
                             </a>
                         </li>
 
                     </ul>
                 </div>
             </li>
-            @endif
+            @endcan
 
             
               

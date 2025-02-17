@@ -25,8 +25,7 @@ class UpdatePersonalRequest extends FormRequest
             //
 
             'cedula' => 'required',
-            'nombres' => 'required',
-            'apellidos'  => 'required',
+            //'nombre' => 'required',
             'fecha_nacimiento' => 'required',
             'tipo_sangre'  => 'required',
             'ciudad_nacimiento'  => 'required',

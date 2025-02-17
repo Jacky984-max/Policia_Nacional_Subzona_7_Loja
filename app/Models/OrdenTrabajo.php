@@ -20,4 +20,22 @@ class OrdenTrabajo extends Model
     {
         return $this->belongsTo(Mantenimiento::class);
     }
+
+    public function entregadoPor()
+    {
+        return $this->belongsTo(Personal_policial::class, 'personal_entrego_id');
+    }
+
+    public function recibidoPor()
+    {
+        return $this->belongsTo(Personal_policial::class, 'personal_recibio_id');
+    }
+    public function entregaVehiculo()
+    {
+        return $this->hasOne(EntregaVehiculo::class);
+    }
+
+
+   
+
 }

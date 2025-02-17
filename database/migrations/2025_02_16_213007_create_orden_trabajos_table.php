@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('orden_trabajos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('mantenimiento_id')->constrained('mantenimientos')->onDelete('cascade'); // Relacionado con el mantenimiento
-            $table->dateTime('fecha_generacion'); 
-            $table->text('detalle_mantenimiento'); 
+            $table->dateTime('fecha_generacion'); // Fecha de emisión de la orden
+            $table->text('detalle_mantenimiento'); // Descripción de los trabajos realizados
             $table->enum('estado', ['Pendiente', 'Finalizado'])->default('Pendiente');
             $table->timestamps();
         });

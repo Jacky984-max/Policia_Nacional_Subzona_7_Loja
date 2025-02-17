@@ -104,8 +104,7 @@ class PersonalController extends Controller
         $poli = Personal_policial::find($request->hidden_id);
         
         $poli->cedula = $request->cedula;
-        $poli->nombres = $request->nombres;
-        $poli->apellidos = $request-> apellidos;
+        $poli->nombre = $request->nombre;
         $poli->fecha_nacimiento = $request-> fecha_nacimiento;
         $poli->tipo_sangre = $request-> tipo_sangre;
         $poli->ciudad_nacimiento = $request-> ciudad_nacimiento;

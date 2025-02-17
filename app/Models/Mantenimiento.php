@@ -14,7 +14,7 @@ class Mantenimiento extends Model
         'fecha_ingreso',
         'kilometraje',
         'tipo_vehiculo',
-        'placa', 
+        'placa',
         'marca',
         'modelo',
         'asunto',
@@ -24,7 +24,6 @@ class Mantenimiento extends Model
         'subtotal',
         'iva',
         'total',
-
     ];
 
     public function solicitud()

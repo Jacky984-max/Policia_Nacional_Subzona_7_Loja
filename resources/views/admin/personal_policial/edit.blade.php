@@ -106,10 +106,10 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="basic-addon1"><i
                                                     class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="nombres" id="nombres"
+                                            <input type="text" class="form-control" name="nombre" id="nombre"
                                                 placeholder="Digita tu nombre" aria-label="Username"
                                                 aria-describedby="basic-addon1"
-                                                value="{{ old('nombres', $personal_pro->nombres) }}" />
+                                                value="{{ old('nombre', $personal_pro->nombre) }}" />
                                         </div>
                                     </div>
 
@@ -141,17 +141,7 @@
 
                                 <div class="col-md-6 col-lg-4">
 
-                                    <div class="form-group">
-                                        <label for="email2">Apellidos</label>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" id="basic-addon1"><i
-                                                    class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" name="apellidos"
-                                                id="apellidos" placeholder="Digita tus Apellidos"
-                                                aria-label="Username" aria-describedby="basic-addon1"
-                                                value="{{ old('apellidos', $personal_pro->apellidos) }}" />
-                                        </div>
-                                    </div>
+                                 
 
                                     <div class="form-group">
                                         <label for="password">Ciudad de Nacimiento</label>

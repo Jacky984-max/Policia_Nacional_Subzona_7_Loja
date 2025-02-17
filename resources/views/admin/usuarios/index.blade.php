@@ -31,6 +31,13 @@
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Listar Usuarios</h4>
 
+                            <a href="{{ route('reportes.usuarios') }}" class="btn btn-label-success ms-auto btn-round me-4">
+                                <span class="btn-label">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                Descargar Reporte
+                            </a>
+
                         </div>
                     </div>
                     <div class="card-body">

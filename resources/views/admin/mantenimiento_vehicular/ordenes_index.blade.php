@@ -51,8 +51,8 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Fecha</th>
-                                            <th>Detalle</th>
+                                            <th>Fecha de Registro</th>
+                                            
                                             <th>Estado</th>
                                             <th style="width: 10%">Acciones</th>
                                         </tr>
@@ -65,17 +65,9 @@
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <td>
-                                                    
-                                                    <p class="fw-semibold mb-1"><span class="m-1"><i
-                                                        class="fas fa-calendar-alt"></i></span>{{ \Carbon\Carbon::parse($orden->fecha_generacion)->format('d-m-Y') }}
-                                                    </p>
-                                                     <p class="fw-semibold mb-0"><span class="m-1"><i
-                                                        class="far fa-clock"></i></span>{{ \Carbon\Carbon::parse($orden->fecha_generacion)->format('H:i') }}
-                                            </p>
+                                                    {{ $orden->fecha_generacion }}
                                                 </td>
-
-                                                <td> {{ $orden->detalle_mantenimiento }}</td>
-                                                
+                                               
                                                 <td>
                                                     <span
                                                         class="badge {{ $orden->estado == 'Finalizado' ? 'bg-success' : 'bg-warning' }}">
@@ -83,34 +75,36 @@
                                                     </span>
                                                 </td>
 
-                                                
+
 
                                                 <td>
 
                                                     <div class="dropdown">
-                                                        <button class="btn btn-sm btn-label-dark dropdown-toggle"
-                                                            type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                            Acciones
-                                                        </button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('ordenes.pdf', $orden->id) }}">Descargar
-                                                                PDF</a>
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('ordenes.imprimir', $orden->id) }}">Imprimir</a>
+                                                   
+                                                        <a class="dropdown-item m-3"
+                                                            href="{{ route('ordenes.ver', ['ver' => $orden]) }}">
+                                                            <i class="fas fa-eye text-success"></i> Detalles
+                                                        </a>
 
-                                                            @if ($orden->estado == 'Pendiente')
-                                                                <form action="{{ route('ordenes.finalizar', $orden->id) }}"
-                                                                    method="POST" style="display:inline;">
-                                                                    @csrf
-                                                                    @method('PUT')
-                                                                    <button type="submit" class="btn btn-sm btn-success m-3">Finalizar</button>
-                                                                        
-                                                                </form>
-                                                            @endif
-                                                        </div>
+                                                        @if ($orden->estado == 'Pendiente')
+                                                            <form action="{{ route('ordenes.finalizar', $orden->id) }}"
+                                                                method="POST" style="display:inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit"
+                                                                    class="btn btn-sm btn-success m-3">Finalizar</button>
 
+                                                            </form>
+                                                        @endif
+
+
+                                                        @if (!$orden->entregaVehiculo)
+                                                            <a href="{{ route('entregas.create', $orden->id) }}"
+                                                                class="btn btn-success">Registrar Entrega</a>
+                                                        @else
+                                                            <p class="text-success">✅ Vehículo entregado el
+                                                                {{ $orden->entregaVehiculo->fecha_entrega }}</p>
+                                                        @endif
 
                                                     </div>
 
@@ -122,6 +116,11 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
+                                <!-- 🛠️ Formulario de Entrega del Vehículo -->
+
+
+
 
                             </div>
                         </div>
