@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AsignacionController;
 use App\Http\Controllers\Admin\AsignacionVehiculoController;
 use App\Http\Controllers\Admin\DependenciaController;
+use App\Http\Controllers\Admin\EntregaVehiculoController;
 use App\Http\Controllers\Admin\FlotaVehicularController;
 use App\Http\Controllers\Admin\MantenimientoController;
 use App\Http\Controllers\Admin\OrdenTrabajoController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\SalirController;
 use App\Http\Controllers\Admin\PerfilController;
 use App\Http\Controllers\Admin\PersonalController;
 use App\Http\Controllers\Admin\ReclamoController;
+use App\Http\Controllers\Admin\ReporteController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VincularPersonalController;
 use App\Http\Controllers\Policia\SolicitudController;
@@ -42,7 +44,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', function () {
-        return view('admin.sistema');
+        return view('admin.tablero');
     })->name('dashboard');
 
     Route::controller(SalirController::class)->group(function () {
@@ -127,16 +129,39 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/mantenimiento', 'Index')->name('mantenimiento.index');
         Route::get('/mantenimientos/registro/{id}', 'Create')->name('mantenimientos.registro');
         Route::post('/mantenimientos/guardar/{id}', 'Store')->name('mantenimientos.guardar');
+        Route::get('/mantenimientos/show/{mante}', 'Show')->name('mantenimientos.show');
+        Route::get('/ordenes/detalles/{ver}', 'verOrden')->name('ordenes.ver');
         Route::get('/mantenimientos/eliminar/{id}', 'Destroy')->name('mantenimientos.eliminar');
-    });
-
-    Route::controller(OrdenTrabajoController::class)->group(function () {
-        Route::get('/orden-trabajo', 'Index')->name('ordenes.index');
+        
+        Route::get('/orden-trabajo', 'Vista_Orden')->name('ordenes.index');
         Route::get('/orden-trabajo/generar/{mantenimiento_id}', 'generarOrdenTrabajo')->name('ordenes.generar');
         Route::put('/ordenes-trabajo/finalizar/{id}', 'finalizar')->name('ordenes.finalizar');
         Route::get('/ordenes-trabajo/pdf/{id}', 'descargarPDF')->name('ordenes.pdf');
         Route::get('/ordenes-trabajo/imprimir/{id}', 'imprimir')->name('ordenes.imprimir');
     });
+
+
+    Route::controller(ReporteController::class)->group(function () {
+        Route::get('/reportes/personal', 'personal')->name('reportes.personal');
+        Route::get('/reportes/usuarios', 'usuarios')->name('reportes.usuarios');
+        Route::get('/reportes/mantenimientos', 'mantenimientos')->name('reportes.mantenimientos');
+        Route::get('/reportes/solicitudes', 'solicitudes')->name('reportes.solicitudes');
+        Route::get('/reportes/dependecnias', 'dependencias')->name('reportes.dependencias');
+        Route::get('/reportes/vehiculos', 'vehiculos')->name('reportes.vehiculos');
+
+        //
+        Route::get('/reportes/gerencia', 'index')->name('reportes.gerencia');
+        Route::get('/reportes/gerencia/pdf', 'generarPDF')->name('reportes.gerencia.pdf');
+
+    });
+
+    Route::controller(EntregaVehiculoController::class)->group(function () {
+        Route::get('/entregas/{id}/crear', 'create')->name('entregas.create');
+        Route::post('/entregas/{id}/guardar', 'store')->name('entregas.store');
+
+    });
+
+
 });
 
 //RUTA PARA USUARIO FINAL SIN AUTENTICACION//

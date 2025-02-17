@@ -35,8 +35,8 @@
                             <!--<img src="" alt="..." class="avatar-img rounded-circle" />-->
                         </div>
                         <span class="profile-username">
-                           
                             <span class="op-7 fw-bold">{{ Auth::user()->name }} </span><br>
+
                             <span class="fw-bold">{{ Auth::user()->roles->first()->name }}</span>
                         </span>
                     </a>
@@ -53,9 +53,23 @@
                                     <div class="u-text">
 
                                         <h4>{{ Auth::user()->name }} </h4>
-                                        <p class="text-muted">{{ Auth::user()->roles->first()->name }}</p>
+                                    
                                         <!--<a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View
                                             Profile</a>-->
+
+                                            <p class="text-muted">
+                                            
+                                                @if (Auth::check())
+                                                    Rol: {{ Auth::user()->roles->first()->name ?? 'Sin rol' }} <br>
+                                                    @if (Auth::user()->personalPolicial)
+                                                        Rango: {{ Auth::user()->personalPolicial->rango }}
+                                                    @else
+                                                        Rango: No asignado
+                                                    @endif
+                                                @else
+                                                    Usuario no autenticado
+                                                @endif
+                                            </p>
                                     </div>
                                 </div>
                             </li>

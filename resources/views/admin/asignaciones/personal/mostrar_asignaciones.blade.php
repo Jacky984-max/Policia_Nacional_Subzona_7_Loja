@@ -52,7 +52,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Personal Asignado</th>
-                                        <th>Subcircuito</th>
+                                        <th>Subcircuito</th>                                  
                                         <th>Fecha de Asignación</th>
                                         <th>Observación</th>
                                         <th style="width: 10%">Acciones</th>

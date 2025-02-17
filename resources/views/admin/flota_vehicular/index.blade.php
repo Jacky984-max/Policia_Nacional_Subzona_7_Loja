@@ -30,6 +30,12 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Listar Flota Vehicular</h4>
+                            <a href="{{ route('reportes.vehiculos') }}" class="btn btn-label-success ms-auto btn-round me-4">
+                                <span class="btn-label">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                                Descargar Reporte
+                            </a>
 
                         </div>
                     </div>
