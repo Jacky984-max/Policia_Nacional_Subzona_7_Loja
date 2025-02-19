@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" name="csrf-token" content="{{ csrf_token() }}" />
     <title>Gestión Flota Policial Sub-Zona 7 Loja @yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="" type="image/x-icon" />
@@ -62,7 +62,7 @@
 
         </div>
 
-        @yield('js')
+        @stack('js')
         <script src="{{ asset('assets/js/core/jquery-3.7.1.min.js') }}"></script>
         <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
         <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>

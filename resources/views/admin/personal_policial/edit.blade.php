@@ -80,7 +80,6 @@
                                                 value="{{ old('fecha_nacimiento', $personal_pro->fecha_nacimiento) }}">
                                         </div>
 
-
                                     </div>
 
                                     <div class="form-group">
@@ -141,8 +140,6 @@
 
                                 <div class="col-md-6 col-lg-4">
 
-                                 
-
                                     <div class="form-group">
                                         <label for="password">Ciudad de Nacimiento</label>
                                         <div class="input-group mb-3">
@@ -153,7 +150,6 @@
                                                 value="{{ old('ciudad_nacimiento', $personal_pro->ciudad_nacimiento) }}" />
                                         </div>
                                     </div>
-
 
                                 </div>
 
@@ -172,28 +168,5 @@
         </div>
     </div>
 </div>
-
-
-
-<script>
-    WebFont.load({
-        google: {
-            families: ["Public Sans:300,400,500,600,700"]
-        },
-        custom: {
-            families: [
-                "Font Awesome 5 Solid",
-                "Font Awesome 5 Regular",
-                "Font Awesome 5 Brands",
-                "simple-line-icons",
-            ],
-            urls: ["../assets/css/fonts.min.css"],
-        },
-        active: function() {
-            sessionStorage.fonts = true;
-        },
-    });
-</script>
-
 
 @endsection

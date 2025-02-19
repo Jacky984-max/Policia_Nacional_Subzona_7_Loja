@@ -79,6 +79,7 @@
                         <th>Tipo</th>
                         <th>Circuito</th>
                         <th>Subcircuito</th>
+                        <th>Nombre del Denunciante</th>
 
                     </tr>
                 </thead>
@@ -88,8 +89,9 @@
                         <td>{{ $item->created_at->format('d-m-Y') }}</td>
                         <td>{{ $item->updated_at->format('d-m-Y') }}</td>
                         <td>{{ $item->tipo }}</td>
-                        <td>{{ $item->circuito }}</td>
-                        <td>{{ $item->sub_circuito }}</td>
+                        <td>{{ $item->nombre_circuito }}</td>
+                        <td>{{ $item->nombre_sub_circuito }}</td>
+                        <td>{{ $item->nombres }} {{ $item->apellidos }}</td>
                     </tr>
                 @endforeach
 

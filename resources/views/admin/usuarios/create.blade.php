@@ -80,15 +80,6 @@
 
                                 <div class="col-md-6 col-lg-4">
 
-                                    <!--<div class="form-group">
-                                                                    <label for="email2">Apellido</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <span class="input-group-text" id="basic-addon1"><i
-                                                                                class="fa fa-user"></i></span>
-                                                                        <input type="text" class="form-control" placeholder="Digita tu apellido" />
-                                                                    </div>
-                                                                </div>-->
-
                                     <div class="form-group">
                                         <label for="defaultSelect">{{ __('Rol') }}</label>
                                         <div class="input-group mb-3">
@@ -130,36 +121,10 @@
 
                     </div>
 
-
-
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-<script>
-    WebFont.load({
-        google: {
-            families: ["Public Sans:300,400,500,600,700"]
-        },
-        custom: {
-            families: [
-                "Font Awesome 5 Solid",
-                "Font Awesome 5 Regular",
-                "Font Awesome 5 Brands",
-                "simple-line-icons",
-            ],
-            urls: ["../assets/css/fonts.min.css"],
-        },
-        active: function() {
-            sessionStorage.fonts = true;
-        },
-    });
-</script>
 
 @endsection

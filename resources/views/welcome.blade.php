@@ -39,6 +39,9 @@
 
 
 <section class="demo-2">
+    @if (session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
     <div id="slider" class="sl-slider-wrapper">
 
         <div class="sl-slider">

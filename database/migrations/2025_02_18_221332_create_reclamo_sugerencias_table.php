@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('reclamo_sugerencias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('provincia_id')->constrained('dependencias')->onDelete('cascade'); 
-            $table->foreignId('nombre_circuito_id')->constrained('dependencias')->onDelete('cascade'); 
-            $table->foreignId('parroquia_id')->constrained('dependencias')->onDelete('cascade');
             $table->string('tipo');
             $table->string('nombres');
             $table->string('apellidos');
             $table->char('contacto', '10');
             $table->string('detalle');
+            $table->string('nombre_circuito')->nullable();
+            $table->string('nombre_sub_circuito')->nullable();
+            $table->foreignId('dependencia_id')->constrained('dependencias')->onDelete('cascade');
             $table->timestamps();
         });
     }

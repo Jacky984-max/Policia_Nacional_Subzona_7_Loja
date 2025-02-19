@@ -20,7 +20,7 @@ class FlotaVehicularController extends Controller
         //
         $flota = Vehiculo::all();
 
-        return view('admin.flota_vehicular.index', compact('flota'));
+        return view('admin.vehiculos.index', compact('flota'));
     }
 
     /**
@@ -31,7 +31,7 @@ class FlotaVehicularController extends Controller
         //
         $personal = Personal_policial::all();
 
-        return view('admin.flota_vehicular.create', compact('personal'));
+        return view('admin.vehiculos.create', compact('personal'));
     }
 
     /**
@@ -77,7 +77,7 @@ class FlotaVehicularController extends Controller
         //
         $flove = Vehiculo::findOrFail($id);
 
-        return view('admin.flota_vehicular.edit', compact('flove'));
+        return view('admin.vehiculos.edit', compact('flove'));
     }
 
     /**

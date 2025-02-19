@@ -15,10 +15,7 @@
 
                 </div>
                 <div class="ms-md-auto py-2 py-md-0">
-                    <!--<a href="" class="btn btn-primary btn-round ms-auto me-2"><i
-                                                class="fa fa-plus"></i>
-                                            Agregar
-                                        </a>-->
+                  
                 </div>
             </div>
 
@@ -147,26 +144,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        WebFont.load({
-            google: {
-                families: ["Public Sans:300,400,500,600,700"]
-            },
-            custom: {
-                families: [
-                    "Font Awesome 5 Solid",
-                    "Font Awesome 5 Regular",
-                    "Font Awesome 5 Brands",
-                    "simple-line-icons",
-                ],
-                urls: ["{{ asset('assets/css/fonts.min.css') }}"],
-            },
-            active: function() {
-                sessionStorage.fonts = true;
-            },
-        });
-    </script>
 
     @if (session('eliminar') == 'solicitud de mantenimiento eliminada')
         <script>

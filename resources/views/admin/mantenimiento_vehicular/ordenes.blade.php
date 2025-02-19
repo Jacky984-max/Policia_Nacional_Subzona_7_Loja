@@ -12,7 +12,6 @@
     <!--<p><strong>Total:</strong> ${{ number_format($orden->total, 2) }}</p>-->
     
 
-
 </body>
 
 </html>

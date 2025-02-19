@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dependencia;
 use App\Models\ReclamoSugerencia;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,9 @@ class ReclamoSugerenciaController extends Controller
     {
         //
 
-        return view('usuario_final.reclamos.reclamos');
+        $dependencias = Dependencia::all();
+
+        return view('usuario_final.reclamos.reclamos', compact('dependencias'));
     }
 
     /**
@@ -31,14 +34,28 @@ class ReclamoSugerenciaController extends Controller
     public function store(Request $request)
     {
         //
-        $reclamos = new ReclamoSugerencia($request->input());
+        $request->validate([
+            'nombres' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'dependencia_id' => 'required|exists:dependencias,id',
+            'nombre_circuito' => 'required|string',
+            'nombre_sub_circuito' => 'required|string',
+        ]);
 
-        $reclamos->saveOrFail();
+        ReclamoSugerencia::create($request->all());
 
         return redirect()->route('welcome')->with('success', 'Reclamo Enviado con Éxito');
 
 
-        
+    }
+
+    public function getCircuitoSubcircuito($id)
+    {
+        $dependencia = Dependencia::findOrFail($id);
+        return response()->json([
+            'nombre_circuito' => $dependencia->circuito,
+            'nombre_sub_circuito' => $dependencia->subcircuito,
+        ]);
     }
 
     /**

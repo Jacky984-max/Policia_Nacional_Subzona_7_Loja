@@ -9,16 +9,19 @@ class ReclamoSugerencia extends Model
 {
     use HasFactory;
 
-   
     protected $fillable = [
-
-        'circuito',
-        'sub_circuito',
         'tipo',
         'nombres',
         'apellidos',
         'contacto',
         'detalle',
-
+        'dependencia_id',
+        'nombre_circuito',
+        'nombre_sub_circuito'
     ];
+
+    public function dependencia()
+    {
+        return $this->belongsTo(Dependencia::class, 'dependencia_id');
+    }
 }
