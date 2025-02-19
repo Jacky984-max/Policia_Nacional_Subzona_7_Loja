@@ -276,52 +276,21 @@
                                 </div>
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
                             </div>
                         </div>
         
-                     
-        
+                
                     </div>
-        
-        
-        
+    
                 </div>
             </div>
            
-
-
-
-
-
-
-
             @include('components.footer.footer')
         </div>
 
-
     </div>
 
- 
+
     <!-- General JS Scripts -->
     <script src="{{ asset('new/assets/js/app.min.js') }}"></script>
     <script src="{{ asset('new/assets/js/scripts.js') }}"></script>

@@ -57,8 +57,6 @@
                             </div>
                         @endif
 
-
-
                         <!----INICIO DE LA TABLA--->
                         <div class="table-responsive">
 
@@ -74,7 +72,6 @@
                                         <th>Celular</th>
                                         <th>Dependencia</th>
                                         <th>Estado</th>
-                                        <!--<th>Asignar Personal</th>-->
                                         <th style="width: 100%">Acciones</th>
                                     </tr>
                                 </thead>
@@ -117,17 +114,6 @@
                                                 </div>
                                             </td>
 
-                                            <!--<td>
-                                                                
-                                                        <a href="{{ route('vincular_personal.create', $pers->id) }}"
-                                                            class="btn btn-warning text-white">
-                                                            Asignar
-                                                        </a>
-
-                                                
-                                                </td>-->
-
-
                                             <td>
                                                 <div class="form-button-action">
                                                     <a type="button"
@@ -138,18 +124,11 @@
                                                         <i class="fa fa-edit"></i>
                                                     </a>
 
-                                                    <!--<button type="button" data-bs-toggle="tooltip" title=""
-                                                                            class="btn btn-link btn-danger" data-original-title="Remove">
-                                                                            <i class="fa fa-times"></i>
-                                                                        </button>-->
-
                                                     <a data-bs-toggle="modal" title="Eliminar"
                                                         data-bs-target="#createAKIKeyModal-{{ $pers->id }}"
                                                         class="btn btn-link btn-danger" data-original-title="Remove">
                                                         <i class="fa fa-times"></i>
                                                     </a>
-
-
 
                                                 </div>
                                             </td>
@@ -204,26 +183,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    WebFont.load({
-        google: {
-            families: ["Public Sans:300,400,500,600,700"]
-        },
-        custom: {
-            families: [
-                "Font Awesome 5 Solid",
-                "Font Awesome 5 Regular",
-                "Font Awesome 5 Brands",
-                "simple-line-icons",
-            ],
-            urls: ["../assets/css/fonts.min.css"],
-        },
-        active: function() {
-            sessionStorage.fonts = true;
-        },
-    });
-</script>
 
 @if (session('eliminar') == 'personal eliminado')
     <script>

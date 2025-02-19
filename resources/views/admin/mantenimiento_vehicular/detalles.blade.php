@@ -18,11 +18,6 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                                            
-
-                                            <!--<a class="dropdown-item" href="#">Generar Orden</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>-->
-
                                             @if (!$mante->ordenTrabajo)
                                                 <a href="{{ route('ordenes.generar', $mante->id) }}"
                                                     class="dropdown-item text-dark fw-semibold">
@@ -153,17 +148,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
-
-
-
-
-
 
                             </div>
 

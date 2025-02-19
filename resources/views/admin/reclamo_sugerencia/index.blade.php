@@ -52,6 +52,7 @@
                                             <th>Detalle</th>
                                             <th>Circuito</th>
                                             <th>Subcircuito</th>
+                                            <th>Fecha Inicio</th>
                                             <th style="width: 10%">Acciones</th>
                                         </tr>
                                     </thead>
@@ -72,19 +73,26 @@
                                                 </td>
 
                                                 <td>
-                                                    {{ $sur->circuito }}
+                                                    {{ $sur->nombre_circuito }}
                                                 </td>
 
                                                 <td>
-                                                    {{ $sur->sub_circuito }}
+                                                    {{ $sur->nombre_sub_circuito }}
+                                                </td>
+
+                                                <td>
+                                                    <p class="fw-semibold mb-1"><span class="m-1"><i
+                                                        class="fas fa-calendar-alt"></i></span>{{ \Carbon\Carbon::parse($sur->created_at)->format('d-m-Y') }}
+                                                    </p>
+                                                     <p class="fw-semibold mb-0"><span class="m-1"><i
+                                                        class="far fa-clock"></i></span>{{ \Carbon\Carbon::parse($sur->created_at)->format('H:i') }}
+                                                     </p>
+
+                                                   
                                                 </td>
 
                                                 <td>
                                                     <div class="form-button-action">
-
-                                                        <!--<a class="dropdown-item" href="">
-                                                                <i class="bi bi-download dropdown-item-icon text-primary"></i> Descargar Pedido
-                                                            </a>-->
 
                                                         <a href="{{ route('reclamos.decargar', $sur->id) }}" data-bs-toggle="tooltip" title="Descargar Reporte"
                                                             class="btn btn-link btn-primary btn-lg"

@@ -1,5 +1,8 @@
 @extends('admin.sistema')
 
+@push('js')
+       <script src="{{ asset('assets/js/calcularcostos.js') }}?v={{ time() }}"></script>
+@endpush
 
 @section('admin')
 
@@ -61,18 +64,6 @@
                                             name="fecha_ingreso" required>
                                     </div>
 
-                                    <!--<div class="form-group">
-                                        <label for="email2">{{ __('Placa') }}</label>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" id="basic-addon1"><i
-                                                    class="fa fa-user"></i></span>
-                                            <input oninput="this.value = this.value.toUpperCase();" type="text"
-                                                class="form-control" name="placa" id="placa"
-                                                placeholder="Digita la placa" aria-label="Username"
-                                                aria-describedby="basic-addon1" required />
-                                        </div>
-                                    </div>-->
-
                                     <div class="form-group">
                                         <label for="email2">{{ __('Placa') }}</label>
                                         <div class="input-group mb-3">
@@ -106,8 +97,6 @@
                                         </div>
                                     </div>
 
-                                   
-
                                     <div class="form-group">
                                         <label for="email2">{{ __('Marca') }}</label>
                                         <div class="input-group mb-3">
@@ -125,14 +114,11 @@
                                         <select class="form-control" name="estado">
                                             <option value="" selected disabled>Selecciona:</option>
                                             <option value="COMPLETADO">COMPLETADO</option>
-                                            <!--<option value="CANCELADO">CANCELADO</option>-->
                                         </select>
                                     </div>
 
 
                                 </div>
-
-
 
                                 <div class="col-md-6 col-lg-4">
 
@@ -168,9 +154,6 @@
 
                                 </div>
 
-                                
-
-                             
 
                                 <div class="card-action">
 
@@ -221,14 +204,9 @@
 
                                 </div>
 
-                             
-
-
                                 <div class="card-action">
                                     <button type="submit" class="btn btn-secondary">Guardar</button>
 
-                                    <!--<a href=""
-                                        class="btn btn-secondary">Generar Orden de Trabajo</a>-->
                                 </div>
 
                             </div>
@@ -236,53 +214,10 @@
                         </form>
 
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-<script>
-    WebFont.load({
-        google: {
-            families: ["Public Sans:300,400,500,600,700"]
-        },
-        custom: {
-            families: [
-                "Font Awesome 5 Solid",
-                "Font Awesome 5 Regular",
-                "Font Awesome 5 Brands",
-                "simple-line-icons",
-            ],
-            urls: ["../assets/css/fonts.min.css"],
-        },
-        active: function() {
-            sessionStorage.fonts = true;
-        },
-    });
-</script>
-
-<script>
-    document.querySelector('select[name="tipo_mantenimiento"]').addEventListener('change', function() {
-        let tipo = this.value;
-        let subtotal = 0;
-
-        if (tipo === "Mantenimiento 1") subtotal = 43.59;
-        if (tipo === "Mantenimiento 2") subtotal = 60.00;
-        if (tipo === "Mantenimiento 3") subtotal = 180.00;
-
-        let iva = subtotal * 0.12;
-        let total = subtotal + iva;
-
-        document.getElementById("subtotal").value = subtotal.toFixed(2);
-        document.getElementById("iva").value = iva.toFixed(2);
-        document.getElementById("total").value = total.toFixed(2);
-    });
-</script>
 
 @endsection

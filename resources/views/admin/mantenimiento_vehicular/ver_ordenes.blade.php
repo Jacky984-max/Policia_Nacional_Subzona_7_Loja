@@ -18,21 +18,11 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-
-
-                                            <!--<a class="dropdown-item" href="#">Generar Orden</a>
-                                                                                <a class="dropdown-item" href="#">Another action</a>
-                                                                                    <a class="dropdown-item" href="#">Something else here</a>-->
-
-
-
                                             <a class="dropdown-item" href="{{ route('ordenes.pdf', $ver->id) }}">Descargar
                                                 PDF</a>
                                             <a class="dropdown-item" href="{{ route('ordenes.imprimir', $ver->id) }}"
                                                 target="_blank" id="print-invoice-button">
                                                 Imprimir</a>
-
-                                
 
                                         </div>
                                     </div>
@@ -88,31 +78,11 @@
                                     </div>
                                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             </div>
 
                         </div>
 
                         <!--TABLA RESPONSIVE-->
-
-
-
-
                     </div>
                 </div>
             </div>

@@ -21,12 +21,18 @@ class ReporteController extends Controller
     {
         //
 
-        $totalUsuarios = User::count();
-        $totalPersonal = Personal_policial::count();
-        $totalMantenimientos = Mantenimiento::count();
-        $totalSolicitudes = SolicitudMantenimiento::count();
+        $graficoData = json_encode([
+            'labels' => ['Usuarios', 'Personal', 'Mantenimientos', 'Solicitudes'],
+            'cantidad' => [
+                User::count(), 
+                Personal_policial::count(), 
+                Mantenimiento::count(), 
+                SolicitudMantenimiento::count()
+            ],
+            'colores' => ['blue', 'green', 'red', 'orange']
+        ]);
 
-        return view('admin.Reportes.mostrar_reportes', compact('totalUsuarios', 'totalPersonal', 'totalMantenimientos', 'totalSolicitudes'));
+        return view('admin.Reportes.mostrar_reportes', compact('graficoData'));
     }
 
     /**

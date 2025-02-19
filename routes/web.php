@@ -132,6 +132,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/mantenimientos/show/{mante}', 'Show')->name('mantenimientos.show');
         Route::get('/ordenes/detalles/{ver}', 'verOrden')->name('ordenes.ver');
         Route::get('/mantenimientos/eliminar/{id}', 'Destroy')->name('mantenimientos.eliminar');
+        Route::post('/mantenimientos/calcular-costo', 'calcularCosto')->name('mantenimientos.calcular');
         
         Route::get('/orden-trabajo', 'Vista_Orden')->name('ordenes.index');
         Route::get('/orden-trabajo/generar/{mantenimiento_id}', 'generarOrdenTrabajo')->name('ordenes.generar');
@@ -168,7 +169,8 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/reclamos-sugerencias', [ReclamoSugerenciaController::class, 'Index'])->name('reclamos-sugerencias.index');
 Route::get('/reclamos-sugerencias/create', [ReclamoSugerenciaController::class, 'Create'])->name('reclamos-sugerencias.create');
-
 Route::post('/reclamos-sugerencias/store', [ReclamoSugerenciaController::class, 'Store'])->name('reclamos-sugerencias.store');
+Route::get('/reclamos/dependencia/{id}', [ReclamoSugerenciaController::class, 'getCircuitoSubcircuito'])->name('reclamos.dependencia');
+
 
 require __DIR__ . '/auth.php';
