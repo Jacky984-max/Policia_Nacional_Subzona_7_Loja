@@ -38,7 +38,7 @@
                                 <div class="row mb-4">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="form-label fw-semibold">Datos Generales</label>
+                                          
                                             <div class="selectgroup w-100">
                                                 <label class="selectgroup-item">
                                                     <input type="radio" name="value" value="50"
@@ -59,19 +59,19 @@
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="form-label fw-semibold">Costos</label>
+                                          
                                             <div class="selectgroup w-100">
                                                 <label class="selectgroup-item">
                                                     <input type="radio" name="value" value="150"
                                                         class="selectgroup-input" />
                                                     <span
-                                                        class="selectgroup-button fw-semibold text-white bg-secondary">Subtotal:</span>
+                                                        class="selectgroup-button fw-semibold text-white bg-secondary">Detalle:</span>
                                                 </label>
                                                 <label class="selectgroup-item">
                                                     <input type="radio" name="value" value="200"
                                                         class="selectgroup-input" />
                                                     <span
-                                                        class="selectgroup-button fw-semibold">${{ number_format($ver->subtotal, 2) }}</span>
+                                                        class="selectgroup-button fw-semibold">{{ $ver->detalle_mantenimiento }}</span>
                                                 </label>
                                             </div>
                                         </div>
