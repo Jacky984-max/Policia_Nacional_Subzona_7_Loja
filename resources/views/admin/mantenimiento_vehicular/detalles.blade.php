@@ -22,12 +22,20 @@
                                                     <i class="bi-printer me-1 dropdown-item-icon text-dark"></i> Imprimir Orden
                                                 </a>-->
 
-                                           
-                                                <a class="dropdown-item" href="{{ route('ordenes.pdf', $mante->id) }}">Descargar
-                                                    PDF</a>
+                                            @if (!$mante->ordenTrabajo)
+                                                <!-- 🔥 Botón para generar la orden si aún no existe -->
+                                             
+                                                <a class="dropdown-item" href="{{ route('ordenes.generar', $mante->id) }}">Generar Orden</a>
+                                            @else
+                                                <!-- 🔥 Botón para imprimir la orden si ya fue generada -->
+                                             
                                                 <a class="dropdown-item" href="{{ route('ordenes.imprimir', $mante->ordenTrabajo->id) }}"
                                                     target="_blank" id="print-invoice-button">
-                                                    Imprimir</a>
+                                                    Imprimir Orden</a>
+                                            @endif
+
+                                            <a class="dropdown-item" href="{{ route('ordenes.pdf', $mante->id) }}">Descargar
+                                                PDF</a>
                                           
                                            
 

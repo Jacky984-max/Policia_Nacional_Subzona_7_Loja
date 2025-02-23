@@ -77,10 +77,6 @@
 
                                                     <div class="dropdown">
                                                    
-                                                        <a class="dropdown-item m-3"
-                                                            href="{{ route('ordenes.ver', ['ver' => $orden]) }}">
-                                                            <i class="fas fa-eye text-success"></i> Detalles
-                                                        </a>
 
                                                         @if ($orden->estado == 'Pendiente')
                                                             <form action="{{ route('ordenes.finalizar', $orden->id) }}"
@@ -96,7 +92,7 @@
 
                                                         @if (!$orden->entregaVehiculo)
                                                             <a href="{{ route('entregas.create', $orden->id) }}"
-                                                                class="btn btn-success">Registrar Entrega</a>
+                                                                class="btn btn-secondary btn-sm m-6">Registrar Entrega</a>
                                                         @else
                                                             <p class="text-success">✅ Vehículo entregado el
                                                                 {{ $orden->entregaVehiculo->fecha_entrega }}</p>
