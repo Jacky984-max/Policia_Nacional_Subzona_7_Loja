@@ -133,7 +133,8 @@ class MantenimientoController extends Controller
         //
         return view('admin.mantenimiento_vehicular.detalles', ['mante' => $mante]);
     }
-    public function verOrden(OrdenTrabajo $ver)
+    
+    /*public function verOrden(OrdenTrabajo $ver)
     {
         //
         $orden = OrdenTrabajo::findOrFail($ver);
@@ -141,7 +142,7 @@ class MantenimientoController extends Controller
         $policiales = Personal_policial::all();
 
         return view('admin.mantenimiento_vehicular.ver_ordenes', ['ver' => $ver]);
-    }
+    }*/
 
     /**
      * Show the form for editing the specified resource.

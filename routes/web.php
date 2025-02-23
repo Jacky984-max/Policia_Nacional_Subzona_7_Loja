@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\DependenciaController;
 use App\Http\Controllers\Admin\EntregaVehiculoController;
 use App\Http\Controllers\Admin\FlotaVehicularController;
 use App\Http\Controllers\Admin\MantenimientoController;
-use App\Http\Controllers\Admin\OrdenTrabajoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SalirController;
@@ -130,7 +129,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/mantenimientos/registro/{id}', 'Create')->name('mantenimientos.registro');
         Route::post('/mantenimientos/guardar/{id}', 'Store')->name('mantenimientos.guardar');
         Route::get('/mantenimientos/show/{mante}', 'Show')->name('mantenimientos.show');
-        Route::get('/ordenes/detalles/{ver}', 'verOrden')->name('ordenes.ver');
+        //Route::get('/ordenes/detalles/{ver}', 'verOrden')->name('ordenes.ver');
         Route::get('/mantenimientos/eliminar/{id}', 'Destroy')->name('mantenimientos.eliminar');
         Route::post('/mantenimientos/calcular-costo', 'calcularCosto')->name('mantenimientos.calcular');
         
