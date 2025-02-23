@@ -19,7 +19,7 @@ class MantenimientoController extends Controller
      */
     public function index()
     {
-        
+        //
 
         $mantenimientos = Mantenimiento::with(['vehiculo', 'solicitud'])->get();
 
@@ -34,16 +34,16 @@ class MantenimientoController extends Controller
         //
         $recepcion = SolicitudMantenimiento::findOrFail($id);
 
-        // Obtener el kilometraje desde la solicitud
+        // 🔥 Obtener el kilometraje desde la solicitud
         $kilometraje = $recepcion->kilometraje;
 
-        // 
+        // 🔥 Verificar que la solicitud está en estado "Confirmada"
         if ($recepcion->estado !== 'EN PROCESO') {
-            
+            //abort(403, 'La solicitud debe estar confirmada para registrar mantenimiento.');
             return redirect()->route('mantenimiento.index')->with('error', 'Esta solicitud aún no está en proceso.');
         }
 
-        // Obtener el vehículo relacionado con la solicitud
+        // 🔥 Obtener el vehículo relacionado con la solicitud
         $vehiculo = Vehiculo::findOrFail($recepcion->flotavehicular_id);
 
         return view('admin.recepcion_solicitudes.create', compact('recepcion', 'vehiculo', 'kilometraje'));
@@ -62,20 +62,21 @@ class MantenimientoController extends Controller
             'asunto' => 'required|string',
             'detalle' => 'required|string',
             'estado' => 'required|in:COMPLETADO',
-            'tipo_mantenimiento' => 'required|string|in:Mantenimiento 1,Mantenimiento 2,Mantenimiento 3', // Validación correcta
+            'tipo_mantenimiento' => 'required|string|in:Mantenimiento 1,Mantenimiento 2,Mantenimiento 3', // 🔥 Validación correcta
             'subtotal' => 'required|numeric',
             'iva' => 'required|numeric',
             'total' => 'required|numeric',
         ]);
 
-        
-        $solicitud = SolicitudMantenimiento::findOrFail($id);
 
+        $solicitud = SolicitudMantenimiento::findOrFail($id);
         $vehiculo = Vehiculo::where('id', $solicitud->vehiculo_id)->first();
+
 
         if ($solicitud->estado !== 'EN PROCESO') {
             return redirect()->back()->with('error', 'La solicitud debe estar en proceso');
         }
+
 
         // Crear registro en la tabla mantenimientos
         Mantenimiento::create([
@@ -93,7 +94,6 @@ class MantenimientoController extends Controller
             'subtotal' => $request->subtotal,
             'iva' => $request->iva,
             'total' => $request->total,
-
         ]);
 
         // ✅ Si el mantenimiento se registra con estado "Finalizado", la solicitud pasa a "COMPLETADO"
@@ -104,7 +104,6 @@ class MantenimientoController extends Controller
 
         return redirect()->route('mantenimiento.index')->with('success', 'Mantenimiento registrado correctamente.');
     }
-
 
     public function calcularCosto(Request $request)
     {
@@ -125,6 +124,7 @@ class MantenimientoController extends Controller
         ]);
     }
 
+
     /**
      * Display the specified resource.
      */
@@ -136,6 +136,9 @@ class MantenimientoController extends Controller
     public function verOrden(OrdenTrabajo $ver)
     {
         //
+        $orden = OrdenTrabajo::findOrFail($ver);
+
+        $policiales = Personal_policial::all();
 
         return view('admin.mantenimiento_vehicular.ver_ordenes', ['ver' => $ver]);
     }
@@ -179,6 +182,7 @@ class MantenimientoController extends Controller
     {
         $mantenimiento = Mantenimiento::findOrFail($mantenimiento_id);
 
+        // Verificar si ya existe una orden para este mantenimiento
         if (OrdenTrabajo::where('mantenimiento_id', $mantenimiento_id)->exists()) {
             return redirect()->back()->with('error', 'Ya existe una orden de trabajo para este mantenimiento.');
         }
@@ -186,14 +190,12 @@ class MantenimientoController extends Controller
         // Crear la orden de trabajo
         OrdenTrabajo::create([
             'mantenimiento_id' => $mantenimiento->id,
-          
             'fecha_generacion' => now(),
             'detalle_mantenimiento' => "Trabajo realizado en el vehículo: " . $mantenimiento->placa,
-        
             'estado' => 'Pendiente',
         ]);
 
-        return redirect()->route('ordenes.index')->with('success', 'Orden de trabajo generada correctamente.');
+        return redirect()->route('mantenimiento.index')->with('success', 'Orden de trabajo generada correctamente.');
     }
 
     public function finalizar($id)
@@ -207,22 +209,43 @@ class MantenimientoController extends Controller
 
     public function descargarPDF($id)
     {
+
         $orden = OrdenTrabajo::findOrFail($id);
 
-        $pdf = PDF::loadView('admin.mantenimiento_vehicular.ordenes', compact('orden'));
+        // Cargar la vista y pasar los datos del pedido
+        $pdf = PDF::loadView('admin.mantenimiento_vehicular.ordenes_trabajo_pdf', compact('orden'));
 
+        // Descargar el PDF con el nombre "pedido-id.pdf"
         return $pdf->download('Orden_Trabajo_' . $orden->id . '.pdf');
     }
 
-    public function imprimir($id)
+    /*public function imprimir($id)
     {
-        $orden = OrdenTrabajo::findOrFail($id);
+        //$orden = OrdenTrabajo::findOrFail($id);
 
-        return view('admin.mantenimiento_vehicular.ordenes_pdf', compact('orden'));
+        $orden = OrdenTrabajo::with(['vehiculo'])->findOrFail($id);
+
+        //return view('admin.mantenimiento_vehicular.ordenes_pdf', compact('orden'));
+
+        //$pdf = Pdf::loadView('admin.mantenimiento_vehicular.ordenes_pdf', compact('orden'));
+
+        //return $pdf->download('orden_trabajo_'.$orden->id.'.pdf');
+        //return $pdf->stream('orden_trabajo_'.$orden->id.'.pdf');
+
+        
+
+        return view('admin.mantenimiento_vehicular.imprimir', compact('orden'));
+    }*/
+
+    public function imprimirOrden(Mantenimiento $orden) {
+
+
+        //$vehi = Vehiculo::all();
+
+
+        return view('admin.mantenimiento_vehicular.imprimir_orden', compact('orden'));
+
     }
-
-    //
-
 
 
     //
@@ -248,12 +271,12 @@ class MantenimientoController extends Controller
 
         $orden = OrdenTrabajo::findOrFail($id);
 
-        // Calcular el próximo mantenimiento
+        // 🔥 Calcular el próximo mantenimiento
         $proximo_mantenimiento = ($orden->mantenimiento->vehiculo->tipo == 'Motocicleta')
             ? $request->kilometraje_actual + 2000
             : $request->kilometraje_actual + 5000;
 
-        // Registrar la entrega
+        // 🔥 Registrar la entrega
         $orden->update([
             'fecha_entrega' => $request->fecha_entrega,
             'personal_entrego_id' => $request->personal_entrego_id,
@@ -265,6 +288,4 @@ class MantenimientoController extends Controller
 
         return redirect()->route('ordenes.index')->with('success', 'Entrega registrada correctamente.');
     }
-
-   
 }
