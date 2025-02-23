@@ -17,15 +17,22 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
+
+                                            <!--<a class="dropdown-item" href="" target="_blank" id="print-invoice-button">
+                                                    <i class="bi-printer me-1 dropdown-item-icon text-dark"></i> Imprimir Orden
+                                                </a>-->
+
                                            
-                                            @if (!$mante->ordenTrabajo)
-                                                <a href="{{ route('ordenes.generar', $mante->id) }}"
-                                                    class="dropdown-item text-dark fw-semibold">
-                                                    Generar Orden
-                                                </a>
-                                            @else
-                                                <span class="badge bg-primary m-3">Orden Generada</span>
-                                            @endif
+                                                <a class="dropdown-item" href="{{ route('ordenes.pdf', $mante->id) }}">Descargar
+                                                    PDF</a>
+                                                <a class="dropdown-item" href="{{ route('ordenes.imprimir', $mante->ordenTrabajo->id) }}"
+                                                    target="_blank" id="print-invoice-button">
+                                                    Imprimir</a>
+                                          
+                                           
+
+
+
 
                                         </div>
                                     </div>
@@ -148,7 +155,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
 
                         </div>

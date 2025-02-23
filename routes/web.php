@@ -137,8 +137,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/orden-trabajo', 'Vista_Orden')->name('ordenes.index');
         Route::get('/orden-trabajo/generar/{mantenimiento_id}', 'generarOrdenTrabajo')->name('ordenes.generar');
         Route::put('/ordenes-trabajo/finalizar/{id}', 'finalizar')->name('ordenes.finalizar');
+        
         Route::get('/ordenes-trabajo/pdf/{id}', 'descargarPDF')->name('ordenes.pdf');
-        Route::get('/ordenes-trabajo/imprimir/{id}', 'imprimir')->name('ordenes.imprimir');
+        //Route::get('/ordenes-trabajo/imprimir/{id}', 'imprimir')->name('ordenes.imprimir');
+
+        Route::get('/ordenes-trabajo/{orden}', 'imprimirOrden')->name('ordenes.imprimir');
+
+       
     });
 
 
