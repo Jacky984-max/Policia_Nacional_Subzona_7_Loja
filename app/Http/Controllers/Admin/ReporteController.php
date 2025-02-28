@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dependencia;
 use App\Models\Mantenimiento;
 use App\Models\Personal_policial;
+use App\Models\RegistroAsistencia;
 use App\Models\SolicitudMantenimiento;
 use App\Models\User;
 use App\Models\Vehiculo;
@@ -21,18 +22,12 @@ class ReporteController extends Controller
     {
         //
 
-        $graficoData = json_encode([
-            'labels' => ['Usuarios', 'Personal', 'Mantenimientos', 'Solicitudes'],
-            'cantidad' => [
-                User::count(), 
-                Personal_policial::count(), 
-                Mantenimiento::count(), 
-                SolicitudMantenimiento::count()
-            ],
-            'colores' => ['blue', 'green', 'red', 'orange']
-        ]);
+        $totalPersonal = Personal_policial::count();
+        $totalMantenimientos = Mantenimiento::count();
+        $totalSolicitudes = SolicitudMantenimiento::count();
+        $totalAsistencias = RegistroAsistencia::count();
 
-        return view('admin.Reportes.mostrar_reportes', compact('graficoData'));
+        return view('admin.Reportes.mostrar_reportes', compact('totalPersonal', 'totalMantenimientos', 'totalSolicitudes', 'totalAsistencias'));
     }
 
     /**
@@ -133,5 +128,12 @@ class ReporteController extends Controller
         $vehiculos = Vehiculo::all();
         $pdf = PDF::loadView('admin.flota_vehicular.reportes_vehiculos', compact('vehiculos'));
         return $pdf->download('reporte_vehiculos.pdf');
+    }
+
+    public function asistencias()
+    {
+        $asistencias = RegistroAsistencia::all();
+        $pdf = PDF::loadView('admin.asistencias.reportes_asistencias', compact('asistencias'));
+        return $pdf->download('reporte_asistencia.pdf');
     }
 }

@@ -219,15 +219,17 @@
 
 
              <!---PARA POLICIA-->
-        @can('solicitud.index')
-             <li class="nav-item">
+            @can('solicitud.index')
+                   <li class="nav-item">
                  <a href="{{ route('solicitud.index') }}">
                      <i class="fas fa-file"></i>
                      <p>Ver mis Solicitudes</p>
 
                  </a>
              </li>
-         @endcan
+        
+            @endcan
+          
 
     @can('solicitud.create')
          <li class="nav-item">
@@ -239,7 +241,36 @@
          </li>
      @endcan
 
-          
+        <!---Módulo de Administración--->
+        @if (auth()->user()->hasRole('policia'))
+        <li class="nav-item">
+            <a href="{{ route('asistencia.index') }}">
+                <i class="fas fa-file"></i>
+                <p>Registrar Asistencia</p>
+
+            </a>
+        </li>
+    @endif
+
+    @if (auth()->user()->hasRole('tecnico1'))
+     <li class="nav-item">
+         <a data-bs-toggle="collapse" href="#asis">
+             <i class="fas fa-table"></i>
+             <p>Gestionar Asistencias</p>
+             <span class="caret"></span>
+         </a>
+         <div class="collapse" id="asis">
+             <ul class="nav nav-collapse">
+                 <li>
+                     <a href="{{ route('asistencia.historial') }}">
+                         <span class="sub-item">Mostrar</span>
+                     </a>
+                 </li>
+
+             </ul>
+         </div>
+     </li>
+ @endif
 
      @can('reportes.gerencia')
               <li class="nav-item">
@@ -255,6 +286,12 @@
                                 <span class="sub-item">Mostrar Reportes</span>
                             </a>
                         </li>
+
+                        <!--<li>
+                            <a href="">
+                                <span class="sub-item">Reportes por Filtrado de Datos</span>
+                            </a>
+                        </li>-->
 
                     </ul>
                 </div>
