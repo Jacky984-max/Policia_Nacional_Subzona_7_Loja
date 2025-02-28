@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personal_policials', function (Blueprint $table) {
+        Schema::create('personals_policials', function (Blueprint $table) {
             $table->id();
             $table->integer('cedula');
             $table->string('nombre');
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('estado_asignacion', ['Asignado', 'No Asignado'])->default('No Asignado'); 
             $table->foreignId('dependencia_id')->constrained('dependencias')->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null'); 
+            $table->string('codigo_personal', 6)->unique()->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personal_policials');
+        Schema::dropIfExists('personals_policials');
     }
 };

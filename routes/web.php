@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ReclamoController;
 use App\Http\Controllers\Admin\ReporteController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VincularPersonalController;
+use App\Http\Controllers\Policia\AsistenciaController;
 use App\Http\Controllers\Policia\SolicitudController;
 use App\Http\Controllers\ReclamoSugerenciaController;
 
@@ -157,6 +158,9 @@ Route::middleware(['auth'])->group(function () {
         //
         Route::get('/reportes/gerencia', 'index')->name('reportes.gerencia');
         Route::get('/reportes/gerencia/pdf', 'generarPDF')->name('reportes.gerencia.pdf');
+        Route::get('/reportes/asistencia', 'asistencias')->name('reportes.asistencias');
+
+        Route::get('/reportes/consultar', 'filtrarDatos')->name('reportes.consultar');
 
     });
 
@@ -164,6 +168,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/entregas/{id}/crear', 'create')->name('entregas.create');
         Route::post('/entregas/{id}/guardar', 'store')->name('entregas.store');
 
+    });
+
+    Route::controller(AsistenciaController::class)->group(function () {
+        Route::get('/asistencia',  'index')->name('asistencia.index');
+        Route::post('/asistencia/registrar', 'registrarAsistencia')->name('asistencia.registrar');
+        Route::get('/asistencia/historial', 'historial')->name('asistencia.historial');
+       
     });
 
 

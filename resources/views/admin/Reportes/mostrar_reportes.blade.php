@@ -3,8 +3,7 @@
 @push('js')
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="../assets/js/graficos.js"></script>
-    
+<script src="{{ asset('assets/js/graficos.js')}}"></script>
 @endpush
 
 @section('admin')
@@ -31,7 +30,12 @@
                         </div>
                         <div class="card-body">
                             <div class="chart-container">
-                                <canvas id="graficoUsuarios" data-json="{{ $graficoData }}"></canvas>
+                                <canvas id="graficoReportes" data-json="{{ json_encode([
+                                    'totalPersonal' => $totalPersonal,
+                                    'totalMantenimientos' => $totalMantenimientos,
+                                    'totalSolicitudes' => $totalSolicitudes,
+                                    'totalAsistencias' => $totalAsistencias
+                                ]) }}"></canvas>
                             </div>
 
                         </div>

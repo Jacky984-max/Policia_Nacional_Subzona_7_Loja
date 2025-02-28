@@ -28,4 +28,19 @@ class Personal_policial extends Model
     {
         return $this->hasMany(SolicitudMantenimiento::class, 'policia_id');
     }
+
+
+    public static function generarCodigo()
+    {
+        $ultimoID = self::max('id') + 1;
+        return 'POL' . str_pad($ultimoID, 3, '0', STR_PAD_LEFT);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($policia) {
+            $policia->codigo_personal = self::generarCodigo();
+        });
+    }
 }
